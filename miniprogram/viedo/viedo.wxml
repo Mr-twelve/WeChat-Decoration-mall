@@ -1,0 +1,68 @@
+<view class="cu-bar search bg-white">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" bindinput="inputTyping" placeholder="搜索视频" confirm-type="search"></input>
+  </view>
+  <view class="action">
+    <button bindtap="quanjusousuo" class="cu-btn bg-green shadow-blur round">全局搜索</button>
+  </view>
+</view>
+<view>
+  <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+      <block wx:if="{{item==''}}">全部</block>
+      <block wx:if="{{item!=''}}">{{item}}</block>
+    </view>
+  </scroll-view>
+
+
+  <block wx:for='{{vedio}}' wx:key>
+    <view class="cu-card case">
+      <view class="cu-item shadow" bindtap="ingoods" id="{{index}}">
+        <view class="image">
+          <image wx:if="{{item.lookvideo==false}}" id="{{index}}" bindtap="lookvideo" src="cloud://test-xchgb.7465-test-xchgb/vedio/播放.png"></image>
+          <video wx:if="{{item.lookvideo==true}}" autoplay="{{true}}" controls src='{{item.vedio}}'></video>
+          <view class="name text-cut text-bold">{{item.title}}</view>
+          <view class="flex solid-bottom padding justify-between">
+            <view class="shuming">
+
+              <view id="{{item._openid}}" bindtap="lookwork" class="solid-bottom padding justify-between">
+                <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});"></view>
+                <text>{{item.nickName}}</text>
+              </view>
+              <view style="margin-right:20rpx;">
+                {{item.timemonth}}月{{item.timedate}}日{{item.timetime}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="contextview" style=" background:white;margin-bottom:10rpx">
+      <view class="contextview-textlookall">
+        {{item.contect}}
+      </view>
+
+    </view>
+
+
+
+    <!--     <view class="contextview" style=" background:white;">
+      <view class="{{item.lookall?'contextview-textlookall':'contextview-text'}}">
+        {{item.contect}}
+      </view>
+      <view class="flex solid-bottom padding justify-between">
+        <view>10月12日</view>
+        <view wx:if="{{item.lookall==false}}" id="{{index}}" bindtap="chakan">展开</view>
+        <view wx:if="{{item.lookall==true}}" id="{{index}}" bindtap="chakan">收起</view>
+      </view>
+    </view> -->
+  </block>
+
+</view>
+
+
+<view style="padding:50rpx;margin: 50rpx;"></view>
+<view wx:if='{{addvie}}' class="write-weibo-btn" bind:tap="addviedo">
+  <view>+</view>
+</view>

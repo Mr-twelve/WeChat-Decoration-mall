@@ -1,0 +1,19 @@
+<wxs src="../../utils/util.wxs" module="util"></wxs>
+<weibo weibo="{{weibo}}"></weibo>
+<view class="comment-list-group">
+    <view class="comment-title">评论（{{comments.length}}）</view>
+    <view class="comment-group" wx:for="{{comments}}" wx:for-item="comment">
+        <image class="avatar" src="{{comment.author.avatarUrl}}"></image>
+        <view class="right-group">
+            <view class="top-group">
+                <view class="username">{{comment.author.nickName}}</view>
+                <view class="time">{{util.timeFormat(comment.create_time)}}</view>
+            </view>
+            <view class="content-group">{{comment.content}}</view>
+        </view>
+    </view>
+</view>
+<view class="comment-input-group">
+    <input type="text" class="comment-input" placeholder="请输入评论内容" cursor-spacing="20" bind:focus="onFocusEvent" bind:blur="onBlurEvent" bind:confirm="onConfirmEvent" />
+</view>
+<view class="mask" wx:if="{{mask}}"></view>

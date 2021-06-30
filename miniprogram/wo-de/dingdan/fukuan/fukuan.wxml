@@ -1,0 +1,1 @@
+<button class="cu-btn  bg-red" bindtap="wancheng">已付款50%</button>

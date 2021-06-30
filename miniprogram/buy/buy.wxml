@@ -1,0 +1,54 @@
+<!--miniprogram/pages/shoping/shoping.wxml-->
+<!-- 左侧导航栏 -->
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="0">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{TopCur==0?list0:list1}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh)" scroll-into-view="main-{{MainCur}}">
+    <!-- ----- -->
+
+
+
+    <view class="padding-top padding-lr" id="main-{{index}}">
+
+
+
+      <!-- ↓内容↓ -->
+      <view class="cu-list menu-avatar">
+        <block wx:for="{{goods}}" wx:for-item="goods" wx:key="">
+
+          <view bindtap="ingoods" id="{{goods._id}}" class="cu-item ">
+            <image class="cu-avatar radius lg" src="{{goods.tximage}}"></image>
+            <view wx:if="{{goods.huodonghave==true}}" class="cu-tag bg-red">{{goods.huodong.style}}</view>
+            <view class="content">
+              <view class="goodsname">
+                <text class="goodsname-cut">{{goods.name}}</text>
+              </view>
+              <view class="text-black">
+                <text class="goodsprice text-red">¥{{goods.price}}</text>
+                
+                <!-- <block wx:if="{{goods.huodonghave}}">
+<view class="cu-tag bg-red">{{goods.huodong.style}}¥{{goods.huodong.price}}</view>
+      </block> -->
+                
+              </view>
+              <view class="text-black">
+                <text class="shangpuname">{{goods.shangpuname}}</text>
+              </view>
+            </view>
+            <!--             <view class="action">
+              <view class="text-red">¥{{goods.price}}</view>
+            </view> -->
+          </view>
+
+
+        </block>
+      </view>
+      <!-- ↑内容↑ -->
+    </view>
+
+
+  </scroll-view>
+</view>

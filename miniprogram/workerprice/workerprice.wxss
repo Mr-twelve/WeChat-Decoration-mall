@@ -1,0 +1,11 @@
+/* miniprogram/workerprice/workerprice.wxss */
+page{
+  background-color: white
+}
+
+.container{
+  /* display: flex; */
+  /* justify-content: center;
+  align-content: center; */
+  font-size: 36rpx;
+}

@@ -1,0 +1,91 @@
+/* miniprogram/buy/gouwuche/gouwuche.wxss */
+/* miniprogram/pages/gouwuche/gouwuche.wxss */
+.bottom{
+  margin-bottom: 0
+}
+.cu-card.article>.cu-item .content {
+display: flex;
+padding: 20rpx 20rpx;
+
+}
+.cu-card.article>.cu-item {
+padding-bottom: 0rpx;
+}
+.cu-card {
+display: block;
+margin-top: 0rpx;
+overflow:inherit;
+}
+.group1{
+ /*  margin-bottom: 150rpx; */
+}
+
+
+/* 购物车价格样式 */
+.price{
+
+/* margin-right: 50rpx; */
+border-radius: 6rpx;
+vertical-align: middle;
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+box-sizing: border-box;
+padding: 0rpx 16rpx;
+height: 48rpx;
+font-family: Helvetica Neue, Helvetica, sans-serif;
+white-space: nowrap;
+font-size: 30rpx;
+color: red
+}
+
+
+
+/* 购物车商品的＋—号的样式 */
+.fuhao{
+  background-color: var(--white);
+color: var(--darkGray);
+font-size: 24rpx;
+/* vertical-align: middle; */
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+box-sizing: border-box;
+padding: 0rpx 16rpx;
+height: 58rpx;
+width: 58rpx;
+font-family: Helvetica Neue, Helvetica, sans-serif;
+white-space: nowrap;
+float: right;
+}
+
+
+/* 购物车物品数量 */
+.shuzi{
+padding: 0rpx 16rpx;
+font-size: 24rpx;
+height: 48rpx;
+width: 48rpx;
+position: relative;
+border: 0rpx;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+box-sizing: border-box;
+/* padding: 0 30rpx;
+font-size: 28rpx;
+height: 64rpx; */
+line-height: 1;
+text-align: center;
+text-decoration: none;
+overflow: visible;
+margin-left: 10rpx;
+/* transform: translate(0rpx, 0rpx); */
+float: right
+}
+
+.round .red radio{
+
+}

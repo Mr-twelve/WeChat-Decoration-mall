@@ -1,0 +1,196 @@
+<!-- miniprogram/buy/goods/goods.wxml -->
+<!-- 轮播图片 -->
+<swiper bindtap="ViewImage" class="screen-swiper square-dot}}" indicator-dots="true" circular="true" duration="500">
+  <block wx:for="{{image}}" wx:key="">
+    <swiper-item item-id id="{{item}}">
+      <image id="{{item}}" url="{{item}}" src="{{item}}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 信息 -->
+<view class="cu-bar bg-white solid-bottom" margin-botom="0">
+  <view class="cu-card dynamic solids-bottom padding-xs flex align-center">
+    <view class="text-xxl ">
+      <block wx:if="{{!good.huodonghave}}">
+        <text class="text-price text-red padding">{{good.price}}</text>
+      </block>
+      <block wx:if="{{good.huodonghave}}">
+        <text class="text-price text-red padding" style="font-size:55rpx">{{good.huodong.price}}</text>
+        <view class="cu-tag bg-red">{{good.huodong.style}}</view>
+      </block>
+    </view>
+    <view class="flex-sub">
+      <view class=" text-xl">
+        <text class="text-black text-bold padding">{{name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<block wx:if="{{good.huodonghave}}">
+  <view class="cu-bar bg-white margin-topp">
+    <view>
+      <view class="grid flex-sub padding-lr">{{pindanpeople}}正在拼单</view>
+    </view>
+    <view bindtap="chakanpindan" class="action">查看全部</view>
+  </view>
+
+  <block wx:if='{{good.huodongxiangqin.length==0}}'>
+    <view class="padding" style="background-color:white">
+      <button id="0" bindtap="pindan" class="cu-btn bg-red shadow-blur">发起拼单</button>
+    </view>
+  </block>
+  <block wx:if='{{good.huodongxiangqin.length==1}}'>
+    <view class="padding" style="background-color:white">
+      <view wx:for="{{good.huodongxiangqin[0].user}}" wx:for-item='tx' wx:key class="cu-avatar round lg margin-left" style="background-image:url({{tx.tximg}});"></view>
+      <button id="0" bindtap="chanyupindan" class="cu-btn bg-red shadow-blur">参与拼单</button>
+    </view>
+  </block>
+
+  <block wx:if='{{good.huodongxiangqin.length!=0&&good.huodongxiangqin.length!=1}}'>
+    <view class="pingtuan">
+      <swiper autoplay="true" interval="2000" vertical='true' display-multiple-items='2'>
+        <block wx:for="{{good.huodongxiangqin}}" wx:key>
+          <swiper-item>
+            <view class="padding">
+              <view wx:for="{{item.user}}" wx:for-item='tx' wx:key class="cu-avatar round lg margin-left" style="background-image:url({{tx.tximg}});"></view>
+              <button id="{{index}}" bindtap="chanyupindan" class=" bg-red">参与拼单</button>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </block>
+</block>
+<!-- 详情 -->
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{tab}}" wx:for-item="tab" wx:key bindtap="tabSelect" data-id="{{index}}">
+    {{tab}}
+  </view>
+</scroll-view>
+<block wx:if="{{TabCur==0}}">
+  <view class="cu-card dynamic  solid-bottom">
+    <view class="cu-item shadow">
+      <view class="grid flex-sub padding-lr">{{describe}}</view>
+      <block wx:for="{{image}}" wx:key>
+        <image id="{{item}}" class="image1" src="{{item}}" bindtap="ViewImage" mode="widthFix" style="width:100%"></image>
+      </block>
+    </view>
+  </view>
+</block>
+
+<block wx:if="{{TabCur==1}}">
+  <block wx:for="{{pingjia}}" wx:key="">
+    <view class="weibo-group">
+      <view class="user-group">
+        <image class="avatar" src="{{item.usertximg}}"></image>
+        <view class="right-info">
+          <view class="username">{{item.name}}</view>
+          <view class="detail-info">
+            <view class="time">{{item.date}}</view>
+          </view>
+        </view>
+        <wux-cell hover-class="none">
+          <wux-rater fontSize="15" disabled="true" slot="footer" allow-half default-value="{{ item.star }}" />
+        </wux-cell>
+      </view>
+      <view class="weibo-content-group">
+        <view class="content">
+          <block>
+            <text>{{item.pingjia}}</text>
+          </block>
+        </view>
+        <!-- 3张图片的情况 -->
+        <view class="image-list-group">
+          <block wx:for="{{item.fileIDList}}" wx:key="" wx:for-item="image">
+            <image id="{{item.fileIDList}}" src="{{image}}" mode="aspectFill" style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;" data-index="{{index}}" /> </block>
+          <block wx:if="{{item.fileIDList.length==2}}">
+            <view style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;"></view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</block>
+
+
+<!-- 底部导航栏 -->
+<view class="cu-bar bg-white tabbar border shop ToolBar">
+  <button class="action bg-white" open-type="contact">
+    <view class="cuIcon-service bg-white text-green">
+    </view>
+    客服
+  </button>
+  <view bindtap="quxiaoshoucang" wx:if="{{shoucang}}" class="action text-orange">
+    <view class="cuIcon-favorfill"></view>
+    已收藏
+  </view>
+  <view wx:if="{{!shoucang}}" bindtap="shoucang" class="action text-orange">
+    <view class="cuIcon-favor"></view>
+    收藏
+  </view>
+  <view class="btn-group">
+    <block wx:if='{{good.huodonghave==false}}'>
+      <button class="cu-btn bg-orange shadow-blur" bindtap="addgouwuche" data-target="bottomModal" role="button" aria-disabled="false" style="width:180rpx;">
+        加入购物车
+      </button>
+      <button class="cu-btn bg-red shadow-blur" style="width:180rpx;" bindtap="buy"> 立即订购 </button>
+    </block>
+    <block wx:else>
+      <button class="cu-btn bg-red shadow-blur light" bindtap="buy">¥{{good.price}}立即订购</button>
+      <button class="cu-btn bg-red shadow-blur" bindtap="pindan">¥{{good.huodong.price}}发起拼单</button>
+    </block>
+  </view>
+</view>
+<!-- 查看全部拼单弹窗 -->
+<view class="zan-dialog {{ chakanpindan ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="chakanpindan" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <block wx:for="{{good.huodongxiangqin}}" wx:key>
+        <view>
+          <view wx:for="{{item.user}}" wx:for-item='tx' wx:key class="cu-avatar round lg margin-left" style="background-image:url({{tx.tximg}});"></view>
+          <button id="{{index}}" bindtap="chanyupindan" class="cu-btn bg-red shadow-blur">参与拼单</button>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<!-- 加入购物车的底部弹窗 -->
+<!-- <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}"> -->
+<view class="cu-modal bottom-modal {{modalName?'show':''}}">
+  <view class="cu-dialog">
+    <view style="display:flex;flex-direction:row-reverse">
+      <button bindtap="hideModal" class="cu-btn icon">
+        <text class="cuIcon-close lg text-black"></text>
+      </button>
+    </view>
+    <view class="padding-xl">
+      <text class="text-black">选择数量：</text>
+      <view>
+        <button class="cu-btn line" bindtap="lose10">-10</button>
+        <button class="cu-btn line" bindtap="lose">-</button>
+        <button class="cu-btn line-blue">{{number}}</button>
+        <button class="cu-btn line" bindtap="add">+</button>
+        <button class="cu-btn line" bindtap="add10">+10</button>
+      </view>
+    </view>
+    <view class="padding flex flex-direction">
+      <button class="round cu-btn bg-red margin-tb-sm lg" bindtap="trueadd" data-target="{{number}}">
+        确定
+      </button>
+    </view>
+  </view>
+</view>
+
+
+<!-- 微信登陆 -->
+<view class="zan-dialog {{ login ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="login" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'>
+        获取头像昵称
+      </button>
+    </view>
+  </view>
+</view>

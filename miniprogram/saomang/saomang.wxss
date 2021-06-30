@@ -1,0 +1,16 @@
+    /* 发表加号 */
+.write-weibo-btn {
+  position: fixed;
+  right: 30rpx;
+  top: 87%;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100rpx;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

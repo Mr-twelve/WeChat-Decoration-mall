@@ -1,0 +1,89 @@
+
+video {
+  width: 100%;
+  height: 225px;
+  display: inline-block;
+  line-height: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+textarea {
+cursor: auto;
+width: 100%;
+height: 330rpx;
+display: block;
+position: relative;
+font-size: 30rpx;
+color: black;
+}
+
+
+.name {
+  font-size: 40rpx;
+  color:grey;
+}
+
+.huodongtext {
+  font-size: 30rpx;
+  color: black;
+}
+.placeholderhuodongtext {
+  top:20rpx;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: black;
+}
+
+.cu-list.menu-avatar>.cu-item .content {
+  position: absolute;
+  left: 10rpx;
+  width: 710rpx;
+  line-height: 1.6em;
+}
+
+.cu-list.menu-avatar>.cu-item {
+  position: relative;
+  display: flex;
+  padding-right: 10rpx;
+  height: 140rpx;
+  background-color: var(--white);
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.content {
+  display: flex;
+  height: 100rpx;
+}
+
+.content-cut {
+  font-size: 33rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contextview-textlookall {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  padding: 0 15rpx;
+  font-size: 30rpx;
+}
+
+.padding {
+  padding: 10rpx;
+}
+
+input {
+  font-size: 40rpx;
+  cursor: auto;
+  display: block;
+  height: 2.4rem;
+  text-overflow: clip;
+  overflow: hidden;
+  white-space: nowrap;
+  min-height: 1.4rem;
+}

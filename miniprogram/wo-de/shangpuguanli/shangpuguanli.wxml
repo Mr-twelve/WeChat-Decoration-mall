@@ -1,0 +1,108 @@
+<!--miniprogram/wo-de/workerguanli/workerguanli.wxml-->
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{dingdan}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </view>
+</scroll-view>
+
+<view class="cu-list menu-avatar">
+  <block wx:for="{{shangpu}}" wx:key="">
+    <block wx:if="{{TabCur==0}}">
+      <block wx:if="{{item.renzheng==false}}">
+        <block wx:if="{{item.quxiao==false}}">
+          <!--  -->
+
+          <view class="cu-item">
+            <view class="touxiang">
+              <image class="cu-avatar round lg" src="{{item.tximg}}">
+              </image>
+            </view>
+            <view class="content" style="font-size: 35rpx;">
+              <view class="text-black" style="font-size:35rpx">{{item.shangpuname}}</view>
+              <view class="text-black border">店主：{{item.name}}</view>
+              <view class="text-black">电话：{{item.tell}}</view>
+            </view>
+            <view class="actionion">
+            <button bindtap="lookyyzz" id="{{index}}" class="cu-btn round bg-orange" role="button" aria-disabled="false">查看执照</button>
+              <button id='{{item._id}}' bindtap="quxiao" class="cu-btn round bg-red" role="button"  aria-disabled="false">拒绝申请</button>
+              <button id='{{item._id}}' bindtap="yes" class="cu-btn round bg-green" role="button" aria-disabled="false">审核通过</button>
+            </view>
+          </view>
+
+          <!--  -->
+          <!-- <view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
+        <view>
+          <text>{{item.date}}</text>
+        </view>
+        <view class="flex justify-center">
+          <view class='text-center'>
+            <image class="cu-avatar xl round solids" src="{{item.tximg}}"></image>
+            <view class="padding">{{item.shangpuname}}</view>
+          </view>
+        </view>
+        <view class="cu-form-group bg-white}}">
+          <view class="title"> 店主</view>
+          <text>{{item.name}}{{item.xingbie}}</text>
+        </view>
+        <view class="cu-form-group bg-white}}">
+          <view class="title"> 联系电话</view>
+          <text>{{item.tell}}</text>
+        </view>
+        <view class="margin-tb-sm text-center" style="display:flex;justify-content:space-between">
+          <button id='{{item._id}}' bindtap="quxiao" class="cu-btn round bg-red" role="button" aria-disabled="false">拒绝申请</button>
+          <button id='{{item._id}}' bindtap="yes" class="cu-btn round bg-green" role="button" aria-disabled="false">审核通过</button>
+        </view>
+      </view> -->
+        </block>
+      </block>
+    </block>
+    <block wx:if="{{TabCur==1}}">
+      <block wx:if="{{item.renzheng==true}}">
+        <!--  -->
+        <view class="cu-itemitem">
+          <view class="touxiang">
+            <image class="cu-avatar round lg" src="{{item.tximg}}">
+            </image>
+          </view>
+          <view class="content" style="font-size: 35rpx;position: absolute;left: 200rpx;width: 320rpx;line-height: 1.6em;height: 160rpx;">
+            <view class="text-black" style="font-size:35rpx">{{item.shangpuname}}</view>
+            <view class="text-black border">店主：{{item.name}}</view>
+            <view class="text-black">电话：{{item.tell}}</view>
+          </view>
+          <view style="width: 100rpx;text-align: center;height: 100%;margin-top: 20px;">
+            <view bindtap="chakanshangpu" id="{{item._id}}">详情</view>
+          </view>
+        </view>
+        <!--  -->
+        <!-- <view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
+        <view>
+          <text>{{item.date}}</text>
+        </view>
+        <view class="flex justify-center">
+          <view class='text-center'>
+            <image class="cu-avatar xl round solids" src="{{item.tximg}}"></image>
+            <view class="padding">{{item.shangpuname}}</view>
+          </view>
+        </view>
+        <view class="cu-form-group bg-white}}">
+          <view class="title"> 店主</view>
+          <text>{{item.name}}{{item.xingbie}}</text>
+        </view>
+        <view class="cu-form-group bg-white}}">
+          <view class="title"> 联系电话</view>
+          <text>{{item.tell}}</text>
+        </view>
+        <view class="margin-tb-sm text-center">
+          <button class="cu-btn round bg-white" role="button" aria-disabled="false">已审核通过</button>
+        </view>
+        <view class="margin-tb-sm text-center">
+          <button bindtap="chakanshangpu" id="{{item._id}}" class="cu-btn bg-white shadow lg" role="button" aria-disabled="false">查看店铺详情</button>
+        </view>
+      </view> -->
+      </block>
+    </block>
+
+  </block>
+</view>

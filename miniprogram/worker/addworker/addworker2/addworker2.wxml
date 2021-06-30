@@ -1,0 +1,335 @@
+<wxs module="workprice" src="../../../utils/workprice.wxs" />
+<block wx:if='{{Tarbar==0}}'>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="cu-form-group margin-top">
+      <view class="title">服务口号</view>
+      <input type="text" name="kouhao" placeholder="请输入服务口号"></input>
+    </view>
+    <calendar is-calendar-show="{{isCalendarShow}}" mark="{{calendarMark}}" format="1" deadline="9102-11-11" bind:getdate="onCalendarGetDate" />
+    <view class="cu-bar bg-white margin-top">
+      <view class="action">休工时间</view>
+      <view class="action">
+        <button class="cu-btn bg-white shadow" bindtap="onOpenCalendar" data-target="ChooseModal">
+          设置
+        </button>
+      </view>
+    </view>
+    <view class="cu-bar bg-white margin-top">
+      <view class="action">个人技能</view>
+      <view class="action">
+        <block wx:if="{{work==''}}">
+          <button class="cu-btn bg-white shadow" bindtap="showModal" data-target="ChooseModal">
+            技能选择
+          </button>
+        </block>
+        <block wx:else>
+          <button class="cu-btn bg-green shadow" bindtap="showModal" data-target="ChooseModal">
+            <block wx:for='{{work}}' wx:key>
+              <view>{{item}},</view>
+            </block>
+            <!-- {{work}} -->
+          </button>
+        </block>
+      </view>
+    </view>
+    <view class="cu-bar bg-white margin-top">
+      <view class="action">工价细分</view>
+      <view class="action">
+        <button class="cu-btn bg-white shadow" bindtap="toggleDialog" data-target="ChooseModal">
+          工价设置
+        </button>
+      </view>
+    </view>
+    <block wx:for="{{lists}}" wx:key="{{index}}">
+      <view class="cu-form-group">
+        <text>{{workprice.toname(index)}}:</text>
+        <text>{{item}}</text>
+      </view>
+    </block>
+    <view class="cu-bar bg-white margin-top">
+      <view class="action">技能展示（图片形式）</view>
+      <view class="action">{{imgList.length}}/8</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+          <image src='{{imgList[index]}}' mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<8}}">
+          <text class="cuIcon-cameraadd"></text>
+        </view>
+      </view>
+    </view>
+    <checkbox-group name="radiogroup" class="block">
+      <view class="cu-form-group margin-top">
+        <checkbox class="round" value="fuwsm" checked></checkbox>
+        <view class="title">我已同意
+          <text bindtap="fuwsmfuwsm" style="color:blue">服务声明</text>
+        </view>
+      </view>
+    </checkbox-group>
+    <view class="padding flex flex-direction">
+      <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">完成</button>
+    </view>
+  </form>
+</block>
+<block wx:if='{{Tarbar==1}}'>
+
+  <swiper class='swiper-box' autoplay='{{true}}' interval='3000' vertical='{{true}}' circular='{{true}}'>
+    <swiper-item class='item' wx:for='{{txtlist}}'>{{index + 1}}、{{item}}</swiper-item>
+  </swiper>
+
+
+  <form bindsubmit="gongjia">
+    <block wx:if="{{work==''}}" wx:key="">
+      <view style="margin-top:500rpx;font-size:40rpx;display:flex;justify-content:center;">请先选择工人技能</view>
+    </block>
+    <!-- <block wx:if="{{work=='泥工'}}" wx:key=""> -->
+    <block wx:if="{{checkbox[7].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">泥工</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">瓷砖铺贴800*800(/mm)</view>
+
+        <input id="0" name="czptbb" type="number" placeholder="30" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">瓷砖铺贴300*600(/mm)</view>
+        <input id="1" name="czptsl" type="number" placeholder="35" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">瓷砖铺贴400*800(/mm)</view>
+        <input name="czptsb" type="number" placeholder="45" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">过门石铺小于1.2m</view>
+        <input name="gmsxyye" type="number" placeholder="30" placeholder-class="ppp"></input>
+        <view class="title">过门石铺大于1.2m</view>
+        <input name="gmsdyye" type="number" placeholder="60" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">地面整平水泥厚度5cm内(/m²)</view>
+        <input name="dmzpwcmn" type="number" type="number" placeholder="18" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">地面整平水泥厚度5cm外(/m²)</view>
+        <input name="dmzpwcmw" type="number" placeholder="20" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">砌墙120毫米墙宽(㎡)
+        </view>
+        <input name="qqyelhmqk" type="number" placeholder="20" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">倒角(m)全瓷 </view>
+        <input name="djqc" type="number" placeholder="20" placeholder-class="ppp"></input>
+        <view class="title">倒角(m)半瓷 </view>
+        <input name="djbc" type="number" placeholder="15" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">烟道(大) </view>
+        <input name="ydd" type="number" placeholder="200" placeholder-class="ppp"></input>
+        <view class="title">烟道(小) </view>
+        <input name="ydx" type="number" placeholder="150" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">防水间 </view>
+        <input name="fsj" type="number" placeholder="200" placeholder-class="ppp"></input>
+        <view class="title">拉毛 </view>
+        <input name="lm" type="number" placeholder="100" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">波打线 </view>
+        <input name="bdx" type="number" placeholder="15" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 基本工人 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{checkbox[6].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">基本工人</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">墙固(㎡)</view>
+        <input name="qg" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">地固(㎡)</view>
+        <input name="dg" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">墙体拆除(㎡)</view>
+        <input name="qtcc" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">地面保护(㎡)</view>
+        <input name="dmbh" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 水电工 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{checkbox[8].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">水电工</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">水走顶(m)</view>
+        <input name="szdin" type="number" placeholder="15" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">水走地(m)</view>
+        <input name="szd" type="number" placeholder="10" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">电顶(m)</view>
+        <input name="dtop" type="number" placeholder="15" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">电地(m)</view>
+        <input name="dbottom" type="number" placeholder="12" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">插座</view>
+        <input name="cz" type="number" placeholder="5" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 木工 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{checkbox[5].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">木工</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">石膏板吊顶(㎡)</view>
+        <input name="sgbdd" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">石膏线(m)</view>
+        <input name="sgx" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view>
+      <!-- <view class="cu-form-group margin-top">
+        <view class="title">柜子(㎡)</view>
+        <input name="gz" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view> -->
+    </block>
+    <!-- </form> -->
+    <!-- 油漆工 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{checkbox[4].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">油漆工</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">腻子</view>
+        <input name="nz" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">乳胶漆</view>
+        <input name="rjq" type="number" placeholder="1" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 美缝 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{checkbox[0].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">美缝</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">美缝</view>
+        <input disabled="true" name="meifen" type="number" value="美缝为自主报价不用填写" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 开荒打扫 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{checkbox[2].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">开荒打扫</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">开荒打扫</view>
+        <input disabled="true" name="kaihuangdasao" type="number" value="开荒打扫为自主报价不用填写" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 验房师 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{checkbox[3].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">验房师</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">验房师</view>
+        <input disabled="true" name="kaihuangdasao" type="number" value="验房师为自主报价不用填写" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 封阳台 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{checkbox[1].checked==true}}" wx:key="">
+      <view style="text-align:center;font-size:36rpx;">封阳台</view>
+      <view class="cu-form-group margin-top">
+        <view class="title">封阳台</view>
+        <input disabled="true" name="fengyangtai" type="number" value="封阳台为自主报价不用填写" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <button form-type="submit" style="color:orange;margin-top:50rpx;">确定</button>
+    <button bindtap="fanhui" style="color:orange">返回</button>
+  </form>
+
+
+</block>
+<!-- 技能选择弹窗 -->
+<view class="cu-modal bottom-modal {{modalName=='ChooseModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="hideModal">确定</view>
+    </view>
+    <view class="grid col-3 padding-sm">
+      <!-- <view>主要服务：</view> -->
+      <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">
+        <block wx:if="{{index>3}}">
+          <button class="cu-btn orange lg block {{item.checked?'bg-orange':'line-orange'}}" bindtap="ChooseCheckbox" data-value="{{index}}">
+            {{item.name}}
+          </button>
+        </block>
+      </view>
+      <!-- <view>其他服务：</view> -->
+      <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">
+        <block wx:if="{{index<4}}">
+          <button class="cu-btn orange lg block {{item.checked?'bg-orange':'line-orange'}}" bindtap="ChooseCheckbox" style="font-size:32rpx;" data-value="{{index}}">
+            {{item.name}}
+          </button>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹窗文字 -->
+<!-- <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" />
+  <view class="zan-dialog__container">
+    <view style='padding:20rpx;'>
+
+    </view>
+  </view>
+</view> -->
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ fuwsm ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="fuwsm" />
+  <view class="zan-dialog__container" style="background:white">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          服务声明
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 18rpx;font-size: 28rpx;">
+        <view class="pdd">
+          <text>{{fuwusm.fuwusm}}</text>
+        </view>
+        <view class="pdd">
+          <text>{{fuwusm.fuwusm}}</text>
+        </view>
+        <view class="pdd">
+          <text>{{fuwusm.fuwusm}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

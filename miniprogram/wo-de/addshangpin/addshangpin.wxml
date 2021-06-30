@@ -1,0 +1,353 @@
+<block wx:if="{{have==true}}">
+
+  <view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
+
+    <view style="display:flex;flex-direction:row-reverse;justify-content:space-between">
+      <block wx:if="{{shezhi==false}}">
+        <button class="cu-btn bg-white shadow" bindtap="shezhi" data-target="ChooseModal">设置</button>
+      </block>
+      <view>
+        <text>{{shangpu.date}}</text>
+      </view>
+    </view>
+
+    <block wx:if="{{shangpu.renzheng==true}}">
+      <text class="text-grey">已认证</text>
+    </block>
+    <block wx:if="{{shangpu.quxiao==true}}">
+      <text class="text-grey">认证失败</text>
+    </block>
+    <view class="flex justify-center">
+      <view class='text-center'>
+        <image class="cu-avatar xl round solids" src="{{shangpu.tximg}}"></image>
+        <view class="padding">{{shangpu.shangpuname}}</view>
+        <block wx:if="{{shezhi==true}}">
+          <view style="margin-left:50rpx;">
+            <button class="cu-btn bg-white shadow" bindtap="shezhishangpuname" data-target="ChooseModal">修改店铺名</button>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="cu-form-group bg-white}}">
+      <view class="title"> 店主</view>
+      <text>{{shangpu.name}}{{shangpu.xingbie}}</text>
+      <block wx:if="{{shezhi==true}}">
+        <button class="cu-btn bg-white shadow" bindtap="shezhiname" data-target="ChooseModal">修改</button>
+      </block>
+    </view>
+    <view class="cu-form-group bg-white}}">
+      <view class="title"> 联系电话</view>
+      <text>{{shangpu.tell}}</text>
+      <block wx:if="{{shezhi==true}}">
+        <button class="cu-btn bg-white shadow" bindtap="shezhitell" data-target="ChooseModal">修改</button>
+      </block>
+    </view>
+    <block wx:if="{{shangpu.renzheng==true}}">
+      <view class="cu-form-group bg-white}}">
+        <button bindtap="add" id='{{shangpu._id}}' class="cu-btn bg-white shadow lg">商品发布</button>
+        <button bindtap="xiaoshou" id='{{shangpu._id}}' class="cu-btn bg-white shadow lg">销售管理</button>
+      </view>
+    </block>
+  </view>
+
+  <block wx:if="{{shezhi==true}}">
+    <view class="cu-form-group bg-white}}">
+      <button class="cu-btn bg-green margin-tb-sm lg" bindtap="wancheng" data-target="ChooseModal" style="width:100%">完成</button>
+    </view>
+  </block>
+
+  <block wx:if="{{shezhi==true}}">
+    <view class="cu-form-group bg-white}}">
+      <button class="cu-btn bg-red margin-tb-sm lg" bindtap="zhuxiao" data-target="ChooseModal" style="width:100%">注销商铺</button>
+
+    </view>
+  </block>
+
+  <block wx:if="{{shangpu.renzheng==false&&shangpu.renzheng==false}}">
+    <view class="cu-form-group bg-white}}">
+      <button id='{{shangpu._id}}' class="cu-btn bg-green margin-tb-sm lg" bindtap="quxiaorenzheng" style="width:100%">取消认证</button>
+    </view>
+  </block>
+
+
+
+
+  <view class="padding-top padding-lr">
+    <!-- ↓内容↓ -->
+    <view class="cu-list menu-avatar">
+      <block wx:for="{{goods}}" wx:for-item="goods" wx:key="">
+        <view class="cu-item ">
+          <image bindtap="ingoods" id="{{goods._id}}" class="cu-avatar radius lg" src="{{goods.tximage}}"></image>
+          <view bindtap="ingoods" id="{{goods._id}}" class="content">
+            <view class="goodsname">
+              <text class="goodsname-cut">{{goods.name}}</text>
+            </view>
+            <view class="text-black">
+              <text class="goodsprice text-red">¥{{goods.price}}</text>
+              <block wx:if="{{goods.huodonghave==true}}">
+                <view class="cu-tag bg-red">{{goods.huodong.style}}¥{{goods.huodong.price}}</view>
+              </block>
+            </view>
+          </view>
+          <view class="action">
+            <button id='{{goods._id}}' bindtap="goodsgengduo" class="cu-btn bg-white shadow sm ">活动</button>
+            <!-- <button bindtap="huodong" id='{{goods._id}}' class="cu-btn bg-white shadow sm ">活动</button>
+          <button bindtap="gaijia" id='{{goods._id}}' class="cu-btn bg-white shadow sm ">改价</button> -->
+            <button bindtap="xiajia" id='{{goods._id}}' class="cu-btn bg-white shadow sm ">删除</button>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- ↑内容↑ -->
+  </view>
+
+</block>
+<!-- //////////////////////////////////////////////////////////////////// -->
+<block wx:else>
+  <view class="cu-form-group">
+    <view class="title">店铺头像</view>
+  </view>
+
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList}}">
+          <image src='{{imgList[index]}}' mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+          <text class="cuIcon-cameraadd"></text>
+        </view>
+      </view>
+    </view>
+
+    <view class="cu-form-group">
+      <view class="title">店铺名称</view>
+      <input type="text" name="shangpuname" placeholder="{{name}}"></input>
+    </view>
+
+    <view class="cu-form-group">
+      <switch checked="{{xingbievalue}}" class="switch-sex" bindchange="xingbie">
+      </switch>
+      <view class="title">{{xingbie}}</view>
+    </view>
+
+    <view class="cu-form-group">
+      <view class="title">姓名</view>
+      <input type="text" name="name" placeholder="{{name}}"></input>
+    </view>
+
+    <view class="cu-form-group">
+      <view class="title">手机号码</view>
+      <input bindinput="tell" type="number" name="tell" placeholder="{{tell}}"></input>
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-blue">
+          +86
+        </view>
+        <view class="cu-tag line-blue">
+          中国大陆
+        </view>
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">验证码</view>
+      <input bindinput="yanzminput" placeholder=""></input>
+      <button bindtap="yanzma" disabled='{{btnDisabled}}' class="cu-btn bg-green shadow">{{yanzm}}</button>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">地址选择</view>
+      <picker value="dizhi" mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          {{region[0]}}，{{region[1]}}，{{region[2]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="cu-bar bg-white margin-top">
+      <view class="action">
+        营业执照和经营许可证
+      </view>
+      <view class="action">
+
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+
+        <view wx:if="{{sfzimgz}}" class="bg-img" bindtap="ViewImage" data-url="{{sfzimgz}}">
+          <image src='{{sfzimgz}}' mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImgsfzimgz" data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImagesfzimgz" wx:if="{{sfzimgz==null}}">
+          <text class="cuIcon-cameraadd"></text>
+        </view>
+
+
+        <view wx:if="{{sfzimgf}}" class="bg-img" bindtap="ViewImage" data-url="{{sfzimgf}}">
+          <image src='{{sfzimgf}}' mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImgsfzimgf" data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImagesfzimgf" wx:if="{{sfzimgf==null}}">
+          <text class="cuIcon-cameraadd"></text>
+        </view>
+
+      </view>
+    </view>
+
+
+    <view class="padding flex flex-direction">
+      <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">下一步</button>
+    </view>
+  </form>
+</block>
+
+<!-- 弹窗名字 -->
+<view class="zan-dialog {{ shezhiname ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shezhiname" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="shezhiname1">
+        <view class="cu-form-group">
+          <view class="title">姓名</view>
+          <input type="text" name="name" placeholder="{{name}}"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 弹窗电话 -->
+<view class="zan-dialog {{ shezhitell ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shezhitell" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="shezhitell1">
+        <view class="cu-form-group">
+          <view class="title">手机号码</view>
+          <input type="number" name="tell" placeholder="{{tell}}"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 弹窗商铺名字 -->
+<view class="zan-dialog {{ shezhishangpuname ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shezhishangpuname" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="shezhishangpuname1">
+        <view class="cu-form-group margin-top">
+          <view class="title">商铺名字</view>
+          <input type="text" name="shangpuname" placeholder="{{name}}"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 弹窗商品价 -->
+<!-- <view class="zan-dialog {{ gaijia ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="gaijia" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="newjiage">
+        <view class="cu-form-group margin-top">
+          <view class="title">新价格</view>
+          <input type="number" name="jiage" placeholder="{{name}}"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view> -->
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ shangpu.quxiao ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          您的认证未通过
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 18rpx;font-size: 32rpx;">
+        <view class="pdd">可致电13834970653至客服管理询问</view>
+        <view class="pdd">或再次申请并填写详细信息</view>
+      </view>
+      <view class="padding flex flex-direction">
+        <button id='{{shangpu._id}}' class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false" bindtap="quxiao2">
+          我知道了
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹窗商品活动 -->
+<view class="zan-dialog {{ goodsgengduo ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="goodsgengduo" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <!-- <button bindtap="goodsgengduos" id="huodong" class="cu-btn bg-white shadow sm ">活动</button> -->
+      <button bindtap="goodsgengduos" id="gaijia" class="cu-btn bg-white shadow sm ">改价</button>
+      <block wx:if="{{goodsgengduos=='huodong'}}">
+        <view>
+          <button class="cu-btn bg-white shadow sm ">拼团</button>
+        </view>
+        <form bindsubmit="pintuan">
+          <radio-group name='people' class="block">
+            <view class="cu-form-group margin-top">
+              <view class="title">2人拼团</view>
+              <radio value="2" id="2"></radio>
+            </view>
+            <view class="cu-form-group ">
+              <view class="title">3人拼团</view>
+              <radio value="3" id="3" checked></radio>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">4人拼团</view>
+              <radio value="4" id="4"></radio>
+            </view>
+          </radio-group>
+          <view class="cu-form-group margin-top">
+            <view class="title">拼团价格</view>
+            <input type="number" name="pintuanjiage" placeholder="{{name}}"></input>
+          </view>
+          <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" bindtap="quxiaoptuan">取消拼团</button>
+            <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+          </view>
+        </form>
+      </block>
+      <block wx:if="{{goodsgengduos=='gaijia'}}">
+        <form bindsubmit="newjiage">
+          <view class="cu-form-group margin-top">
+            <view class="title">新价格</view>
+            <input type="number" name="jiage" placeholder="{{name}}"></input>
+          </view>
+          <view class="padding flex flex-direction">
+            <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+          </view>
+        </form>
+      </block>
+
+    </view>
+  </view>
+</view>

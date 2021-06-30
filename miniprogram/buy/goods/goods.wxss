@@ -1,0 +1,231 @@
+.cypt{
+  margin-right: 0rpx
+}
+.cu-btn {
+position: relative;
+border: 0rpx;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+box-sizing: border-box;
+padding: 0 15rpx;
+font-size: 28rpx;
+height: 71rpx;
+line-height: 1;
+text-align: center;
+text-decoration: none;
+overflow: visible;
+margin-left: initial;
+transform: translate(0rpx, 0rpx);
+margin-right: initial;
+}
+
+/* miniprogram/pages/goods/goods.wxss */
+swiper {
+display: block;
+height: 150px;
+}
+
+page {
+cursor: default;
+-webkit-user-select: none;
+user-select: none;
+width: 100%;
+/* overflow-x: hidden; */
+margin-bottom: 10rpx;
+}
+
+/* 底部导航栏 */
+.ToolBar {
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+
+.margin-top {
+margin-top: 10rpx;
+margin-bottom:90rpx;
+}
+.margin-topp {
+margin-top: 10rpx;
+}
+.pingtuan{
+  background-color: white
+}
+
+.image1 {
+	/* max-width: 100%; */
+	display: flex;
+	/* position: relative; */
+	z-index: 0;
+  padding: 10rpx;
+}
+.container {
+  /* padding: 40rpx; */
+  background: #f2f2f2;
+}
+
+.write-weibo-btn {
+  position: fixed;
+  right: 30rpx;
+  top: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #f37b1d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100rpx;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.write-weibo-btn view {
+  margin-top: -16rpx;
+}
+
+.comment-input-group {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  padding: 20rpx;
+  border: 1px solid #e4e4e4;
+  z-index: 2;
+}
+/* components/weibo/weibo.wxss */
+.weibo-group {
+    width: 100%;
+    margin-bottom: 30rpx;
+    background: #fff;
+    padding: 40rpx 20px;
+    box-sizing: border-box;
+}
+
+.weibo-group .user-group {
+    display: flex;
+}
+
+.user-group .avatar {
+    width: 74rpx;
+    height: 74rpx;
+    border-radius: 50%;
+}
+
+.user-group .right-info {
+    flex: 1;
+    margin-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right-info .username {
+    font-size: 28rpx;
+    color: #323232;
+}
+
+.right-info .detail-info {
+    font-size: 24rpx;
+    color: #656565;
+    display: flex;
+}
+
+.detail-info .time {
+    margin-right: 20rpx;
+}
+
+.weibo-content-group {
+    padding-top: 30rpx;
+}
+
+.weibo-content-group .content {
+    font-size: 32rpx;
+}
+
+.weibo-content-group .image-list-group {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.image-list-group image {
+    margin-bottom: 2.5px;
+}
+
+.image-list-group video {
+    width: 100%;
+}
+
+.weibo-handle {
+    display: flex;
+    padding-top: 30rpx;
+    font-size: 28rpx;
+}
+
+.weibo-handle navigator {
+    flex: 1;
+}
+
+.weibo-handle image {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+    margin-left: 71%
+}
+
+.weibo-handle view {
+    flex: 1;
+    display: flex;
+    /* justify-content: center; */
+
+}
+/* 弹窗的css */
+.zan-dialog__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.1);/* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+
+.zan-dialog__container {
+  position: fixed;
+  top: 260rpx;
+  width: 650rpx;/* 弹窗布局宽 */
+  height: 680rpx;/* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);/* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  box-shadow: 0px 1px 1px 1px gainsboro;/* //弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+
+.zan-dialog--show .zan-dialog__container {
+  transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+  display: block;
+}
+
+.pdd {
+  padding-top: 7rpx;
+}
+/* .weibo-handle .comment-group image {
+    display: flex;
+    align-self: baseline
+} */
+
+/* .weibo-handle .praise-group {} */

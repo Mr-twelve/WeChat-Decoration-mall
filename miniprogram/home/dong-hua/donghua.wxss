@@ -1,0 +1,22 @@
+@import "../home.wxss";
+
+/* 底部敬请期待的样式 */
+.bottom {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 底部图片 */
+.di {
+  display: flex;
+  flex-direction: row;
+  padding: 60rpx 0rpx 100rpx 280rpx;
+}
+
+
+/* 底部文字 */
+.bottom_text {
+  font-size: 34rpx;
+  color: #d8d8d8;
+  margin-left: 10rpx;
+}

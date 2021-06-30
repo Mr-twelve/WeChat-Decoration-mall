@@ -1,0 +1,20 @@
+<!-- 刷乳胶漆 -->
+<view class="weibo-group">
+  <view class="weibo-content-group">
+    <view clas="biaoti" style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;font-size:30rpx;font-family: Helvetica">油漆工施工——刮腻子</view>
+    <view class="image-list-group">
+      <video src="cloud://test-xchgb.7465-test-xchgb-1259365888/CaiJi/动画-video/2744de230051a4cf53bccef1fc5b855a.mp4"></video>
+    </view>
+  </view>
+</view>
+
+
+<!-- 刷乳胶漆-->
+<view class="weibo-group">
+  <view class="weibo-content-group">
+    <view clas="biaoti" style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;font-size:30rpx;font-family: Helvetica">油漆工施工——刷乳胶漆</view>
+    <view class="image-list-group">
+      <video src="cloud://test-xchgb.7465-test-xchgb-1259365888/CaiJi/动画-video/2744de230051a4cf53bccef1fc5b855a.mp4"></video>
+    </view>
+  </view>
+</view>

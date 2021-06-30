@@ -1,0 +1,188 @@
+<wxs module="workprice" src="../../utils/workprice.wxs" />
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black">订单编号：{{yuyue.number}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black">下单时间：{{yuyue.time}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black">服务类型：{{yuyue.title}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black">需求简述：{{yuyue.simple}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black">详情备注：{{yuyue.message}}</text>
+      </view>
+      <view>
+      <view class="text">
+        <text class="text-black">服务详情</text>
+      </view>
+      <block wx:for="{{yuyue.totalprice}}" wx:key>
+        <view class="text">
+          <text class="text-black">{{workprice.toname(item.name)}}:{{item.celiang}}*{{item.price3}}</text>
+        </view>
+      </block>
+    </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black">用户名字：{{yuyue.name}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black">用户电话：{{yuyue.tell}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black text-bold">施工状态：{{yuyue.jindu}}%</text>
+        <view class="cu-progress round striped active margin-top xs">
+          <view class="bg-green" style="width:{{jindu}};"></view>
+        </view>
+      </view>
+      <view class="text">
+      <block wx:if="{{yuyue.ifqitaxiang==true}}"><text class="text-black text-bold">付款状态：{{yuyue.fukuan}}%(总价{{yuyue.qitaxiangprice}},收取提成{{yuyue.ticheng}}%)</text></block>
+      <block wx:if="{{yuyue.ifqitaxiang==false}}"><text class="text-black text-bold">付款状态：{{yuyue.fukuan}}%(总价{{yuyue.sumhaveprice+yuyue.sumnoprice}},收取提成{{yuyue.ticheng}}%)</text></block>
+        
+        <view class="cu-progress round striped active margin-top xs">
+          <view class="bg-red" style="width:{{fukuan}};"></view>
+        </view>
+      </view>
+      <view style="display:flex;flex-direction:row-reverse;">
+        <block wx:if="{{yuyue.jindu==1&&yuyue.fukuan==50}}">
+          <button bindtap="yiban" id="{{yuyue._id}}" class=" cu-btn bg-green lg" data-target="menuModal" role="button" aria-disabled="false">
+            <text class="text-black">确认施工50%</text>
+          </button>
+        </block>
+      </view>
+      <view style="display:flex;flex-direction:row-reverse;">
+        <block wx:if="{{yuyue.jindu==50&&yuyue.fukuan==80}}">
+          <button bindtap="wancheng" id="{{yuyue._id}}" class=" cu-btn bg-green lg" data-target="menuModal" role="button" aria-disabled="false" style="float:left">
+            <text class="text-black">确认施工100%</text>
+          </button>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black" style="font-size:32rpx;font-weight:600">地址信息：{{yuyue.location}}</text>
+      </view>
+      <view class="text">
+        <text decode="{{true}}" class="text-black" style="font-size:32rpx;font-weight:600">&emsp;&emsp;&emsp;&emsp;&emsp;{{yuyue.xxlocation}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+
+<view class="cu-form-group">
+  <view class="grid col-4 grid-square flex-sub">
+    <view class="bg-img" wx:for="{{imgList}}" wx:for-item="imgList" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList}}">
+      <image src='{{imgList}}' mode='aspectFill'></image>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white tabbar border shop ToolBar">
+  <button class="action" open-type="contact" style="background:white">
+    <view class="cuIcon-service text-green" style="background:white">
+      <view class="cu-tag badge" style="background:white"></view>
+    </view> 客服
+  </button>
+  <block wx:if="{{yuyue.jindu==0}}">
+    <view style="display:flex;flex-direction:row-reverse">
+      <button bindtap="toggleDialog" class="bg-red" style="margin-right:50rpx;">拒绝</button>
+      <button bindtap="jiedan" class="bg-green" style="margin-right:50rpx;">接单</button>
+    </view>
+  </block>
+
+</view>
+
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          取消说明
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <view class="cu-form-group margin-top">
+          <input name="workerquxiao" placeholder="请简述取消的原因"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button form-type="submit" class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false">
+            我知道了
+          </button>
+          <button bindtap="toggleDialog" class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false">
+            再想想
+          </button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showqitaxiangbaojia ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          {{yuyue.title}}报价
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <form bindsubmit="qitaxiangbaojia" bindreset="formReset">
+        <view class="cu-form-group margin-top">
+          <input name="qitaxiangbaojia" placeholder="{{yuyue.title}}报价"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button form-type="submit" class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false">
+            确定并接单
+          </button>
+          <button bindtap="hideqitaxiangbaojia" class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false">
+            再想想
+          </button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

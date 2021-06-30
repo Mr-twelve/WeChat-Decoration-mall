@@ -1,0 +1,73 @@
+<block wx:if='{{tabpage==0}}'>
+  <view class="cu-card case cu-item shadow">
+    <view class="image">
+      <image id="{{index}}" wx:if="{{fmimg==null}}" bindtap="upfmimg" src="cloud://test-xchgb.7465-test-xchgb/vedio/上传视频.png"></image>
+      <image id="{{index}}" wx:if="{{fmimg!=null}}" bindtap="upfmimg" src="{{fmimg}}"></image>
+
+    </view>
+  </view>
+  <view class="cu-form-group margin-top">
+    <input value="{{title}}" bindinput='inputtitle' placeholder="文章标题"></input>
+  </view>
+  <block wx:for='{{contest}}' wx:key>
+    <view>
+      <view class="cu-form-group">
+        <textarea value="{{item.text}}" maxlength="-1" id="{{index}}" bindinput="inputtext" placeholder="请输入文字内容"></textarea>
+      </view>
+      <view class="cu-card case cu-item shadow">
+        <view class="image">
+          <image id="{{index}}" wx:if="{{!item.img}}" bindtap="upimg" src="cloud://test-xchgb.7465-test-xchgb/vedio/上传视频.png"></image>
+          <image id="{{index}}" wx:if="{{item.img}}" bindtap="upimg" src="{{item.img}}"></image>
+
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class="margin-tb-sm text-center">
+    <button bindtap="showModal" class="cu-btn round bg-white margin-tb-sm lg" role="button" aria-disabled="false">
+      <block wx:if="{{fenlei==null}}">文章类别</block>
+      <block wx:if="{{fenlei!=null}}">{{fenlei}}</block>
+    </button>
+    <button class="cu-btn round bg-white" bindtap="add">插入段落</button>
+    <button class="cu-btn round bg-white" bindtap="yulan">预览</button>
+    <button class="cu-btn round bg-white" bindtap="fabiao">发表</button>
+  </view>
+</block>
+
+
+<block wx:if='{{tabpage==1}}'>
+  <view class="cu-form-group margin-top">
+    <input disabled='true' value="{{title}}"></input>
+  </view>
+  <block wx:for='{{contest}}' wx:key>
+    <view>
+      <view wx:if='{{item.text!=null}}' class="cu-form-group">
+        <text>{{item.text}}</text>
+      </view>
+      <view class="cu-card case cu-item shadow">
+        <view class="image">
+          <image wx:if='{{item.img!=null}}' src="{{item.img}}"></image>
+        </view>
+      </view>
+    </view>
+  </block>
+  <button class="cu-btn round bg-green" bindtap="bianji">编辑</button>
+  <button class="cu-btn round bg-green" bindtap="fabiao">发表</button>
+</block>
+
+
+<!-- 分类 -->
+<view class="cu-modal bottom-modal {{modalName=='ChooseModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="hideModal">确定</view>
+    </view>
+    <view class="grid col-3 padding-sm">
+      <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">
+        <button class="cu-btn green lg block line-green" bindtap="ChooseCheckbox" data-value="{{item.name}}">
+          {{item.name}}
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

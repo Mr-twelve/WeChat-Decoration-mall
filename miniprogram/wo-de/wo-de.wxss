@@ -1,0 +1,18 @@
+/* miniprogram/wode/wode.wxss */
+.page {
+  height: 100%;
+  width: 100%;
+}
+.padding-xl {
+padding: 40rpx;
+
+}
+.margin-xl {
+margin:18rpx 18rpx;
+
+}
+.cu-list.grid.no-border {
+padding: rpx rpx;
+
+}
+

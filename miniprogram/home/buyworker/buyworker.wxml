@@ -1,0 +1,51 @@
+<!-- <block wx:for="{{worker}}" wx:key="">
+
+  <view class="cu-form-group bg-white}}">
+    <view class="title"> 姓名</view>
+    <text>{{item.name}}</text>
+  </view>
+  <view class="cu-form-group bg-white}}">
+    <view class="title"> 工龄</view>
+    <text>{{item.old}}</text>
+  </view>
+  <view class="cu-form-group bg-white}}">
+    <view class="title"> 等级</view>
+    <text>{{item.workerdengji}}</text>
+  </view>
+  
+  <view class="cu-form-group bg-white}}">
+    <view class="title"> 工时</view>
+      <view>
+        <button id='{{item._id}}' class="cu-btn bg-green shadow" bindtap="onOpenCalendar" data-target="ChooseModal">空闲时间</button>
+      </view>
+  </view>
+  <button id='{{item._id}}' bindtap="xiangqing" class="cu-btn round bg-green" role="button" aria-disabled="false">详情</button>
+</block> -->
+
+<!-- 日历 -->
+<calendar is-calendar-show="{{isCalendarShow}}" mark="{{calendarMark}}" format="1" deadline="9102-11-11" bind:getdate="onCalendarGetDate" />
+
+<block wx:for="{{worker}}" wx:key="">
+  <view class="container bg-white" style="margin-top:20rpx;">
+    <view class="avatar" style="margin-left:50rpx;">
+      <image class="img bg-white" style="width:150rpx;height:150rpx;border-radius: 50%;margin-top:35rpx;" src="{{item.tximg}}" mode="aspectFill" lazy-load="false" />
+      <wux-rater fontSize="13" disabled="true" slot="footer" allow-half default-value="{{ item.star}}" />
+      <view style="color:green;font-size:30rpx;font-weight:bold">等级：{{item.workerdengji}}</view>
+
+    </view>
+    <view class="ttt comment" style="width:100%;font-size:30rpx;margin-left:30rpx;">
+      <view class="ttt cu-form-group pdd bg-white}}" style="min-height: 55rpx;margin-top:45rpx;">
+        姓名：{{item.name}}
+        <!-- <view class="rili" id='{{item._id}}' bindtap="onOpenCalendar" data-target="ChooseModal">
+          <text class="cuIcon-calendar text-red" style="width:30rpx;"></text>
+        </view> -->
+      </view>
+      <view class="ttt cu-form-group pdd bg-white}}" style="min-height: 55rpx;">工龄：{{item.old}}年</view>
+      <view class="ttt cu-form-group pdd bg-white}}" style="min-height: 55rpx;">口号：{{item.kouhao}}</view>
+      <view class="ttt cu-form-group pdd bg-white}}" style="min-height: 55rpx;">
+        工价：1800
+        <view id='{{item._id}}' bindtap="xiangqing" style="color:black" class="ttt">详情></view>
+      </view>
+    </view>
+  </view>
+</block>

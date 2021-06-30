@@ -1,0 +1,9 @@
+<wxs module="workprice" src="../utils/workerpricebuy.wxs" />
+<view class="container" style="margin-top:30rpx;">
+<block wx:for="{{worker}}" wx:for-item="work" wx:key="{{index}}">
+  <view wx:if='{{workprice.toname(index,"水电工")!==null}}' style="margin:5rpx 50rpx">
+    <text>{{workprice.toname(index,"水电工")}}:</text>
+    <text>{{work}}</text>
+  </view>
+</block>
+</view>

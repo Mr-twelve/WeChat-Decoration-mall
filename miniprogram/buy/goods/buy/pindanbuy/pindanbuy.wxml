@@ -1,0 +1,146 @@
+<form report-submit="{{true}}" bindsubmit="formSubmit" bindreset="formReset">
+  <view class="cu-list menu card-menu margin-top">
+    <view class="cu-card article {{isCard?'no-card':''}}">
+      <view class="bg-white">
+        <text class="text-grey" style="font-size:34rpx;margin-left:20rpx;">店铺:{{shangpu.shangpuname}}</text>
+      </view>
+      <view class="cu-item title shadow">
+        <view class="content">
+          <image src="{{tximage}}" style="margin-top:0rpx"></image>
+          <view class="desc">
+            <view class="text-content" id="{{id}}" bindtap="gogoods" style="font-size:34rpx;color:black">
+              {{name}}</view>
+            <view wx:if="{{!seting}}">
+                <view class="price">¥{{goods.huodong.price}}</view>
+              <button id="{{index}}" class="fuhao" bindtap="add">+</button>
+              <button class="fuhao">{{number}}</button>
+              <button id="{{index}}" class="fuhao" bindtap="lose">-</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+      <view class="cu-form-group">
+        <view class="title">参与活动</view>
+        <view class="picker">
+          <text class="text-grey">{{style}}</text>
+        </view>
+      </view>
+    <view class="cu-form-group">
+      <view class="title">配送方式</view>
+      <view class="picker">
+        <text class="text-grey">快递 免邮</text>
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title" style="font-size:34rpx;">订单备注</view>
+      <input name="beizhu" placeholder="请与商家商议一致"></input>
+    </view>
+  </view>
+  <view class="divLine"></view>
+
+  <block wx:if="{{usershouhuodizhi==''||usershouhuodizhi==null||usershouhuodizhi==[]}}">
+    <view style="display:flex;justify-content:center">
+      <button class="cu-btn bg-green margin-tb-sm lg" bindtap="adddizhi" style="width:90%">请添加收货地址</button>
+    </view>
+  </block>
+  <block wx:else>
+    <view bindtap="shouhuodizhi" class="cu-list menu card-menu">
+      <view class="cu-form-group">
+        <view class="title" style="font-size:34rpx;">收货信息
+          <text style="color:blue">(点击更换)</text>
+        </view>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">收货人姓名：{{usershouhuodizhi0.name}}</view>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">手机号：{{usershouhuodizhi0.tell}}</view>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">{{usershouhuodizhi0.region}}{{usershouhuodizhi0.location}}</view>
+      </view>
+    </view>
+  </block>
+
+  <view class="divLine"></view>
+  <view class="cu-bar solid-bottom bg-white " style="position:fixed; bottom:0;width: 750rpx;">
+
+    <view class="action">
+      <view class="solid-bottom text-xxl padding">
+        <text class="text-price text-red">{{total}}</text>
+      </view>
+      <view style="margin-left:360rpx;">
+        <button class="cu-btn bg-red shadow" form-type="submit" data-target="gridModal" bindtap="onClick">去结算</button>
+      </view>
+    </view>
+  </view>
+</form>
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shouhuodizhi" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <view class="cu-form-group">
+        <view class="title" style="font-size:32rpx;color:orange">点击您要选择的收货地址</view>
+      </view>
+      <view class="divLine"></view>
+      <block wx:for="{{usershouhuodizhi}}" wx:key="index">
+        <block wx:if="{{index<2}}">
+          <view id="{{index}}" bindtap="shouhuodizhi2" class="cu-list ">
+            <view class="divLine"></view>
+            <view class="cu-form-group">
+              <view class="title">{{item.name}}</view>
+              <view class="title">{{item.tell}}</view>
+              <view>
+                <button id="{{index}}" class="cu-btn bg-white sm" bindtap="xiugai" data-target="gridModal">
+                  <text class="cuIcon-writefill">修改</text>
+                </button>
+              </view>
+            </view>
+            <view class="cu-form-group">
+              <view class="title">{{item.region}}{{item.location}}</view>
+            </view>
+
+          </view>
+        </block>
+      </block>
+      <view style="display:flex;justify-content:center">
+        <button class="cu-btn bg-green margin-tb-sm lg" bindtap="adddizhi" style="width:90%;margin-top:40rpx;">添加新地址</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showadd ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="hidedizhi" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="submitdizhi" bindreset="formReset">
+        <view class="cu-form-group margin-top">
+          <view class="title">收货人</view>
+          <input name="name" placeholder="请输入收货人姓名"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">手机号码</view>
+          <input name="tell" placeholder="请输入手机号"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">地址选择</view>
+          <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+            {{region[0]}}，{{region[1]}}，{{region[2]}}
+          </picker>
+        </view>
+        <view class="cu-form-group">
+          <view class="title"> 详细地址</view>
+          <input name="location" placeholder="如：5号楼3单元14d"></input>
+        </view>
+        <view style="display:flex;justify-content:center">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit" style="width:90%">完成</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

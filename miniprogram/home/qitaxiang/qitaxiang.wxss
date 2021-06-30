@@ -1,0 +1,96 @@
+/* pages/component/nav/nav.wxss */
+page{
+  height: 100%
+}
+
+.VerticalNav.nav {
+  width: 200rpx;
+  white-space: initial;
+}
+
+.VerticalNav.nav .cu-item {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  margin: 0;
+  border: none;
+  height: 50px;
+  position: relative;
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #f1f1f1;
+}
+
+.VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+}
+
+.VerticalBox{
+  display: flex;
+}
+
+.VerticalMain{
+  background-color: #f1f1f1;
+}
+
+.cu-list.menu-avatar>.cu-item {
+position: relative;
+display: flex;
+padding-right: 10rpx;
+height: 250rpx;
+background-color: var(--white);
+justify-content: flex-end;
+align-items: center;
+}
+
+.cu-avatar.lg {
+width: 150rpx;
+height: 150rpx;
+font-size: 2em;
+}
+
+.cu-list.menu-avatar>.cu-item>.cu-avatar {
+position: absolute;
+left: 15rpx;
+}
+
+.cu-list.menu-avatar>.cu-item .content {
+position: absolute;
+left: 180rpx;
+width: calc(100% - 96rpx - 60rpx - 120rpx - 20rpx);
+line-height: 1.2em;
+}
+
+.padding-lr {
+padding-left: 10rpx;
+padding-right: 10rpx;
+
+}
+
+.line{
+  line-height: 40rpx;
+  margin-top: 10rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+
+
+
+
+
+ 
+
+
+
+

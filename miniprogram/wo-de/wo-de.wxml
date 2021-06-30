@@ -1,0 +1,94 @@
+<!-- 用户头像名称 -->
+<block wx:if="{{hasUserInfo==false && canIUse}}">
+<view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
+  <view class="flex justify-center">
+    <button wx:if="{{hasUserInfo==false && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'>
+      获取头像昵称
+    </button>
+  </view>
+</view>
+</block>
+<block wx:if="{{hasUserInfo==true && canIUse}}">
+<view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
+  <view class="flex justify-center">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'>
+      获取头像昵称
+    </button>
+    <block wx:else>
+      <view class='text-center'>
+        <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></view>
+        <view class="padding">{{userInfo.nickName}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+<scroll-view class="page">
+  <!-- 列表 -->
+  <view class="cu-list menu sm-border card-menu margin-top" style="margin-top:0rpx;margin-right:18rpx;margin-left:18rpx;">
+    <view class="cu-item arrow}}">
+      <view class="content" hover-class="none" bindtap='goshoucang' url="../buy/shoucang/shoucang">
+        <text class="cuIcon-favorfill text-yellow"></text>
+        <text class="text-grey">收藏</text>
+      </view>
+    </view>
+    <view class="cu-item arrow}}">
+      <view class="content" hover-class="none" bindtap='gogouwuche' url="../buy/gouwuche/gouwuche">
+        <text class="cuIcon-cartfill text-red"></text>
+        <text class="text-grey">购物车</text>
+      </view>
+    </view>
+    <view class="cu-item arrow}}">
+      <view class="content" hover-class="none" bindtap='godingdan' url="dingdan/dingdan">
+        <text class="cuIcon-formfill text-orange "></text>
+        <text class="text-grey">预约订单</text>
+      </view>
+    </view>
+    <view class="cu-item arrow}}">
+      <view class="content" hover-class="none" bindtap='gobuydingdan' url="buydingdan/buydingdan">
+        <text class="cuIcon-presentfill text-pink"></text>
+        <text class="text-grey">商品订单</text>
+      </view>
+    </view>
+    <view class="cu-item arrow}}">
+      <view extra-data-take="{{openid}}" class="content" hover-class="none" url="shouhuodizhi/shouhuodizhi" bindtap='goshouhuodizhi'>
+        <text class="cuIcon-locationfill text-mauve"></text>
+        <text class="text-grey">收货地址</text>
+      </view>
+    </view>
+    <view class="cu-item arrow}}">
+      <view class="content" hover-class="none" bindtap='goadduserinfor' url="../wo-de/adduserinfor/adduserinfor">
+        <text class="cuIcon-friendaddfill text-blue"></text>
+        <text class="text-grey">个人信息维护</text>
+      </view>
+    </view>
+    <button open-type="contact" style="font-size:30rpx;" class="action bg-white" bindcontact="handleContact">联系客服</button>
+---从这儿开始,下面的部分,只有对应的人才可以看到
+    <view class="cu-item arrow}}">
+      <view class="content" hover-class="none" bindtap='goshangjia' url="../shangjia/shangjia">
+        <text class="cuIcon-goodsnewfill text-brown"></text>
+        <text class="text-grey">商鋪入口</text>
+      </view>
+    </view>
+    <view class="cu-item arrow}}">
+      <view class="content" hover-class="none" bindtap='goworker' url="../worker/worker">
+        <text class="cuIcon-roundaddfill text-olive"></text>
+        <text class="text-grey">工匠入口</text>
+      </view>
+    </view>
+    <block wx:if="{{openid=='oJYjN4iW9P5BSQ1un9pAZE0KpjGQ'||openid=='oJYjN4kWB8BLgV7kho4ZbyWrmDBY'}}">
+      <view class="cu-item arrow}}">
+        <view class="content" hover-class="none" bindtap='goworkerguanli' url="workerguanli/workerguanli">
+          <text class="cuIcon-discoverfill text-cyan"></text>
+          <text class="text-grey">工匠管理</text>
+        </view>
+      </view>
+      <view class="cu-item arrow}}">
+        <view class="content" hover-class="none" bindtap='goshangpuguanli' url="shangpuguanli/shangpuguanli">
+          <text class="cuIcon-discoverfill text-cyan"></text>
+          <text class="text-grey">商铺管理</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+</block>

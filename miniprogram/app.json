@@ -1,0 +1,140 @@
+{
+  "pages": [
+    "home/home",
+    "buy/buy",
+    "wo-de/wo-de",
+    "home/dong-hua/donghua",
+    "share/pages/index/index",
+    "share/pages/weibod/weibod",
+    "share/pages/wweibo/wweibo",
+    "buy/gouwuche/gouwuche",
+    "buy/shoucang/shoucang",
+    "wo-de/adduserinfor/adduserinfor",
+    "wo-de/add/add",
+    "buy/goods/goods",
+    "test/test",
+    "yuyue/yuyue",
+    "home/dong-hua/jichurengong/jichurengong",
+    "home/dong-hua/shuidiangong/shuidiangong",
+    "home/dong-hua/nigong/nigong",
+    "home/dong-hua/mugong/mugong",
+    "home/dong-hua/youqigong/youqigong",
+    "shuoming/shuoming",
+    "saomang/saomang",
+    "saomang/saomang1/saomang1",
+    "wo-de/dingdan/dingdan",
+    "wo-de/dingdan/chakan/chakan",
+    "wo-de/addworker/addworker1/addworker1",
+    "wo-de/addworker/addworker2/addworker2",
+    "wo-de/addworker/worker/worker",
+    "wo-de/workerguanli/workerguanli",
+    "wo-de/workerguanli/xiangqing/xiangqing",
+    "wo-de/buydingdan/buydingdan",
+    "buy/goods/buy/buy",
+    "wo-de/shouhuodizhi/shouhuodizhi",
+    "wo-de/shouhuodizhi/addshouhuodizhi/addshouhuodizhi",
+    "home/buyworker/buyworker",
+    "home/buyworker/xiangqing/xiangqing",
+    "home/buyworker/xiangqing/zhifu-1yuan/zhifu-1yuan",
+    "wo-de/workerjiedan/workerjiedan",
+    "wo-de/workerjiedan/chakan/chakan",
+    "rili/rili",
+    "wo-de/dingdan/fukuan/fukuan",
+    "wo-de/dingdan/fukuan30/fukuan30",
+    "wo-de/dingdan/fukuan20/fukuan20",
+    "wo-de/addworker/addshejishi1/addshejishi1",
+    "wo-de/addworker/addshejishi2/addshejishi2",
+    "wo-de/addshangpin/addshangpin",
+    "wo-de/shangpuguanli/shangpuguanli",
+    "wo-de/shangpuguanli/xiangqing/xiangqing",
+    "wo-de/addshangpin/xiaoshou/xiaoshou",
+    "wo-de/userguanli/userguanli",
+    "wo-de/lookshangpu/lookshangpu",
+    "workerprice/workerprice",
+    "wo-de/shouhuodizhi/xiugai/xiugai",
+    "buy/goods/buy/xiugai/xiugai",
+    "buy/goods/buy/pindanbuy/pindanbuy",
+    "buy/pintuan/pintuan",
+    "viedo/viedo",
+    "viedo/addviedo/addviedo",
+    "worker/worker",
+    "shangjia/shangjia",
+    "worker/chakan/chakan",
+    "worker/geren/geren",
+    "shangjia/xiaoshou/xiaoshou",
+    "shangjia/add/add",
+    "home/qitaxiang/qitaxiang",
+    "home/qitaxiang/xiangqing/xiangqing",
+    "worker/addworker/addworker",
+    "worker/addworker/addshejishi1/addshejishi1",
+    "worker/addworker/addshejishi2/addshejishi2",
+    "worker/addworker/addworker1/addworker1",
+    "worker/addworker/addworker2/addworker2",
+    "worker/worker/worker",
+    "saomang/addsaomang/addsaomang",
+    "sousuo/sousuo",
+    "worker/geren/workerprice/workerprice",
+    "home/qitaxiang/xiangqing/yuyue/yuyue",
+    "worker/geren/pintuan/pintuan",
+    "buy/pintuan/xiangqing/xiangqing",
+    "buy/pintuan/xiangqing/yuyue/yuyue",
+    "viedo/lookwork/lookwork",
+    "shangjia/huodong/huodong",
+    "worker/geren/shezhijineng/shezhijineng",
+    "buy/shoucang/worker/worker"
+  ],
+  "plugins": {
+    "qcloudsms": {
+      "version": "1.0.5",
+      "provider": "wx4718484ed6fb9393"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "掌上装修",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#cdcdcd",
+    "selectedColor": "#f37b1d",
+    "list": [
+      {
+        "pagePath": "home/home",
+        "iconPath": "icon/返回首页1.png",
+        "selectedIconPath": "icon/返回首页.png",
+        "text": "服务"
+      },
+      {
+        "pagePath": "viedo/viedo",
+        "iconPath": "icon/视频1.png",
+        "selectedIconPath": "icon/视频.png",
+        "text": "视频"
+      },
+      {
+        "pagePath": "buy/pintuan/pintuan",
+        "iconPath": "icon/拼团1.png",
+        "selectedIconPath": "icon/拼团.png",
+        "text": "拼团"
+      },
+      {
+        "pagePath": "buy/buy",
+        "iconPath": "icon/购物车1.png",
+        "selectedIconPath": "icon/购物车.png",
+        "text": "购买"
+      },
+      {
+        "pagePath": "wo-de/wo-de",
+        "iconPath": "icon/我的1.png",
+        "selectedIconPath": "icon/我的.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom",
+    "calendar": "/utils/components/calendar/calendar"
+  },
+  "sitemapLocation": "sitemap.json"
+}

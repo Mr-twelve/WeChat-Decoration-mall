@@ -1,0 +1,91 @@
+<form bindsubmit="formSubmit">
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input name='sousuoname' bindinput="sousuo" type="text" placeholder="搜索图片、文章、视频" confirm-type="search"></input>
+    </view>
+    <view bindtap="sousuolist" class="action">
+      <text>{{sousuoname}}</text>
+      <text class="cuIcon-triangledownfill"></text>
+    </view>
+    <button form-type="submit" class="cu-btn bg-green shadow-blur round">搜索</button>
+  </view>
+</form>
+<block wx:if='{{sousuolist}}'>
+  <view bindtap="sousuozh" class="flex padding justify-end">
+    <view class="bg-white padding-sm margin-xs ">综合</view>
+  </view>
+  <view bindtap="sousuogr" class="flex padding justify-end">
+    <view class="bg-white padding-sm margin-xs ">工匠</view>
+  </view>
+  <view bindtap="sousuosp" class="flex padding justify-end">
+    <view class="bg-white padding-sm margin-xs ">商品</view>
+  </view>
+  <view bindtap="sousuowz" class="flex padding justify-end">
+    <view class="bg-white padding-sm margin-xs ">文章</view>
+  </view>
+</block>
+
+
+<block wx:if='{{(sousuoname=="综合")||(sousuoname=="文章")}}'>
+  <block wx:for='{{saomang}}' wx:key>
+    <view id="{{item._id}}" bindtap="gosaomang1" class="cu-bar bg-white solid-bottom margin-top">
+      <view class="action">
+        <text class="cuIcon-title text-blue"></text>{{item.title}}
+      </view>
+    </view>
+  </block>
+</block>
+<block wx:if='{{(sousuoname=="综合")||(sousuoname=="商品")}}'>
+  <view class="cu-list menu-avatar" style="margin-bottom: 20rpx">
+    <block wx:for="{{goods}}" wx:for-item="goods" wx:key="">
+      <view class="cu-card case">
+        <view class="cu-item shadow" bindtap="ingoods" id="{{goods._id}}">
+          <view class="image">
+            <image src="{{goods.tximage}}"></image>
+            <view class="name text-cut">{{goods.name}}</view>
+          </view>
+          <view class="next cu-list menu-avatar">
+            <view class="cu-item">
+              <view class="content flex-sub">
+                <view class="text-grey">
+                </view>
+                <view class="text-gray text-sm flex justify-between">
+                  <text decode='true' class="huodongtext text-orange">¥{{goods.huodong.price}}&nbsp;<text class="yuantext text-gray" style=" text-decoration:line-through">¥{{goods.price}}</text></text>
+                  <view class="text-gray text-sm">
+                    <view class="cu-tag line-orange">{{goods.huodong.style}}</view>
+                    <view class="cu-tag bg-orange">去开团</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>
+<block wx:if='{{(sousuoname=="综合")||(sousuoname=="工匠")}}'>
+  <block wx:for="{{worker}}" wx:key="">
+    <view class="container bg-white" style="margin-top:20rpx;">
+      <view class="avatar" style="margin-left:50rpx;">
+        <image class="img bg-white" style="width:150rpx;height:150rpx;border-radius: 50%;margin-top:35rpx;" src="{{item.tximg}}" mode="aspectFill" lazy-load="false" />
+        <view class="dengji" style="color:green">等级：{{item.workerdengji}}</view>
+
+        <wux-rater fontSize="13" disabled="true" slot="footer" allow-half default-value="{{ item.star}}" />
+
+      </view>
+      <view class="comment" style="width:100%;font-size:30rpx;margin-left:30rpx;">
+        <view class="cu-form-group pdd bg-white}}" style="min-height: 55rpx;margin-top:30rpx;">
+          姓名：{{item.name}}
+        </view>
+        <view class="cu-form-group pdd bg-white}}" style="min-height: 55rpx;">工龄：{{item.old}}年</view>
+        <view class="cu-form-group pdd bg-white}}" style="min-height: 55rpx;">口号：{{item.kouhao}}</view>
+        <view class="cu-form-group pdd bg-white}}" style="min-height: 55rpx;">
+          工价：1800
+          <view id='{{item._id}}' bindtap="xiangqing" style="color:grey">详情></view>
+        </view>
+      </view>
+    </view>
+  </block>
+</block>

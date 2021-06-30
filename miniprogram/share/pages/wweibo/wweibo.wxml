@@ -1,0 +1,25 @@
+<view class="container">
+  <form bindsubmit="onSubmitEvent">
+    <textarea name="content" class="textarea" placeholder="请输入文字"></textarea>
+    <view wx:if="{{type==1}}" class="image-list-group">
+      <view wx:for="{{tempImages}}" class="image-group" style="width:{{imageSize}}px;height:{{imageSize}}px;">
+        <image src="{{item}}" bind:tap="onImageTap" data-index="{{index}}"></image>
+        <view class="close-btn" bind:tap="onRemoveBtnTap" data-index="{{index}}"></view>
+      </view>
+      <view wx:if="{{tempImages.length<9}}" class="add-image-btn" style="width:{{imageSize}}px;height:{{imageSize}}px;" bind:tap="onAddImageTap">
+        <view>+</view>
+      </view>
+    </view>
+    <view wx:if="{{type==2}}">
+      <video src="{{tempVideo}}" />
+    </view>
+    <view class="location-group" bind:tap="onLocationTap">
+      <view class="left-group">
+        <image class="icon" src="../../images/location.png"></image>
+        <view class="location-name">{{location?location.name:"所在位置"}}</view>
+      </view>
+      <image class="arrow" src="../../images/arrow.png"></image>
+    </view>
+    <button form-type="submit" type="primary" class="submit-btn">发表</button>
+  </form>
+</view>

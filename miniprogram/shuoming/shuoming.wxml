@@ -1,0 +1,57 @@
+<!-- 标签部分 -->
+<view class="padding-xs" style="padding:18rpx;">
+  <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+    报价订单
+  </view>
+</view>
+<!-- 文字部分 -->
+<view class="container">
+  <view class="pdd">
+    1.该订单为预约订单，
+    <text style="color:orange">请及时关注微信小程序,并支付其报价50%；</text>
+  </view>
+  <view class="pdd">2.师傅将与您预约时间，准时上门服务；</view>
+  <view class="pdd">
+    3.师傅上门后，现场产生增项服务（实际服务超出您在线发布的需求），需双方协商价格，同意后开始服务，若师傅违规乱加价，您可在个人信息界面进行投诉，平台会保障您的权益；
+  </view>
+</view>
+<!-- 标签部分 -->
+<view class="padding-xs" style="padding:18rpx;">
+  <view class="cu-tag #f6f8f7" style="font-size:30rpx;color:#59c685;font-weight:550">下单流程</view>
+</view>
+<!-- 流程图 -->
+<image class="img" src="cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/下单须知/流程图.png"></image>
+<!-- 标签部分 -->
+<view class="padding-xs" style="padding:18rpx;">
+  <view class="cu-tag #f6f8f7" style="font-size:30rpx;color:#59c685;font-weight:550">服务承诺</view>
+</view>
+<!-- 底部文字 -->
+<view class="bottom">
+  <view class='setting' bindtap='jumpLogin'>
+    <image class='btnImg' src='cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/下单须知/退.png' style="width:45rpx;height:45rpx;"></image>
+    <text style="font-size:32rpx;color:black;font-weight:550">未服务全额退</text>
+  </view>
+  <view class="bottom-txt">师傅未上门服务前，支持全额退款，退款将于0-3个工作日内到账</view>
+</view>
+<view class="bottom">
+  <view class='setting1' bindtap='jumpLogin'>
+    <image class='btnImg' src='cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/下单须知/时间.png' style="width:45rpx;height:45rpx;"></image>
+    <text style="font-size:32rpx;color:black;font-weight:550">30分钟内预约</text>
+  </view>
+  <view class="bottom-txt">用户预约师傅并支付完成后，师傅将在30分钟内预约用户上门服务的时间</view>
+</view>
+<view class="bottom">
+  <view class='setting1' bindtap='jumpLogin'>
+    <image class='btnImg' src='cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/下单须知/工具.png' style="width:45rpx;height:45rpx;"></image>
+    <text style="font-size:32rpx;color:black;font-weight:550">准时上门服务</text>
+  </view>
+  <view class="bottom-txt">师傅按照预约时间准时上门服务</view>
+</view>
+<view>
+  <image class="bottom-img" src="cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/下单须知/保障.png"></image>
+</view>
+<view class="padding flex flex-direction">
+  <button class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false" bind:tap="onBindTap">
+    我知道了
+  </button>
+</view>

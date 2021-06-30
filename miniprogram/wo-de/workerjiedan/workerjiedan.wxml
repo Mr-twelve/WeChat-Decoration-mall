@@ -1,0 +1,200 @@
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{dingdan}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </view>
+</scroll-view>
+
+<block wx:for="{{yuyue}}" wx:key="">
+  <!-- 未接单 -->
+  <block wx:if="{{TabCur==0}}">
+    <block wx:if="{{item.jindu==TabCur&&item.fukuan==1}}">
+      <view class="solids-bottom padding-xs bg-white flex align-center">
+        <view class="flex-sub">
+          <view class="padding">
+            <view class="text">
+              <text class="text-black text-bold">服务类型：{{item.title}}</text>
+            </view>
+            <view class="text">
+              <text class="text-black text-bold">下单时间：{{item.time}}</text>
+            </view>
+            <view class="cu-bar bg-white text-green">
+              <view>
+                等待接单中~
+              </view>
+              <view>
+                <button bindtap="chakan" id="{{item._id}}" class=" cu-btn bg-white " data-target="menuModal" role="button" aria-disabled="false">
+                  <text class="text-green">查看</text>
+                  <text class="cuIcon-right lg text-gray"></text>
+                </button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+  <!-- 已接单，等待付款50% -->
+  <block wx:if="{{TabCur==1}}">
+    <block wx:if="{{item.jindu==1&&item.fukuan==1}}">
+      <view class="solids-bottom padding-xs bg-white flex align-center">
+        <view class="flex-sub">
+          <view class="padding">
+            <view class="text">
+              <text class="text-black text-bold">服务类型：{{item.title}}</text>
+            </view>
+            <view class="text">
+              <text class="text-black text-bold">下单时间：{{item.time}}</text>
+            </view>
+          </view>
+          <view class="cu-bar bg-white text-red">
+            <view>
+              等待用户付款50%~
+            </view>
+            <view>
+              <button bindtap="chakan" id="{{item._id}}" class=" cu-btn bg-white " data-target="menuModal" role="button" aria-disabled="false">
+                <text class="text-green">查看</text>
+                <text class="cuIcon-right lg text-gray"></text>
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 已接单，付款50% 工人正在施工-->
+    <block wx:if="{{item.jindu==1&&item.fukuan==50}}">
+      <view class="solids-bottom padding-xs bg-white flex align-center">
+        <view class="flex-sub">
+          <view class="padding">
+            <view class="text">
+              <text class="text-black text-bold">服务类型：{{item.title}}</text>
+            </view>
+            <view class="text">
+              <text class="text-black text-bold">开工时间：{{item.time1}}</text>
+            </view>
+          </view>
+          <view class="cu-bar bg-white text-red padding">
+            <view>
+              请尽快施工~
+            </view>
+            <view>
+              <button bindtap="chakan" id="{{item._id}}" class=" cu-btn bg-white " data-target="menuModal" role="button" aria-disabled="false">
+                <text class="text-green">查看</text>
+                <text class="cuIcon-right lg text-gray"></text>
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 已接单，工人正在施工完成50等待付款30%-->
+    <block wx:if="{{item.jindu==50&&item.fukuan==50}}">
+      <view class="solids-bottom padding-xs bg-white flex align-center">
+        <view class="flex-sub">
+          <view class="padding">
+            <view class="text">
+              <text class="text-black text-bold">服务类型：{{item.title}}</text>
+            </view>
+            <view class="text">
+              <text class="text-black text-bold">下单时间：{{item.time}}</text>
+            </view>
+          </view>
+          <view class="cu-bar bg-white text-red">
+            <view>
+              完成50%等待用户付款30%
+            </view>
+            <view>
+              <button bindtap="chakan" id="{{item._id}}" class=" cu-btn bg-white " data-target="menuModal" role="button" aria-disabled="false">
+                <text class="text-green">查看</text>
+                <text class="cuIcon-right lg text-gray"></text>
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 已付款30%，工人继续施工剩余50%-->
+    <block wx:if="{{item.jindu==50&&item.fukuan==80}}">
+      <view class="solids-bottom padding-xs bg-white flex align-center">
+        <view class="flex-sub">
+          <view class="padding">
+            <view class="text">
+              <text class="text-black text-bold">服务类型：{{item.title}}</text>
+            </view>
+            <view class="text">
+              <text class="text-black text-bold">下单时间：{{item.time}}</text>
+            </view>
+          </view>
+          <view class="cu-bar bg-white text-red">
+            <view>
+              请继续施工剩余的50%~
+            </view>
+            <view>
+              <button bindtap="chakan" id="{{item._id}}" class=" cu-btn bg-white " data-target="menuModal" role="button" aria-disabled="false">
+                <text class="text-green">查看</text>
+                <text class="cuIcon-right lg text-gray"></text>
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 工人施工完成100%，等待用户付20%尾款-->
+    <block wx:if="{{item.jindu==100&&item.fukuan==80}}">
+      <view class="solids-bottom padding-xs bg-white flex align-center">
+        <view class="flex-sub">
+          <view class="padding">
+            <view class="text">
+              <text class="text-black text-bold">服务类型：{{item.title}}</text>
+            </view>
+            <view class="text">
+              <text class="text-black text-bold">完工时间：{{item.time2}}</text>
+            </view>
+          </view>
+          <view class="cu-bar bg-white text-red">
+            <view>
+              等待用户付20%尾款~
+            </view>
+            <view>
+              <button bindtap="chakan" id="{{item._id}}" class=" cu-btn bg-white " data-target="menuModal" role="button" aria-disabled="false">
+                <text class="text-green">查看</text>
+                <text class="cuIcon-right lg text-gray"></text>
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+  </block>
+  <!-- 已完成 -->
+  <block wx:if="{{TabCur==2}}">
+    <block wx:if="{{item.jindu==100&&item.fukuan==100}}">
+      <view class="solids-bottom padding-xs bg-white flex align-center">
+        <view class="flex-sub">
+          <view class="padding">
+            <view class="text">
+              <text class="text-black text-bold">服务类型：{{item.title}}</text>
+            </view>
+            <view class="text">
+              <text class="text-black text-bold">下单时间：{{item.time}}</text>
+            </view>
+          </view>
+          <view class="cu-bar bg-white text-red">
+            <view>
+              该预约服务已完成~
+            </view>
+            <view>
+              <button bindtap="chakan" id="{{item._id}}" class=" cu-btn bg-white " data-target="menuModal" role="button" aria-disabled="false">
+                <text class="text-green">查看</text>
+                <text class="cuIcon-right lg text-gray"></text>
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+</block>

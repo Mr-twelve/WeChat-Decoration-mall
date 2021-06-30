@@ -1,0 +1,477 @@
+<!-- miniprogram/wo-de/addworker/worker/worker.wxml -->
+<block wx:if="{{have}}">
+  <view style="float:right">
+    <block wx:if="{{shezhi==false}}">
+      <button class="cu-btn bg-white shadow" bindtap="shezhi" data-target="ChooseModal">设置</button>
+    </block>
+    <block wx:if="{{shezhi==true}}">
+      <button class="cu-btn bg-green shadow" bindtap="wancheng" data-target="ChooseModal">
+        完成
+      </button>
+    </block>
+  </view>
+  <view class=" padding-xl bg-white radius shadow shadow-lg">
+    <view>
+      <text>时间{{worker.date}}</text>
+    </view>
+    <view>
+      <text>编号{{worker.number}}</text>
+    </view>
+    <view class="flex justify-center">
+      <view class='text-center'>
+        <image class="cu-avatar xl round solids" src="{{worker.tximg}}"></image>
+        <view class="padding">{{worker.name}}{{worker.xingbie}}</view>
+      </view>
+    </view>
+    <view wx:if="{{worker.worker}}">已认证</view>
+    <view wx:else>请耐心等待官方审查</view>
+  </view>
+  <view class="cu-form-group bg-white}}">
+    <view class="title">联系电话</view>
+    <text>{{worker.tell}}</text>
+    <block wx:if="{{shezhi==true}}">
+      <button class="cu-btn bg-white shadow" bindtap="shezhitell" data-target="ChooseModal">
+        修改
+      </button>
+    </block>
+  </view>
+  <block wx:if="{{worker.kouhao!=null}}">
+    <view class="cu-form-group bg-white}}">
+      <view class="title">口号</view>
+      <text>{{worker.kouhao}}</text>
+      <block wx:if="{{shezhi==true}}">
+        <button class="cu-btn bg-white shadow" bindtap="shezhikouhao" data-target="ChooseModal">
+          修改
+        </button>
+      </block>
+    </view>
+  </block>
+  <block wx:if="{{worker.kouhao==null}}">
+    <view class="cu-form-group bg-white}}">
+      <view class="title">设计风格</view>
+      <text>{{worker.workerstyle}}</text>
+    </view>
+  </block>
+  <view class="cu-form-group bg-white}}">
+    <view class="title">技能</view>
+    <text>{{worker.work}}</text>
+  </view>
+  <view class="cu-form-group bg-white}}">
+    <view class="title">工价</view>
+    <button id="{{worker.workprice}}" class="cu-btn bg-white shadow" bindtap="gongjiachakan" data-target="ChooseModal">工价查看</button>
+    <!-- <block wx:for="{{worker.workprice}}" wx:for-item="workprice" wx:key="{{index}}">
+      <text>{{index}}:</text>
+      <text>{{workprice}}</text>
+    </block> -->
+    <block wx:if="{{shezhi==true}}">
+      <button class="cu-btn bg-white shadow" bindtap="gongjia" data-target="ChooseModal">修改</button>
+    </block>
+  </view>
+  <view class="cu-form-group bg-white}}">
+    <view class="title">工作时间</view>
+    <view class="rili" id='{{worker._id}}' bindtap="onOpenCalendar" data-target="ChooseModal">
+      <!-- 工作日历 -->
+      <text class="cuIcon-calendar text-red" style="width:30rpx;"></text>
+    </view>
+    <block wx:if="{{shezhi==true}}">
+      <button class="cu-btn bg-white shadow" bindtap="setrili" data-target="ChooseModal">
+        修改
+      </button>
+    </block>
+    <!-- <text>{{worker.worktime}}</text> -->
+  </view>
+  <view class="cu-form-group bg-white}}">
+    <view class="title">服务区域</view>
+    <text>{{worker.region}}</text>
+    <block wx:if="{{shezhi==true}}">
+      <button class="cu-btn bg-white shadow" bindtap="shezhifuwufanwei" data-target="ChooseModal">
+        修改
+      </button>
+    </block>
+  </view>
+  <block wx:if="{{shezhi==true}}">
+    <button class="cu-btn bg-white shadow" bindtap="shezhitp" data-target="ChooseModal">修改</button>
+  </block>
+  <swiper class="screen-swiper square-dot}}" indicator-dots="true" circular="true" duration="500">
+    <block wx:for="{{worker.workerjinenglook}}" wx:key="">
+      <swiper-item item-id bindtap="ViewImage">
+        <image src="{{item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <block wx:if="{{worker.worker==false}}">
+    <view class="margin-tb-sm text-center">
+      <button bindtap="quxiao" class="cu-btn round bg-red" role="button" aria-disabled="false" style="width:100%">
+        取消申请
+      </button>
+    </view>
+  </block>
+  <block wx:if="{{worker.worker==true}}">
+    <view class="margin-tb-sm text-center">
+      <button bindtap="quxiao" class="cu-btn round bg-red" role="button" aria-disabled="false" style="width:100%">
+        注销
+      </button>
+    </view>
+  </block>
+</block>
+<block wx:else>
+  <view style="margin-top:10rpx;;"></view>
+  <view style="width:95%;height:400rpx;margin:10rpx 20rpx;font-size:32rpx;">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          工人要求
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 18rpx;font-size: 28rpx;">
+        <view class="pdd">
+          1.该注册为工人注册，
+          <text style="color:orange">请及时关注微信小程序,关注审核状态</text>
+        </view>
+        <view class="pdd">2.请认真填写审核内容，便于您更快的通过审核；</view>
+        <view class="pdd">
+          3.空闲时间为日历日期，
+          <text style="color:orange">点击标注红色为忙，</text> 请认真填写
+        </view>
+        <view class="pdd">4.审核通过后姓名将不可更改，其他项可按需修改</view>
+      </view>
+    </view>
+  </view>
+  <view class="two" style="margin-top:104rpx;">
+    <button bindtap="add" class="cu-btn round bg-orange" role="button" aria-disabled="false">
+      申请成为工人
+    </button>
+  </view>
+  <view style="width:95%;height:400rpx;margin:10rpx 20rpx;font-size:32rpx;">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          设计师要求
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 18rpx;font-size: 28rpx;">
+        <view class="pdd">
+          1.该注册为设计师注册，
+          <text style="color:orange">请及时关注微信小程序,关注审核状态</text>
+        </view>
+        <view class="pdd">2.请认真填写审核内容，便于您更快的通过审核；</view>
+        <view class="pdd">3.审核通过后姓名将不可更改，其他项可按需修改</view>
+      </view>
+    </view>
+  </view>
+  <view class="two" style="margin-top:50rpx;">
+    <button bindtap="addshejishi" class="cu-btn round bg-orange" role="button" aria-disabled="false">
+      申请成为设计师
+    </button>
+  </view>
+</block>
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ worker.quxiao ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          您的认证未通过
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 18rpx;font-size: 32rpx;">
+        <view class="pdd">可致电13834970653至客服管理询问</view>
+        <view class="pdd">或再次申请并填写详细信息</view>
+      </view>
+      <view class="padding flex flex-direction">
+        <button class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false" bindtap="quxiao2">
+          我知道了
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 日历 -->
+<block wx:if="{{shezhi==true}}">
+  <calendar is-calendar-show="{{isCalendarShow}}" mark="{{calendarMark}}" format="1" deadline="9102-11-11" bind:getdate="onCalendarGetDate" />
+</block>
+<block wx:if="{{shezhi==false}}">
+  <calendar is-calendar-show="{{isCalendarShow}}" mark="{{calendarMark}}" format="1" deadline="9102-11-11" />
+</block>
+
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="gongjia" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="quedin">
+        <block wx:if="{{worker.work=='泥工'}}" wx:key="">
+          <view class="cu-form-group margin-top">
+            <view class="title">瓷砖铺贴800*800(/mm)</view>
+            <input name="瓷砖铺贴800*800(/mm)" type="number" placeholder="30"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">瓷砖铺贴300*600(/mm)</view>
+            <input name="瓷砖铺贴300*600(/mm)" type="number" placeholder="35"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">瓷砖铺贴400*800(/mm)</view>
+            <input name="瓷砖铺贴400*800(/mm)" type="number" placeholder="45"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">过门石铺小于1.2m</view>
+            <input name="过门石铺小于1.2m" type="number" placeholder="30"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">过门石铺设大于1.2m</view>
+            <input name="过门石铺设大于1.2m" type="number" placeholder="60"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">地面整平水泥厚度5cm内(/m²)</view>
+            <input name="地面整平水泥厚度5cm内(/m²)" type="number" type="number" placeholder="18"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">地面整平水泥厚度5cm外(/m²)</view>
+            <input name="地面整平水泥厚度5cm外(/m²)" type="number" placeholder="20"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">砌墙120毫米墙宽(㎡)
+            </view>
+            <input name="砌墙120毫米墙宽(㎡)" type="number" placeholder=""></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">倒角(m)全瓷 </view>
+            <input name="倒角(m)全瓷" type="number" placeholder="20"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">倒角(m)半瓷 </view>
+            <input name="倒角(m)半瓷" type="number" placeholder="15"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">烟道(大) </view>
+            <input name="烟道(大)" type="number" placeholder="200"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">烟道(小) </view>
+            <input name="烟道(小)" type="number" placeholder="150"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">防水间 </view>
+            <input name="防水间" type="number" placeholder="200"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">拉毛 </view>
+            <input name="拉毛" type="number" placeholder="100"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">波打线 </view>
+            <input name="波打线" type="number" placeholder="15"></input>
+          </view>
+        </block>
+        <!-- </form> -->
+        <!-- 基本工人 -->
+        <!-- <form bindsubmit="gongjia"> -->
+        <block wx:if="{{worker.work=='基本工人'}}" wx:key="">
+          <view class="cu-form-group margin-top">
+            <view class="title">墙固(㎡)</view>
+            <input name="墙固(㎡)" type="number" placeholder=""></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">地固(㎡)</view>
+            <input name="地固(㎡)" type="number" placeholder=""></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">墙体拆除(㎡)</view>
+            <input name="墙体拆除(㎡)" type="number" placeholder=""></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">地面保护(㎡)</view>
+            <input name="地面保护(㎡)" type="number" placeholder=""></input>
+          </view>
+        </block>
+        <!-- </form> -->
+        <!-- 水电工 -->
+        <!-- <form bindsubmit="gongjia"> -->
+        <block wx:if="{{worker.work=='水电工'}}" wx:key="">
+          <view class="cu-form-group margin-top">
+            <view class="title">水走顶(m)</view>
+            <input name="水走顶(m)" type="number" placeholder="15"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">水走地(m)</view>
+            <input name="水走地(m)" type="number" placeholder="10"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">电顶(m)</view>
+            <input name="电顶(m)" type="number" placeholder="15"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">电地(m)</view>
+            <input name="电地(m)" type="number" placeholder="12"></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">插座</view>
+            <input name="插座" type="number" placeholder="5"></input>
+          </view>
+        </block>
+        <!-- </form> -->
+        <!-- 木工 -->
+        <!-- <form bindsubmit="gongjia"> -->
+        <block wx:if="{{worker.work=='木工'}}" wx:key="">
+          <view class="cu-form-group margin-top">
+            <view class="title">石膏板吊顶(㎡)</view>
+            <input name="石膏板吊顶(㎡)" type="number" placeholder=""></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">石膏线(m)</view>
+            <input name="石膏线(m)" type="number" placeholder=""></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">柜子(㎡)</view>
+            <input name="柜子(㎡)" type="number" placeholder=""></input>
+          </view>
+        </block>
+        <!-- </form> -->
+        <!-- 油漆工 -->
+        <!-- <form bindsubmit="gongjia"> -->
+        <block wx:if="{{worker.work=='油漆工'}}" wx:key="">
+          <view class="cu-form-group margin-top">
+            <view class="title">腻子</view>
+            <input name="腻子" type="number" placeholder=""></input>
+          </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">乳胶漆</view>
+            <input name="乳胶漆" type="number" placeholder=""></input>
+          </view>
+        </block>
+
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 弹窗名字 -->
+<view class="zan-dialog {{ shezhiname ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shezhiname" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="shezhiname1">
+        <view class="cu-form-group">
+          <view class="title">姓名</view>
+          <input type="text" name="name" placeholder="{{name}}"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 弹窗电话 -->
+<view class="zan-dialog {{ shezhitell ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shezhitell" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="shezhitell1">
+        <view class="cu-form-group">
+          <view class="title">手机号码</view>
+          <input type="number" name="tell" placeholder="{{tell}}"></input>
+          <view class="cu-capsule radius">
+            <view class="cu-tag bg-blue">+86</view>
+            <view class="cu-tag line-blue">中国大陆</view>
+          </view>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 弹窗口号 -->
+<view class="zan-dialog {{ shezhikouhao ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shezhikouhao" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="shezhikouhao1">
+        <view class="cu-form-group margin-top">
+          <view class="title">服务口号</view>
+          <input type="text" name="kouhao" placeholder="{{name}}"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 弹窗服务范围 -->
+<view class="zan-dialog {{ shezhifuwufanwei ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shezhifuwufanwei" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="shezhifuwufanwei1">
+        <view class="cu-form-group">
+          <view class="title">地址选择</view>
+          <picker value="dizhi" mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker">{{region[0]}}，{{region[1]}}，{{region[2]}}</view>
+          </picker>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+<!-- 弹窗图片 -->
+<view class="zan-dialog {{ shezhitp ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="shezhitp" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="shezhitp1">
+        <view class="cu-bar bg-white margin-top">
+          <view class="action">技能展示（图片形式）</view>
+          <view class="action">{{imgList.length}}/8</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="grid col-4 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+              <image src='{{imgList[index]}}' mode='aspectFill'></image>
+              <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                <text class="cuIcon-close"></text>
+              </view>
+            </view>
+            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<8}}">
+              <text class="cuIcon-cameraadd"></text>
+            </view>
+          </view>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ gongjiachakan ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="gongjiachakan" />
+  <view class="zan-dialog__container">
+    <view style='padding:20rpx;'>
+      <block wx:for="{{worker.workprice}}" wx:key="{{index}}">
+        <view class="cu-form-group">
+          <text>{{index}}:</text>
+          <text>{{item}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,225 @@
+/* pages/calendar/calendar.wxss */
+
+.theme-color {
+  /* todo 更换主题颜色*/
+  /*color: deepskyblue;*/
+  color: #eac13c;
+}
+
+/* 背景遮罩层,当设置为插入模式后不显示遮罩 */
+.calendar-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  color: #000;
+  background: rgba(0, 0, 0, 0.5);
+  /*padding-top: 100rpx;*/ /*不需要固定头的位置*/
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.calendar-box.active {
+  opacity: 1;
+}
+
+/* 日历内层容器 */
+.calendar-wrapper {
+  width: 100%;
+  border-top: 1px #f5f5f5 solid;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  background: #fff;
+  transition: all 0.3s;
+  transform: translateY(-100%);
+}
+
+.calendar-wrapper.active {
+  transform: translateY(0%);
+}
+
+/* 日历操作头 *******************************/
+.calendar-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+}
+
+.date-prev,
+.date-next {
+  /* border: 1px red solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80rpx;
+  width: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  /* margin-right: 20rpx; */
+}
+
+/* 方向图标 */
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 53rpx;
+  height: 53rpx;
+  /*background-color: lightyellow;*/
+}
+
+/* 使用子选择指示符`>`无法选中目标,原因未知 */
+.icon .prev,
+.icon .next {
+  display: block;
+  opacity: 0.7;
+  width: 0;
+  height: 0;
+  border-top: 20rpx solid transparent;
+  border-bottom: 20rpx solid transparent;
+}
+
+.icon .prev {
+  border-right: 40rpx solid currentColor;
+}
+
+.icon .next {
+  border-left: 40rpx solid currentColor;
+}
+
+.backtoday {
+  position: absolute;
+  right: 0;
+  top: 15rpx;
+  overflow: hidden;
+  width: 5em;
+  height: 50rpx;
+  padding-left: 20rpx;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  border: 1px solid currentColor;
+  border-right: none;
+  border-top-left-radius: 50rpx;
+  border-bottom-left-radius: 50rpx;
+}
+
+/* 当前日历显示的月份 */
+.calendar-panel-indicator {
+  display: flex;
+  font-size: 34rpx;
+}
+
+/* 星期指示 */
+.calendar-header {
+  display: flex;
+  font-size: 30rpx;
+}
+
+.calendar-header view {
+  width: 100%;
+  text-align: center;
+  line-height: 80rpx;
+  /*color: #52b8f5;*/
+}
+
+/* 日历的日期部份 **********************************/
+.calendar-body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calender-body-date-week {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px #f5f5f5 solid;
+}
+
+.date {
+  position: relative;
+  width: 100%;
+  height: 100rpx;
+  /*text-align: center;*/
+  text-align: center;
+  font-size: 28rpx;
+  color: #000;
+  background: #d7f0db;
+  line-height: 100rpx;
+}
+.datered{
+  position: relative;
+  width: 100%;
+  height: 100rpx;
+  /*text-align: center;*/
+  text-align: center;
+  font-size: 28rpx;
+  color: #000;
+  background: #fadbd9;
+  line-height: 100rpx;
+}
+
+/* 在当月但不可操作的元素的字体颜色 */
+.placeholder,
+.placeholder.unavailable {
+  /*color: #a4a4a4;*/
+  color: #b2b2b2;
+}
+
+.unavailable {
+  color: #686868;
+}
+
+
+.date.active > text {
+  color: #fff;
+}
+
+.backtoday > text,
+.backtoday > .bg,
+.date > text,
+.date > .bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.backtoday > .bg,
+.date.active > .bg {
+  background-color: currentColor;
+  opacity: 0.1;
+}
+
+.date.active > .bg {
+  opacity: 0.5;
+}
+
+/* 标示红点 */
+.data-circle {
+  position: absolute;
+  bottom: 10rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #ff5a5f;
+  z-index: 2;
+}
+
+.pick {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #52b8f5;
+}
+

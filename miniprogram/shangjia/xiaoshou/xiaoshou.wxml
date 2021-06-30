@@ -1,0 +1,155 @@
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{dingdan}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </view>
+</scroll-view>
+
+<block wx:for="{{goods}}" wx:for-item="goods" wx:key="">
+  <block wx:if="{{goods.jindu==TabCur||goods.jindu-999==TabCur}}">
+    <view class="cu-list menu-avatar">
+      <view class="cu-item ">
+        <image bindtap="ingoods" id="{{goods._id}}" class="cu-avatar radius lg" src="{{goods.tximage}}"></image>
+        <view bindtap="tomessage" id='{{index}}' class="content">
+          <view class="text-black">
+            <text class="text-cut">{{goods.name}}</text>
+            <text wx:if="{{goods.kuaidi!=''&&goods.kuaidi!=null}}" class="text-cut text-yellow">{{goods.kuaidi}}</text>
+          </view>
+          <view class="text-black">
+            <text class="text-cut">{{goods.usershouhuodizhi.region}}...</text>
+          </view>
+          <view class="text-black">
+            <text class="text-cut">{{goods.usershouhuodizhi.name}}{{goods.usershouhuodizhi.tell}}</text>
+            <block wx:if="{{goods.huodong}}">
+<view class="cu-tag bg-red">{{goods.huodong}}</view>
+      </block>
+          </view>
+        </view>
+        <view class="action">
+          <view class="text-red">¥{{goods.price}}×{{goods.number}}</view>
+          <block wx:if="{{goods.jindu==0}}">
+            <button bindtap="toggleDialog" id='{{goods._id}}' class="cu-btn bg-green margin-tb-sm sm ">发货</button>
+          </block>
+          <block wx:if="{{goods.jindu==999}}">
+            <button id='{{goods._id}}' class="cu-btn bg-green margin-tb-sm sm ">拼单中</button>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</block>
+
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="toggleDialog" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <form bindsubmit="formSubmit" bindreset="formReset">
+        <!-- 标签部分 -->
+        <view class="padding-xs" style="padding:18rpx;">
+          <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+            请填写该商品快递单号
+          </view>
+        </view>
+        <wux-cell hover-class="none">
+          <wux-rater bind:change="bindchange" slot="footer" allow-half default-value="{{ 5 }}" />
+        </wux-cell>
+        <view class="cu-form-group">
+          <input name="speak"></input>
+        </view>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false" form-type="submit">
+            确定
+          </button>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>
+
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showmessage ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="hidemessage" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view style="font-size:30rpx;color:orange;font-weight:550">
+          订单详情
+        </view>
+      </view>
+      <view class="cu-list menu-avatar" style="font-size:34rpx;">
+        <view wx:if="{{message.kuaidi!=null}}" class="text-black">
+          <text class="text-cut">快递单号：{{message.kuaidi}}</text>
+        </view>
+        <view class="text-black">
+          <text class="text-cut">下单时间：{{message.date0}}</text>
+        </view>
+        <view wx:if="{{message.date1!=null}}" class="text-black">
+          <text class="text-cut">发货时间：{{message.date1}}</text>
+        </view>
+
+        <view class="text-black">
+          <text class="text-cut">商铺名字：{{shangpumessage.shangpuname}}</text>
+        </view>
+        <view class="text-black">
+          <text class="text-cut">商铺电话：{{shangpumessage.tell}}</text>
+        </view>
+        <image bindtap="ingoods" id="{{message.goodsid}}" class="cu-avatar radius lg" src="{{message.tximage}}"></image>
+        <text class="text-cut">{{message.name}}</text>
+        
+          <view class="text-red">¥{{message.price}}×{{message.number}}</view>
+      
+        <view class="content" style="font-size:32rpx;">
+          <view class="text-black">
+
+            <block wx:if="{{message.jindu==0}}">
+              <text class="text-cut"style="color:red">状态:待发货</text>
+            </block>
+            <block wx:if="{{message.jindu==1}}">
+              <text class="text-cut"style="color:red">状态:待签收</text>
+            </block>
+            <block wx:if="{{message.jindu==2}}">
+              <text class="text-cut" style="color:red">状态:已完成</text>
+            </block>
+          </view>
+          <view class="text-black">
+            <text class="text-cut">{{message.usershouhuodizhi.region}}{{message.usershouhuodizhi.location}}</text>
+          </view>
+          <view class="text-black">
+            <text class="text-cut">{{message.usershouhuodizhi.name}}{{message.usershouhuodizhi.tell}}</text>
+          </view>
+        </view>
+        
+
+        <view wx:if="{{message.beizhu!=''}}" class="text-black">
+          <text class="text-cut">备注：{{message.beizhu}}</text>
+        </view>
+
+        <view wx:if="{{message.date2!=null}}" class="text-black">
+          <text class="text-cut">签收时间：{{message.date2}}</text>
+        </view>
+
+
+        <!-- <view class="cu-form-group222">
+          <wux-cell hover-class="none">
+            <wux-rater fontSize="15" slot="footer" controlled="true" value="{{message.pingjia.star}}" />
+          </wux-cell>
+        </view> -->
+        <view class="cu-form-group222">
+          <text>{{message.pingjia.pingjia}}</text>
+        </view>
+        <view class="cu-form-group222">
+          <view class="grid col-4 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{message.pingjia.fileIDList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{message.pingjia.fileIDList[index]}}">
+              <image src='{{message.pingjia.fileIDList[index]}}' mode='aspectFill'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

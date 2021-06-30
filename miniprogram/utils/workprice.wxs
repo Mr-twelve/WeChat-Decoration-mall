@@ -1,0 +1,107 @@
+
+
+var workprice = {
+  toname: function (value) {
+    switch (value) {
+      case 'czptbb':
+        return "瓷砖铺贴800 * 800(/mm)"
+        break;
+      case 'czptsl':
+        return "瓷砖铺贴300 * 600(/mm)"
+        break;
+      case 'czptsb':
+        return "瓷砖铺贴400 * 800(/mm)"
+        break;
+      case 'gmsxyye':
+        return "过门石铺小于1.2m(/m²)"
+        break;
+      case 'gmsdyye':
+        return "过门石铺大于1.2m(/m²)"
+        break;
+      case 'dmzpwcmn':
+        return "地面整平水泥厚度5cm内(/m²)"
+        break;
+      case 'dmzpwcmw':
+        return "地面整平水泥厚度5cm外(/m²)"
+        break;
+      case 'qqyelhmqk':
+        return "砌墙120毫米墙宽(/m²)" 
+        break;
+      case 'djqc':
+        return "倒角(m)全瓷(/m²)"
+        break;
+      case 'djbc':
+        return "倒角(m)半瓷(/m²)" 
+        break;
+      case 'ydd':
+        return "烟道(大)(/m²)" 
+        break;
+      case 'ydx':
+        return "烟道(小)(/m²)" 
+        break;
+      case 'fsj':
+        return "防水间(/m²)" 
+        break;
+      case 'lm':
+        return "拉毛(/m²)"
+        break;
+      case 'bdx':
+        return "波打线(/m²)" 
+        break;
+      case 'qg':
+        return "墙固(/㎡)"
+        break;
+      case 'dg':
+        return "地固(/㎡)" 
+        break;
+      case 'qtcc':
+        return "墙体拆除(/㎡)" 
+        break;
+      case 'dmbh':
+        return "地面保护(/㎡)" 
+        break;
+      case 'szdin':
+        return "水走顶(/m)" 
+        break;
+      case 'szd':
+        return "水走地(/m)" 
+        break;
+      case 'dtop':
+        return "电顶(/m)" 
+        break;
+      case 'dbottom':
+        return "电地(/m)" 
+        break;
+      case 'cz' :
+        return "插座(/m)" 
+        break;
+      case 'sgbdd':
+        return "石膏板吊顶(/㎡)" 
+        break;
+      case 'sgx':
+        return "石膏线(/m)" 
+        break;
+      case 'gz':
+        return "柜子(/㎡)" 
+        break;
+      case 'nz':
+        return "腻子(/㎡)" 
+        break;
+      case 'rjq':
+        return "乳胶漆(/㎡)"
+        break;
+      case 'meifen':
+        return "美缝"
+        break;
+      case 'kaihuangdasao':
+        return "开荒打扫"
+        break;
+      case 'fengyangtai':
+        return "封阳台"
+        break;
+    } 
+  }
+}
+module.exports = {
+  toname: workprice.toname
+}

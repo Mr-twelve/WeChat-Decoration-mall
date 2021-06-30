@@ -1,0 +1,20 @@
+<!-- 水改造 -->
+<view class="weibo-group">
+  <view class="weibo-content-group">
+    <view clas="biaoti" style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;font-size:30rpx;font-family: Helvetica">水电工施工——水改造</view>
+    <view class="image-list-group">
+      <video src="cloud://test-xchgb.7465-test-xchgb-1259365888/CaiJi/动画-video/2744de230051a4cf53bccef1fc5b855a.mp4"></video>
+    </view>
+  </view>
+</view>
+
+
+<!-- 水改造 -->
+<view class="weibo-group">
+  <view class="weibo-content-group">
+    <view clas="biaoti" style="display: flex;align-items: center;justify-content: center;  width: 100%;height: 100%;font-size:30rpx;font-family: Helvetica">水电工施工——电路改造</view>
+    <view class="image-list-group">
+      <video src="cloud://test-xchgb.7465-test-xchgb-1259365888/CaiJi/动画-video/2744de230051a4cf53bccef1fc5b855a.mp4"></video>
+    </view>
+  </view>
+</view>

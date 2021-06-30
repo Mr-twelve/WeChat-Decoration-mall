@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 150rpx;
+  color: #323232;
+  border-left: 3rpx solid green;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+page {
+  background: white;
+}
+
+.cu-list.menu-avatar>.cu-item {
+  position: relative;
+  display: flex;
+  padding-right: 10rpx;
+  height: 190rpx;
+  background-color: var(--white);
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 3rpx solid gainsboro;
+}
+.cu-list.menu-avatar>.cu-item>.cu-avatar {
+position: absolute;
+left: 30rpx;
+}
+.cu-avatar.lg {
+width: 140rpx;
+height: 140rpx;
+font-size: 2em;
+}
+.cu-list.menu-avatar>.cu-item .content {
+position: absolute;
+left: 190rpx;
+width: calc(100% - 96rpx - 60rpx - 120rpx - 20rpx);
+line-height: 1.6em;
+}
+

@@ -1,0 +1,101 @@
+<!-- /////////////改////////////////////// -->
+<view class="cu-form-group">
+  <view class="title">设计师认证工作信息</view>
+</view>
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="cu-form-group margin-top">
+    <view class="title">设计风格</view>
+    <input type="text" name="kouhao" placeholder="{{name}}"></input>
+  </view>
+
+  <calendar is-calendar-show="{{isCalendarShow}}" mark="{{calendarMark}}" format="1" deadline="9102-11-11" bind:getdate="onCalendarGetDate" />
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">空闲时间</view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow" bindtap="onOpenCalendar" data-target="ChooseModal">设置</button>
+    </view>
+  </view>
+
+
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">工价细分</view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow" bindtap="toggleDialog" data-target="ChooseModal">工价设置</button>
+    </view>
+  </view>
+  <block wx:for="{{lists}}" wx:key="">
+    <view class="cu-form-group">
+      <text>{{item}}</text>
+    </view>
+  </block>
+
+
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      技能展示（图片形式）
+    </view>
+    <view class="action">
+      {{imgList.length}}/8
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<8}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">完成</button>
+  </view>
+</form>
+
+<!-- 技能选择弹窗 -->
+<view class="cu-modal bottom-modal {{modalName=='ChooseModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="hideModal">确定</view>
+    </view>
+    <view class="grid col-3 padding-sm">
+      <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">
+        <button class="cu-btn orange lg block {{item.checked?'bg-orange':'line-orange'}}" bindtap="ChooseCheckbox" data-value="{{item.value}}"> {{item.name}}
+          <view class="cu-tag sm round {{item.checked?'bg-white text-orange':'bg-orange'}}" wx:if="{{item.hot}}">HOT</view>
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+
+      <form bindsubmit="gongjia">
+        <block wx:for="{{index}}" wx:key="" wx:for-index="index">
+          <view class="cu-form-group">
+            <input name="{{index}}" placeholder="例：瓷砖铺贴30-35元/平米"></input>
+          </view>
+        </block>
+        <button class="cu-btn round sm bg-green" bindtap="addindex">+</button>
+        <button class="cu-btn round sm bg-green" bindtap="jieindex">-</button>
+        <view class="padding flex flex-direction">
+          <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+        </view>
+      </form>
+
+    </view>
+  </view>
+</view>

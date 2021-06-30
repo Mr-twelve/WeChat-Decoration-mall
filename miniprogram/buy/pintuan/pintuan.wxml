@@ -1,0 +1,85 @@
+<!--miniprogram/pages/shoping/shoping.wxml-->
+
+
+<!-- 上方导航栏 -->
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index==TopCur?'text-orange cur':''}}" wx:for="{{top}}" wx:key bindtap="topSelect" data-id="{{item.id}}">
+      {{item.name}}
+    </view>
+  </view>
+</scroll-view>
+<!-- 左侧导航栏 -->
+<scroll-view scroll-x class="bg-white nav" scroll-left="{{scrollLeft}}">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{TopCur==0?list0:list1}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </view>
+</scroll-view>
+<view class="VerticalBox">
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(93vh)" scroll-into-view="main-{{MainCur}}">
+    <!-- ----- -->
+    <view class="padding-top padding-lr" id="main-{{index}}">
+      <!-- ↓内容↓ -->
+      <view class="cu-list menu-avatar" style="margin-bottom: 20rpx">
+      <block wx:if='{{dataindex[0]==0}}'>
+        <block wx:for="{{goods}}" wx:for-item="goods" wx:key="">
+          <view class="cu-card case">
+            <view class="cu-item shadow" bindtap="ingoods" id="{{goods._id}}">
+              <view class="image">
+                <image src="{{goods.tximage}}"></image>
+                <!-- <view class="cu-tag bg-blue">史诗</view> -->
+                <view class="name text-cut">{{goods.name}}</view>
+              </view>
+              <view class="next cu-list menu-avatar">
+                <view class="cu-item">
+                  <view class="content flex-sub">
+                    <view class="text-grey">
+
+                    </view>
+                    <view class="text-gray text-sm flex justify-between">
+                      <text decode='true' class="huodongtext text-orange">¥{{goods.huodong.price}}&nbsp;<text class="yuantext text-gray" style=" text-decoration:line-through">¥{{goods.price}}</text></text>
+                      <view class="text-gray text-sm">
+                        <view class="cu-tag line-orange">{{goods.huodong.style}}</view>
+                        <view class="cu-tag bg-orange">去开团</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        </block>
+        <block wx:if='{{dataindex[0]==1}}'>
+<block wx:for="{{worker}}" wx:key="">
+  <view class="container bg-white" style="margin-top:20rpx;">
+    <view class="workavatar" style="margin-left:50rpx;">
+      <image class="img bg-white" style="width:150rpx;height:150rpx;border-radius: 50%;margin-top:35rpx;" src="{{item.tximg}}" mode="aspectFill" lazy-load="false" />
+      <wux-rater fontSize="13" disabled="true" slot="footer" allow-half default-value="{{ item.star}}" />
+      <view style="color:green;font-size:30rpx;font-weight:bold">等级：{{item.workerdengji}}</view>
+
+    </view>
+    <view class="ttt comment" style="width:100%;font-size:30rpx;margin-left:30rpx;">
+      <view class="ttt cu-form-group pdd bg-white}}" style="min-height: 55rpx;margin-top:45rpx;">
+        姓名：{{item.name}}
+        <!-- <view class="rili" id='{{item._id}}' bindtap="onOpenCalendar" data-target="ChooseModal">
+          <text class="cuIcon-calendar text-red" style="width:30rpx;"></text>
+        </view> -->
+      </view>
+      <view class="ttt cu-form-group pdd bg-white}}" style="min-height: 55rpx;">工龄：{{item.old}}年</view>
+      <view class="ttt cu-form-group pdd bg-white}}" style="min-height: 55rpx;">口号：{{item.kouhao}}</view>
+      <view class="ttt cu-form-group pdd bg-white}}" style="min-height: 55rpx;">
+        工价：1800
+        <view id='{{item._id}}' bindtap="xiangqing" style="color:black" class="ttt">详情></view>
+      </view>
+    </view>
+  </view>
+</block>
+        </block>
+      </view>
+      <!-- ↑内容↑ -->
+    </view>
+  </scroll-view>
+</view>

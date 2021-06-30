@@ -1,0 +1,9 @@
+<wxs module="workprice" src="../../../utils/workprice.wxs" />
+<view class="container" style="margin-top:30rpx;">
+<block wx:for="{{workerprice}}" wx:for-item="work" wx:key="{{index}}">
+  <view style="margin:5rpx 50rpx；font-size:36rpx;">
+    <text>{{workprice.toname(index)}}:</text>
+    <text>{{work}}</text>
+  </view>
+</block>
+</view>

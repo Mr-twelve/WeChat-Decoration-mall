@@ -1,0 +1,148 @@
+/* page{
+  background-color: white
+} */
+
+.margin-xs {
+  margin: 0rpx;
+  margin-right: 50rpx;
+}
+
+.padding {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: 5rpx 20rpx;
+}
+
+.cu-card>.cu-item {
+  display: block;
+  background-color: var(--white);
+  overflow: hidden;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.padding-top {
+  padding-top: 20rpx;
+}
+
+.cu-list.menu-avatar>.cu-item .content {
+  position: static;
+  left: 87rpx;
+  width: calc(100% - 96rpx - 60rpx - 120rpx - 20rpx);
+  line-height: 1.6em;
+}
+
+.nameview {
+  width: 200rpx;
+}
+
+.next {
+  padding: 0rpx 14rpx 0rpx 14rpx;
+}
+
+.name {
+  padding: 14rpx 14rpx 0rpx 14rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 35rpx;
+  color: black;
+}
+
+.yuantext {
+  font-size: 30rpx;
+  color: grey;
+}
+
+.huodongtext {
+  font-size: 50rpx;
+  color: var(--orange);
+}
+
+.cu-btn {
+  position: relative;
+  border: 0rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 1 10rpx;
+  font-size: 28rpx;
+  height: 64rpx;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  overflow: visible;
+  margin-left: initial;
+  transform: translate(0rpx, 0rpx);
+  margin-right: initial;
+  margin-bottom: 10rpx;
+}
+
+.cu-card>.cu-item {
+  display: block;
+  background-color: var(--white);
+  overflow: hidden;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  height: 645rpx;
+}
+
+.cu-list.menu-avatar>.cu-item {
+  position: relative;
+  display: flex;
+  padding-right: 10rpx;
+  height: 110rpx;
+  background-color: var(--white);
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cu-tag {
+  font-size: 24rpx;
+  vertical-align: middle;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0rpx 16rpx;
+  height: 50rpx;
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+  white-space: nowrap;
+}
+
+.cu-tag {
+  font-size: 25rpx;
+  vertical-align: middle;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0rpx 16rpx;
+  height: 60rpx;
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+  white-space: nowrap;
+}
+
+.cu-tag+.cu-tag {
+  margin-left: 0rpx;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 250rpx;
+  color: #323232;
+  border-left: 3rpx solid green;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}

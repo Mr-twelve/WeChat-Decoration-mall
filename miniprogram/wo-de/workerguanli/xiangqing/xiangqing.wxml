@@ -1,0 +1,127 @@
+<!--miniprogram/wo-de/workerguanli/xiangqing/xiangqing.wxml-->
+
+<view style="padding:1rpx 30rpx" class="bg-white radius shadow shadow-lg">
+  <view>
+    <text>时间{{worker.date}}</text>
+  </view>
+  <view>
+    <text>编号{{worker.number}}</text>
+  </view>
+  <view class="flex justify-center">
+    <view class='text-center'>
+      <image class="cu-avatar xl round solids" src="{{worker.tximg}}"></image>
+      <view class="padding">{{worker.name}}师傅</view>
+
+
+      <button bindtap="showModal" wx:if="{{worker.workerdengji=='专业'}}" id='{{item._id}}' class="cu-btn  bg-green" role="button" aria-disabled="false">{{worker.workerdengji}}</button>
+      <button bindtap="showModal" wx:if="{{worker.workerdengji=='大师'}}" id='{{item._id}}' class="cu-btn  bg-orange" role="button" aria-disabled="false">{{worker.workerdengji}}</button>
+      <button bindtap="showModal" wx:if="{{worker.workerdengji=='宗师'}}" id='{{item._id}}' class="cu-btn  bg-red" role="button" aria-disabled="false">{{worker.workerdengji}}</button>
+
+    </view>
+  </view>
+  <view wx:if="{{worker.worker}}">已认证</view>
+  <view wx:else>未认证</view>
+</view>
+
+<view class="cu-form-group bg-white}}">
+  <view class="title"> 联系电话</view>
+  <text>{{worker.tell}}</text>
+</view>
+<block wx:if="{{worker.kouhao!=null}}">
+  <view class="cu-form-group bg-white}}">
+    <view class="title"> 口号</view>
+    <text>{{worker.kouhao}}</text>
+  </view>
+</block>
+<block wx:if="{{worker.kouhao==null}}">
+  <view class="cu-form-group bg-white}}">
+    <view class="title"> 设计风格</view>
+    <text>{{worker.workerstyle}}</text>
+  </view>
+</block>
+<view class="cu-form-group bg-white}}">
+  <view class="title"> 已审核工种</view>
+  <text>{{worker.work}}</text>
+</view>
+<view wx:if="{{worker.addwork.length!=0}}" class="cu-form-group bg-white}}">
+  <view class="title"> 未审核工种</view>
+  <text>{{worker.addwork}}</text>
+</view>
+<view class="cu-form-group bg-white}}">
+  <view class="title"> 工价</view>
+  <button id="{{worker._id}}" class="cu-btn bg-white shadow" bindtap="gongjiachakan" data-target="ChooseModal">查看</button>
+</view>
+<view class="cu-form-group bg-white}}">
+  <view class="title"> 工作时间</view>
+  <button class="cu-btn bg-white shadow" bindtap="onOpenCalendar" data-target="ChooseModal">查看</button>
+  <!-- <text>{{worker.worktime}}</text> -->
+</view>
+<view class="cu-form-group bg-white}}">
+  <view class="title"> 服务区域</view>
+  <text>{{worker.region}}</text>
+</view>
+<view class="cu-form-group bg-white}}">
+  <view class="title"> 工匠身份证</view>
+</view>
+<swiper class="screen-swiper square-dot}}" indicator-dots="true" circular="true" duration="500">
+  <swiper-item item-id bindtap="ViewImagesfz" id="{{worker.sfzzimg}}">
+    <image src="{{worker.sfzzimg}}"></image>
+  </swiper-item>
+  <swiper-item item-id bindtap="ViewImagesfz" id="{{worker.sfzfimg}}">
+    <image src="{{worker.sfzfimg}}"></image>
+  </swiper-item>
+</swiper>
+<block wx:if="{{worker.addworkerjinenglook.length!=0}}">
+  <view class="cu-form-group bg-white}}">
+    <view class="title"> 审核工匠技能展示（图片）</view>
+  </view>
+  <view wx:for="{{worker.addworkerjinenglook}}" wx:key="">
+    <image mode="scaleToFill" style="width:100%" bindtap="ViewImage" src="{{item}}"></image>
+  </view>
+</block>
+<view class="cu-form-group bg-white}}">
+  <view class="title"> 工匠技能展示（图片）</view>
+</view>
+<view wx:for="{{worker.workerjinenglook}}" wx:key="">
+  <image mode="scaleToFill" style="width:100%" bindtap="ViewImage" src="{{item}}"></image>
+</view>
+
+
+
+<view class="margin-tb-sm text-center">
+  <block wx:if="{{worker.worker==false}}">
+    <view class="margin-tb-sm text-center">
+      <button bindtap="yes" class="cu-btn bg-green shadow" role="button" aria-disabled="false" style="width:100%">审核通过</button>
+    </view>
+    <view class="margin-tb-sm text-center">
+      <button bindtap="quxiao" class="cu-btn bg-red shadow" role="button" aria-disabled="false" style="width:100%">拒绝通过</button>
+    </view>
+  </block>
+
+  <block wx:if="{{worker.worker==true&&worker.addworker==true}}">
+    <button class="cu-btn bg-green" role="button" aria-disabled="false" style="width:100%">已审核通过</button>
+  </block>
+
+  <block wx:if="{{worker.worker==true&&worker.addworker==false}}">
+    <button bindtap="addyes" class="cu-btn bg-green" role="button" aria-disabled="false" style="width:100%">工种审核通过</button>
+  </block>
+</view>
+
+<view class="cu-modal {{show?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <text>等级更改</text>
+    <radio-group class="block" bindchange="radioChange">
+      <view class="cu-list menu text-left">
+        <view class="cu-item" wx:for="{{dengji}}" wx:key>
+          <label class="flex justify-between align-center flex-sub">
+            <view class="flex-sub">{{item}}</view>
+            <radio value="{{item}}" class="round"></radio>
+          </label>
+        </view>
+      </view>
+    </radio-group>
+  </view>
+</view>
+
+<!-- 日历 -->
+<calendar is-calendar-show="{{isCalendarShow}}" mark="{{calendarMark}}" format="1" deadline="9102-11-11" bind:getdate="onCalendarGetDate" />

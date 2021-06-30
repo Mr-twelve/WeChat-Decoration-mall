@@ -1,0 +1,28 @@
+<!--miniprogram/wo-de/lookshangpu/lookshangpu.wxml-->
+<view class="container bg-white" style="margin-top:20rpx;">
+  <view class="avatar" style="margin-left:50rpx;">
+    <image class="img bg-white" style="width:150rpx;height:150rpx;border-radius: 50%;margin-top:35rpx;" src="{{shangpu.tximg}}" mode="aspectFill" lazy-load="false" />
+  </view>
+  <view class="comment" style="width:100%;font-size:30rpx;margin-left:30rpx;">
+    <view class="cu-form-group pdd bg-white}}" style="min-height: 55rpx;margin-top:30rpx;">
+      {{shangpu.shangpuname}}
+    </view>
+    <view class="cu-form-group pdd bg-white}}" style="min-height: 55rpx;">{{shangpu.tell}}</view>
+  </view>
+</view>
+<view style="font-size:32rpx;margin-left:30rpx">商品列表</view>
+<block wx:for="{{goods}}" wx:for-item="goods" wx:key="">
+  <view bindtap="ingoods" id="{{goods._id}}" class="cu-list menu-avatar">
+    <view class="cu-item ">
+      <image  class="cu-avatar radius lg" src="{{goods.tximage}}"></image>
+      <view class="content">
+        <view class="text-black">
+          <text class="text-cut">{{goods.name}}</text>
+        </view>
+        <view class="text-red">¥{{goods.price}}</view>
+      </view>
+      <view class="action">
+      </view>
+    </view>
+  </view>
+</block>

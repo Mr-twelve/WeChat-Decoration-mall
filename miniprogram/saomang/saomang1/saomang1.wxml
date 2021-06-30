@@ -1,0 +1,26 @@
+<view class="cu-form-group margin-top">
+  <text class="text-xl text-black text-bold">{{neir.title}}</text>
+</view>
+<view class="cu-form-group margin-top">
+  <text>{{neir.year}}-{{neir.month}}-{{neir.date}}</text>
+</view>
+<block wx:for='{{neir.newcontest}}' wx:key>
+  <view>
+    <view wx:if='{{item.text!=null}}' class="cu-form-group">
+      <text class="duanshou">{{item.text}}</text>
+    </view>
+    <view class="cu-card case cu-item shadow">
+      <view class="image">
+        <image wx:if='{{item.img!=null}}' src="{{item.img}}"></image>
+      </view>
+    </view>
+  </view>
+</block>
+<view bindtap="quxiaoshoucang" wx:if="{{shoucang}}" class="action text-orange">
+  <view class="cuIcon-favorfill"></view>
+  已收藏
+</view>
+<view wx:if="{{!shoucang}}" bindtap="shoucang" class="action text-orange">
+  <view class="cuIcon-favor"></view>
+  收藏
+</view>

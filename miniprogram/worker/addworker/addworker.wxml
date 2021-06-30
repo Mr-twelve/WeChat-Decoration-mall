@@ -1,0 +1,54 @@
+<view style="margin-top:10rpx;;">
+</view>
+<view style="width:95%;height:400rpx;margin:10rpx 20rpx;font-size:32rpx;">
+  <view style='padding:50rpx;'>
+    <!-- 标签部分 -->
+    <view class="padding-xs" style="padding:18rpx;">
+      <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+        工匠要求
+      </view>
+    </view>
+    <!-- 文字部分 -->
+    <view class="container" style="padding: 0 18rpx;font-size: 28rpx;">
+      <view class="pdd">
+        1.该注册为工匠注册，
+        <text style="color:orange">请及时关注微信小程序,关注审核状态</text>
+      </view>
+      <view class="pdd">2.请认真填写审核内容，便于您更快的通过审核；</view>
+      <view class="pdd">
+        3.空闲时间为日历日期，
+        <text style="color:orange">点击标注红色为忙，</text> 请认真填写
+      </view>
+      <view class="pdd">4.审核通过后姓名将不可更改，其他项可按需修改</view>
+    </view>
+  </view>
+</view>
+<view class="two" style="margin-top:104rpx;">
+  <button bindtap="add" class="cu-btn round bg-orange" role="button" aria-disabled="false">
+    申请成为工匠
+  </button>
+</view>
+<view style="width:95%;height:400rpx;margin:10rpx 20rpx;font-size:32rpx;">
+  <view style='padding:50rpx;'>
+    <!-- 标签部分 -->
+    <view class="padding-xs" style="padding:18rpx;">
+      <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+        设计师要求
+      </view>
+    </view>
+    <!-- 文字部分 -->
+    <view class="container" style="padding: 0 18rpx;font-size: 28rpx;">
+      <view class="pdd">
+        1.该注册为设计师注册，
+        <text style="color:orange">请及时关注微信小程序,关注审核状态</text>
+      </view>
+      <view class="pdd">2.请认真填写审核内容，便于您更快的通过审核；</view>
+      <view class="pdd">3.审核通过后姓名将不可更改，其他项可按需修改</view>
+    </view>
+  </view>
+</view>
+<view class="two" style="margin-top:50rpx;">
+  <button bindtap="addshejishi" class="cu-btn round bg-orange" role="button" aria-disabled="false">
+    申请成为设计师
+  </button>
+</view>

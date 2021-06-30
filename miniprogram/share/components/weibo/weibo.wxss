@@ -1,0 +1,95 @@
+/* components/weibo/weibo.wxss */
+.weibo-group {
+    width: 100%;
+    margin-bottom: 30rpx;
+    background: #fff;
+    padding: 40rpx 20px;
+    box-sizing: border-box;
+}
+
+.weibo-group .user-group {
+    display: flex;
+}
+
+.user-group .avatar {
+    width: 74rpx;
+    height: 74rpx;
+    border-radius: 50%;
+}
+
+.user-group .right-info {
+    flex: 1;
+    margin-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right-info .username {
+    font-size: 28rpx;
+    color: #323232;
+}
+
+.right-info .detail-info {
+    font-size: 24rpx;
+    color: #656565;
+    display: flex;
+}
+
+.detail-info .time {
+    margin-right: 20rpx;
+}
+
+.weibo-content-group {
+    padding-top: 30rpx;
+}
+
+.weibo-content-group .content {
+    font-size: 32rpx;
+}
+
+.weibo-content-group .image-list-group {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.image-list-group image {
+    margin-bottom: 2.5px;
+}
+
+.image-list-group video {
+    width: 100%;
+}
+
+.weibo-handle {
+    display: flex;
+    padding-top: 30rpx;
+    font-size: 28rpx;
+}
+
+.weibo-handle navigator {
+    flex: 1;
+}
+
+.weibo-handle image {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+    margin-left: 71%
+}
+
+.weibo-handle view {
+    flex: 1;
+    display: flex;
+    /* justify-content: center; */
+
+}
+
+/* .weibo-handle .comment-group image {
+    display: flex;
+    align-self: baseline
+} */
+
+/* .weibo-handle .praise-group {} */

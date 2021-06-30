@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "下单须知",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+}

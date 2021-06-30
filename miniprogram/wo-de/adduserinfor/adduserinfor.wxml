@@ -1,0 +1,60 @@
+<!--miniprogram/wo-de/adduserinfor/adduserinfor.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="cu-form-group">
+    <switch checked="{{xingbievalue}}" class="switch-sex" bindchange="xingbie">
+    </switch>
+    <view class="title">{{xingbie}}</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">姓名</view>
+    <block wx:if="{{have==true}}">
+      <input type="text" name="name" value="{{name}}"></input>
+    </block>
+    <block wx:if="{{have==false}}">
+      <input type="text" name="name" placeholder="请输入姓名"></input>
+    </block>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">手机号码</view>
+    <block wx:if="{{have==true}}">
+      <input bindinput="tell" type="number" name="tell" value="{{tell}}"></input>
+    </block>
+    <block wx:if="{{have==false}}">
+      <input bindinput="tell" type="number" name="tell" placeholder="请输入手机号码"></input>
+    </block>
+    <view class="cu-capsule radius">
+      <view class="cu-tag bg-blue">
+        +86
+      </view>
+      <view class="cu-tag line-blue">
+        中国大陆
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">验证码</view>
+    <input bindinput="yanzminput" placeholder=""></input>
+    <button bindtap="yanzma" disabled='{{btnDisabled}}' class="cu-btn bg-green shadow">{{yanzm}}</button>
+  </view>
+  <block wx:if='{{(have==false)||(have==true&&message==false)}}'>
+  <view class="cu-form-group">
+    <view class="title">地址选择</view>
+    <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+      {{region[0]}}，{{region[1]}}，{{region[2]}}
+    </picker>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title"> 详细地址</view>
+    <input name="location" placeholder="门牌号：如：5号楼3单元14d"></input>
+  </view>
+  </block>
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">完成</button>
+  </view>
+
+  <view wx:if='{{zcxiangxi==false}}'  class="padding flex flex-direction">
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"  class="cu-btn bg-green margin-tb-sm lg" >微信登陆</button>
+  </view>
+
+</form>

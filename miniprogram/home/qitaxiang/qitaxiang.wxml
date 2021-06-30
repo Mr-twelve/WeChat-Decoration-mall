@@ -1,0 +1,30 @@
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:100%">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key id="{{item.name}}" bindtap='tabSelect' data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:100%" scroll-into-view="main-{{MainCur}}">
+    <view style="padding-top:5rpx" class="padding-lr" wx:for="{{worker}}" wx:key>
+      <!-----------------------------------------------------------  -->
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <image class="cu-avatar round lg" src="{{item.tximg}}"></image>
+          <view class="content" style="margin-left:20rpx;">
+            <view class="text-grey line">姓名:{{item.name}}</view>
+            <view class="text-grey line">工龄:{{item.old}}</view>
+            <!-- <view class="text-grey line">口号:{{item.kouhao}}</view> -->
+            <view class="text-grey line">等级:{{item.workerdengji}}</view>
+            <view class="text-gray text-sm flex" style="margin-top:10rpx;">
+              <wux-rater fontSize="18" disabled="true" slot="footer" allow-half default-value="{{item.star}}" />
+            </view>
+          </view>
+          <view class="action">
+            <view id="{{item._id}}" style="font-weight:bold;" bindtap="goxiangqin" class="text-grey">详情></view>
+          </view>
+        </view>
+      </view>
+      <!-----------------------------------------------------------  -->
+    </view>
+  </scroll-view>
+</view>

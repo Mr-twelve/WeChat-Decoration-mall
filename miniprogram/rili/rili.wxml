@@ -1,0 +1,9 @@
+  <calendar
+      is-calendar-show="{{isCalendarShow}}"
+      mark="{{calendarMark}}"
+      format="1"
+      deadline="9102-11-11"
+      bind:getdate="onCalendarGetDate"
+  />
+  
+  <button bind:tap="onOpenCalendar">点击显示日历</button>

@@ -1,0 +1,168 @@
+<wxs module="filters" src="../../../home/buyworker/xiangqing/xiaoshu.wxs"></wxs>
+<wxs module="workprice" src="../../../utils/workerpricebuy.wxs" />
+<view class=" bg-white radius shadow shadow-lg" style="margin-bottom:10rpx;">
+  <view class="flex justify-center">
+    <view class='text-center'>
+      <image class="cu-avatar xl round solids" src="{{worker.tximg}}"></image>
+      <view class="padding" style="padding-bottom:10rpx;">{{worker.name}}{{worker.xingbie}}</view>
+      <view bindtap="buy" id='{{item._id}}' class="cu-btn  bg-green" role="button" aria-disabled="false" style="margin-bottom:10rpx;margin-top:10rpx;">
+        预约该工匠服务
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{worker.pintuanpeople.length==0}}" class="pingtuan">
+  <view bindtap="buy" id='{{item._id}}' class="cu-btn  bg-green" role="button" aria-disabled="false" style="margin-bottom:10rpx;margin-top:10rpx;">
+    发起拼团
+  </view>
+</view>
+<view wx:if="{{worker.pintuanpeople.length==1}}" class="pingtuan">
+  <swiper style="height:157rpx" autoplay="true" vertical='true' display-multiple-items='1'>
+    <block wx:for="{{worker.pintuanpeople}}" wx:key>
+      <swiper-item>
+        <block wx:if="{{item.style==stylename}}">
+          <view class="padding">
+            <view wx:for="{{item.user}}" wx:for-item='tx' wx:key class="cu-avatar round lg margin-left" style="background-image:url({{tx.tximg}});"></view>
+            <button id="{{index}}" bindtap="chanyupindan" class="cu-btn bg-red shadow-blur">参与拼单</button>
+          </view>
+        </block>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view wx:if="{{worker.pintuanpeople.length==2}}" class="pingtuan">
+  <swiper autoplay="true" vertical='true' display-multiple-items='2'>
+    <block wx:for="{{worker.pintuanpeople}}" wx:key>
+      <swiper-item>
+        <block wx:if="{{item.style==stylename}}">
+          <view class="padding">
+            <view wx:for="{{item.user}}" wx:for-item='tx' wx:key class="cu-avatar round lg margin-left" style="background-image:url({{tx.tximg}});"></view>
+            <button id="{{index}}" bindtap="chanyupindan" class="cu-btn bg-red shadow-blur">参与拼单</button>
+          </view>
+        </block>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{tab}}" wx:for-item="tab" wx:key bindtap="tabSelect" data-id="{{index}}">
+    {{tab}}
+  </view>
+</scroll-view>
+
+<block wx:if="{{TabCur==0}}">
+  <view class="cu-form-group line bg-white}}" style="border-left: 4rpx solid orange;">
+    <view class="title">工作时间</view>
+    <button class="cu-btn bg-yellow shadow" bindtap="onOpenCalendar" data-target="ChooseModal">
+      查看
+    </button>
+  </view>
+  <!-- <view class="cu-form-group line bg-white}}" style="display:flex;flex-direction:row;justify-content:flex-start">
+    <view class="title" style="margin-left:15rpx;">联系电话:</view>
+    <text>{{worker.tell}}</text>
+  </view> -->
+  <view class="cu-form-group line bg-white}}" style="display:flex;flex-direction:row;justify-content:flex-start">
+    <view class="title" style="margin-left:15rpx;">工匠等级:</view>
+    <text>{{worker.workerdengji}}</text>
+  </view>
+  <view class="cu-form-group line bg-white}}" style="display:flex;flex-direction:row;justify-content:flex-start">
+    <view class="title" style="margin-left:15rpx;">工龄:</view>
+    <text>{{worker.old}}年</text>
+  </view>
+  <view class="cu-form-group line bg-white}}" style="display:flex;flex-direction:row;justify-content:flex-start">
+    <view class="title" style="margin-left:15rpx;">工匠口号:</view>
+    <text>{{worker.kouhao}}</text>
+  </view>
+  <view class="cu-form-group line bg-white}}" style="display:flex;flex-direction:row;justify-content:flex-start">
+    <view class="title" style="margin-left:15rpx;">工匠服务:</view>
+    <text>{{worker.work}}</text>
+  </view>
+  <view class="cu-form-group line bg-white}}" style="border-left: 4rpx solid orange;">
+    <view class="title" style="color:red">收费详情({{stylename}}{{pintuanstyle}}人团)</view>
+  </view>
+  <block wx:for="{{worker.pintuanxiangqin}}" wx:key="{{index}}">
+    <view wx:if='{{workprice.toname(index,stylename)!==null}}' class="cu-form-group bg-white}}">
+      <view class="title" style="margin-left:15rpx;color:red">
+        <text>{{workprice.toname(index,stylename)}}:</text>
+        <text>{{filters.toFix(item*(ticheng/100+1))}}元</text>
+      </view>
+    </view>
+  </block>
+  <block wx:if='{{stylename=="美缝"||stylename=="封阳台"||stylename=="开荒打扫"}}'>
+    <view class="title" style="margin-left:15rpx;color:red">
+      <text>填写服务等待工人报价</text>
+    </view>
+  </block>
+  <view class="cu-form-group line bg-white}}" style="display:flex;flex-direction:row;justify-content:flex-start">
+    <view class="title">服务区域:</view>
+    <text>{{worker.region}}</text>
+  </view>
+  <view class="cu-form-group line bg-white}}" style="border-left: 4rpx solid orange;">
+    <view class="title">工匠技能展示</view>
+  </view>
+  <view wx:for="{{worker.workerjinenglook}}" wx:key="">
+    <image mode="scaleToFill" style="width:100%" bindtap="ViewImage" src="{{item}}"></image>
+  </view>
+</block>
+<block wx:if="{{TabCur==1}}">
+  <block wx:for="{{pingjia}}" wx:key="">
+    <view class="weibo-group">
+      <view class="user-group">
+        <image class="avatar" src="{{item.usertximg}}"></image>
+        <view class="right-info">
+          <view class="username">{{item.name}}</view>
+          <view class="detail-info">
+            <view class="time">{{item.date}}</view>
+          </view>
+        </view>
+        <wux-cell hover-class="none">
+          <wux-rater fontSize="15" disabled='true' slot="footer" allow-half default-value="{{ item.star }}" />
+        </wux-cell>
+      </view>
+      <view class="weibo-content-group">
+        <view class="content">
+          <text>{{item.speak}}</text>
+        </view>
+        <!-- 3张图片的情况 -->
+        <view class="image-list-group">
+          <block wx:for="{{item.fileIDList}}" wx:for-item="image">
+            <image id="{{item.fileIDList}}" src="{{image}}" mode="aspectFill" style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;" data-index="{{index}}" /> </block>
+          <block wx:if="{{item.fileIDList.length==2}}">
+            <view style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;"></view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</block>
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="buy" />
+  <view class="zan-dialog__container">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:33rpx;color:orange;font-weight:550">
+          是否接受该工匠报价
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 20rpx;font-size: 28rpx;">
+        <view class="pdd" style="font-size:32rpx;">
+          如果您选择接受，代表您已经仔细阅读工匠报价详情
+        </view>
+      </view>
+      <view class="padding flex flex-direction">
+        <button class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false" bindtap="jieshou">
+          接受
+        </button>
+        <button class="cu-btn bg-red margin-tb-sm lg" role="button" aria-disabled="false" bindtap="jvjue">
+          拒绝
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 日历 -->
+<calendar is-calendar-show="{{isCalendarShow}}" mark="{{calendarMark}}" format="1" deadline="9102-11-11" bind:getdate="onCalendarGetDate" />

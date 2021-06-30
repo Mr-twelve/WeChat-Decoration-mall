@@ -1,0 +1,48 @@
+<form bindsubmit="formSubmit">
+  <view>
+    <view class="cu-card case">
+      <view class="cu-item shadow" bindtap="ingoods" id="{{goods._id}}">
+        <view class="image">
+          <image wx:if="{{tempFilePath==null}}" bindtap="upvideo" src="cloud://test-xchgb.7465-test-xchgb/vedio/上传视频.png"></image>
+          <video wx:if="{{tempFilePath!=null}}" src="{{tempFilePath}}" initial-time="1" background-size="cover"></video>
+          <view class="name text-cut">
+            <view style="padding: 0 15rpx;">
+              <input name="title" placeholder-class='name' placeholder="标题" placeholder-style="font-size: 40rpx;color: grey"></input>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="contextview" style=" background:white;padding: 0rpx 25rpx;">
+      <view>
+        <textarea bindinput="inputtextarea" name="contect" maxlength="150" placeholder-style=" font-size: 30rpx;color:grey;" placeholder="发表内容"></textarea>
+        <view class="flex justify-end">
+          <view>{{textareavaluelength}}/150</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="flex justify-center">
+    <button bindtap="showModal" class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false">
+      <block wx:if="{{fenlei==null}}">分类选择</block>
+      <block wx:if="{{fenlei!=null}}">{{fenlei}}</block>
+    </button>
+    <button form-type="submit" class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false">发表</button>
+  </view>
+</form>
+
+<!-- 分类 -->
+<view class="cu-modal bottom-modal {{modalName=='ChooseModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bindtap="hideModal">确定</view>
+    </view>
+    <view class="grid col-3 padding-sm">
+      <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">
+        <button class="cu-btn orange lg block line-orange" bindtap="ChooseCheckbox" data-value="{{item.name}}">
+          {{item.name}}
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

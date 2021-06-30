@@ -1,0 +1,30 @@
+<view class="cu-bar search bg-white">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" bindinput="inputTyping" placeholder="搜索文章" confirm-type="search"></input>
+  </view>
+  <view class="action">
+    <button bindtap="quanjusousuo" class="cu-btn bg-green shadow-blur round">全局搜索</button>
+  </view>
+</view>
+<scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+    <block wx:if="{{item==''}}">入门</block>
+    <block wx:if="{{item!=''}}">{{item}}</block>
+  </view>
+</scroll-view>
+
+<!--  -->
+<block wx:for='{{saomang}}' wx:key>
+  <view id="{{item._id}}" bindtap="gosaomang1" class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <image class="cu-avatar xl margin-left" src="{{item.fenmianimg}}"></image>
+      <!-- <text class="cuIcon-title text-blue"></text> -->{{item.title}}
+    </view>
+  </view>
+</block>
+
+<view style="padding:50rpx;margin: 50rpx;"></view>
+<view class="write-weibo-btn" bind:tap="addsaomang">
+  <view>+</view>
+</view>

@@ -1,0 +1,7 @@
+<view class="container">
+  <weibo wx:for="{{weibos}}" wx:key="" wx:for-item="weibo" weibo="{{weibo}}" detailurl="../weibod/weibod?index={{index}}"></weibo>
+  <loadingmore hasmore="{{hasmore}}"></loadingmore>
+</view>
+<view class="write-weibo-btn" bind:tap="onWriteWeiboTap">
+  <view>+</view>
+</view>

@@ -1,0 +1,89 @@
+video {
+width: 100%;
+height: 225px;
+display: inline-block;
+line-height: 0;
+overflow: hidden;
+position: relative;
+z-index: 0;
+}
+.name {
+  padding: 14rpx 14rpx 0rpx 14rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 37rpx;
+  color: black;
+}
+.huodongtext {
+  font-size: 30rpx;
+  color: black;
+}
+.cu-list.menu-avatar>.cu-item .content {
+position: absolute;
+left: 10rpx;
+width: 710rpx;
+line-height: 1.6em;
+}
+.cu-list.menu-avatar>.cu-item {
+position: relative;
+display: flex;
+padding-right: 10rpx;
+height: 140rpx;
+background-color: var(--white);
+justify-content: flex-end;
+align-items:stretch;
+}
+.content {
+  display: flex;
+  height: 100rpx
+}
+.content-cut {
+  font-size: 33rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contextview-text{
+  display: -webkit-box;
+  overflow:hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  padding:0 15rpx;
+  font-size: 30rpx;
+  height: 135rpx;
+}
+.contextview-textlookall{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  padding:0 15rpx;
+  font-size: 30rpx;
+}
+.padding {
+padding: 10rpx;
+}
+
+.write-weibo-btn {
+  position: fixed;
+  right: 30rpx;
+  top: 87%;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #f37b1d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100rpx;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.shuming{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

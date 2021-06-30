@@ -1,0 +1,282 @@
+<wxs module="filters" src="../home/buyworker/xiangqing/xiaoshu.wxs"></wxs>
+<wxs module="workprice" src="../utils/workprice.wxs" />
+<block wx:if="{{tabpage==0}}">
+  <form bindsubmit="formSubmit">
+    <view class="cu-form-group">
+      <view class="title">服务地址</view>
+      <picker value="dizhi" mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          {{region[0]}}，{{region[1]}}，{{region[2]}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">详细地址</view>
+      <input name="location" placeholder="门牌号：如：5号楼3单元14d"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">
+        <text decode="{{true}}">联系人&emsp;</text>
+      </view>
+      <input style="padding-right:60rpx" name="name" placeholder="请填写联系人姓名"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">联系电话</view>
+      <input type="number" name="tell" placeholder="请输入联系电话"></input>
+    </view>
+    <view class="cu-form-group " style="display:flex;flex-direction:row;justify-content:flex-start">
+      <view class="title">
+        <text decode="{{true}}">性别&emsp;&emsp;</text>
+      </view>
+      <view style="display:flex;flex-direction:row;justify-content:flex-start">
+        <button style="margin-left:0" class="cu-btn  {{checked=='先生'?'lines-green':'lines-grey'}}" role="button" aria-disabled="false" bindtap="checked0">
+          先生
+        </button>
+        <button class="cu-btn  {{checked=='女士'?'lines-green':'lines-grey'}}" role="button" aria-disabled="false" bindtap="checked1">
+          女士
+        </button>
+      </view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">工程简述</view>
+      <input name="simple" placeholder="请填写工程简述"></input>
+    </view>
+    <view bindtap="celiang" class="cu-form-group">
+      <view class="title">实际测量</view>
+    </view>
+    <block wx:if='{{noknow==true}}'>
+      <view class="cu-form-group">
+        <view class="title">未测量将以实际施工为标准并附加300订金</view>
+      </view>
+    </block>
+    <block wx:if='{{ifxiaodingdan==true&&noknow==false}}'>
+      <view class="cu-form-group">
+        <view class="title">由于存在小定单将收取额外{{xiaodingdanprice}}费用</view>
+      </view>
+    </block>
+    <block wx:for='{{totalprice}}' wx:key>
+      <view bindtap="celiang" class="cu-form-group">
+        <view class="title">{{workprice.toname(item.name)}}</view>
+        <view class="action">
+          <text wx:if='{{item.ifxiaodingdan==true}}'>该服务为小定单</text> {{item.celiang}}*{{item.price3}}
+        </view>
+      </view>
+    </block>
+    <view class="cu-bar bg-white margin-top" style="margin-top:10rpx;">
+      <view class="action">图片上传</view>
+      <view class="action">{{imgList.length}}/4</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+          <image src='{{imgList[index]}}' mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+          <text class="cuIcon-cameraadd"></text>
+        </view>
+      </view>
+    </view>
+    <view class="cu-form-group margin-top">
+      <textarea name="message" maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="备注详细需求（选填）"></textarea>
+    </view>
+
+    <checkbox-group name="radiogroup" class="block">
+      <view class="cu-form-group margin-top">
+        <checkbox class="round" value="fuwsm" checked></checkbox>
+        <view class="title">我已同意
+          <text bindtap="fuwsmfuwsm" style="color:blue">服务声明</text>
+        </view>
+      </view>
+    </checkbox-group>
+
+    <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit" style="width:100%">
+      <block wx:if='{{ifxiaodingdan==true&&noknow==false}}'>
+        {{sumnoprice+sumhaveprice+xiaodingdanprice}}立即预约
+      </block>
+      <block wx:if='{{ifxiaodingdan==false&&noknow==false}}'>
+        {{sumnoprice+sumhaveprice}}立即预约
+      </block>
+      <block wx:if='{{noknow==true}}'>
+        300立即预约
+      </block>
+
+    </button>
+  </form>
+</block>
+<block wx:if="{{tabpage==1}}">
+  <!--  -->
+  <form bindsubmit="gongjia">
+    <block wx:if="{{yuyuename=='泥工'}}" wx:key="">
+      <!-- <view>泥工服务</view> -->
+      <view class="cu-form-group margin-top">
+        <view class="title">瓷砖铺贴800*800(/mm)</view>
+
+        <input id="0" name="czptbb" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">瓷砖铺贴300*600(/mm)</view>
+        <input id="1" name="czptsl" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">瓷砖铺贴400*800(/mm)</view>
+        <input name="czptsb" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">过门石铺小于1.2m</view>
+        <input name="gmsxyye" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+        <view class="title">大于1.2m</view>
+        <input name="gmsdyye" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">地面整平水泥厚度5cm内(/m²)</view>
+        <input name="dmzpwcmn" type="number" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">地面整平水泥厚度5cm外(/m²)</view>
+        <input name="dmzpwcmw" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">砌墙120毫米墙宽(㎡)
+        </view>
+        <input name="qqyelhmqk" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">倒角(m)全瓷 </view>
+        <input name="djqc" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+        <view class="title">倒角(m)半瓷 </view>
+        <input name="djbc" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">烟道(大) </view>
+        <input name="ydd" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+        <view class="title">烟道(小) </view>
+        <input name="ydx" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">防水间 </view>
+        <input name="fsl" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+        <view class="title">拉毛 </view>
+        <input name="lm" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">波打线 </view>
+        <input name="bdx" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 基本工人 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{yuyuename=='基本工人'}}" wx:key="">
+      <!-- <view>基本工人服务</view> -->
+      <view class="cu-form-group margin-top">
+        <view class="title">墙固(㎡)</view>
+        <input name="qg" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">地固(㎡)</view>
+        <input name="dg" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">墙体拆除(㎡)</view>
+        <input name="qtcc" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">地面保护(㎡)</view>
+        <input name="dmbhv" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 水电工 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{yuyuename=='水电工'}}" wx:key="">
+      <!-- <view>水电工服务</view> -->
+      <view class="cu-form-group margin-top">
+        <view class="title">水走顶(m)</view>
+        <input name="szdin" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">水走地(m)</view>
+        <input name="szd" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">电顶(m)</view>
+        <input name="dtop" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">电地(m)</view>
+        <input name="dbottom" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">插座</view>
+        <input name="cz" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <!-- </form> -->
+    <!-- 木工 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{yuyuename=='木工'}}" wx:key="">
+      <!-- <view>木工服务</view> -->
+      <view class="cu-form-group margin-top">
+        <view class="title">石膏板吊顶(㎡)
+          <!-- *<text style="color:red">{{workprice.sgbdd}}</text> -->
+        </view>
+        <input name="sgbdd" type="number" placeholder="请填写实际长度,{{xiaodingdan.sgbdd}}为小订单" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">石膏线(m)
+          <!-- *<text style="color:red">{{workprice.sgx}}</text> -->
+        </view>
+        <input name="sgx" type="number" placeholder="请填写实际长度,{{xiaodingdan.sgx}}为小订单" placeholder-class="ppp"></input>
+      </view>
+
+    </block>
+    <!-- </form> -->
+    <!-- 油漆工 -->
+    <!-- <form bindsubmit="gongjia"> -->
+    <block wx:if="{{yuyuename=='油漆工'}}" wx:key="">
+      <!-- <view>油漆工服务</view> -->
+      <view class="cu-form-group margin-top">
+        <view class="title">腻子</view>
+        <input name="nz" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+      <view class="cu-form-group margin-top">
+        <view class="title">乳胶漆</view>
+        <input name="rjq" type="number" placeholder="请填写实际长度" placeholder-class="ppp"></input>
+      </view>
+    </block>
+    <button form-type="submit" style="color:green">确定</button>
+    <button bindtap="noknow" style="color:green">未测量将以实际施工为标准并附加300订金</button>
+  </form>
+  <!--  -->
+</block>
+
+
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ fuwsm ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="fuwsm" />
+  <view class="zan-dialog__container" style="background:white">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          服务声明
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 18rpx;font-size: 28rpx;">
+        <view class="pdd">
+          <text>{{fuwusm.fuwusm}}</text>
+        </view>
+        <view class="pdd">
+          <text>{{fuwusm.fuwusm}}</text>
+        </view>
+        <view class="pdd">
+          <text>{{fuwusm.fuwusm}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

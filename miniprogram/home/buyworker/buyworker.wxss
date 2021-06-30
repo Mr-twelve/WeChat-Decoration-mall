@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 300rpx;
+  color: #323232;
+  border: 5rpx inset green;
+  margin: 10rpx;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.ttt {
+  font-weight: 550;
+  font-size: 30rpx;
+}

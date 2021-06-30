@@ -1,0 +1,33 @@
+<!--miniprogram/wo-de/shouhuodizhi/addshouhuodizhi/addshouhuodizhi.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="cu-form-group margin-top">
+    <view class="title">收货人</view>
+    <input value="{{shouhuodizhi.name}}" name="name"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">手机号码</view>
+    <input value="{{shouhuodizhi.tell}}" name="tell" ></input>
+    <view class="cu-capsule radius">
+      <view class="cu-tag bg-blue">
+        +86
+      </view>
+      <view class="cu-tag line-blue">
+        中国大陆
+      </view>
+    </view>
+  </view>
+	<view class="cu-form-group">
+		<view class="title">地址选择</view>
+		<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+				{{region[0]}}，{{region[1]}}，{{region[2]}}
+		</picker>
+	</view>
+
+  <view class="cu-form-group">
+    <view class="title"> 详细地址</view>
+    <input value="{{shouhuodizhi.location}}" name="location" ></input>
+  </view>
+
+ <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit" style="width:100%">完成</button>
+
+</form>

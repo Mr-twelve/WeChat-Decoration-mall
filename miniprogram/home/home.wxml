@@ -1,0 +1,164 @@
+<view bindtap="inputTyping" class="cu-bar search bg-white">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input disabled="true" type="text" placeholder="搜索您所需要的信息" confirm-type="search"></input>
+  </view>
+</view>
+<!-- 首页轮播图 -->
+<view class="swiper">
+  <swiper circular='true' class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+    <swiper-item wx:for="{{url}}" wx:key="" wx:for-item="url">
+      <image src="{{url}}" class="slide-image" width="355" height="150" />
+    </swiper-item>
+  </swiper>
+</view>
+<!-- 功能区域 -->
+<view class="change" style="margin-top:5rpx;margin-bottom:2rpx;">
+  <view class="h">
+    <view class="txt1">服务预约</view>
+  </view>
+</view>
+
+<view class="cu-list grid col-{{3}} ">
+  <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<gridCol*2}}">
+    <view id="{{item.name}}" class="cuIcon-{{item.icon}} text-{{item.color}}" bindtap="toggleDialog"></view>
+    <text>{{item.name}}</text>
+  </view>
+</view>
+<!-- 扫盲展示部分 -->
+<view class="change" style="margin-top:14rpx;margin-bottom:1rpx;">
+  <view class="h">
+    <view class="txt1">知识扫盲</view>
+  </view>
+</view>
+<view class="weui-panel weui-panel_access" style="margin-top:0rpx;">
+  <block wx:for='{{saomang}}' wx:key>
+    <view id="{{item._id}}" bindtap="gosaomang1" class="cu-bar bg-white solid-bottom margin-top">
+      <view class="action">
+      <image class="cu-avatar xl margin-left" src="{{item.fenmianimg}}"></image>
+        <!-- <text class="cuIcon-title text-blue"></text> -->{{item.title}}
+      </view>
+    </view>
+  </block>
+  <view class="weui-panel__ft">
+    <view class="weui-cell weui-cell_access weui-cell_link" bind:tap="onMore">
+      <view class="weui-cell__bd">查看更多</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+  </view>
+</view>
+<!-- 动画展示部分 -->
+<!-- <view class="change">
+  <view class="h">
+    <view class="txt1">装修动画</view>
+  </view>
+</view> -->
+<!-- 动画展示详情的方块 -->
+<!-- <view class="a-section a-new" style="margin-top:0rpx;">
+  <view class="b" style="padding: 0 31rpx 10rpx 31rpx;">
+    <view class="item" wx:for='{{vedio_data}}' wx:key="">
+      <view id="{{index}}" class="cover" style="display: {{ _index == index ? 'none' : 'block' }};" bindtap="videoPlay">
+        
+        <image class="videoVideo2" src="{{item.img}}" mode="scaleToFill">
+          
+          <image class="videoPlay" src="cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/动画展示封面图片/bofang.jpg" mode="scaleToFill"></image>
+        </image>
+      </view>
+      <video class="img" src="{{item.url}}" id="{{index}}" wx:if="{{_index == index}}" background-size="cover"></video>
+      <text class="name">{{item.title}}</text>
+    </view>
+  </view>
+  <view class="weui-panel__ft" style="margin-top:0rpx;">
+    <view class="weui-cell weui-cell_access weui-cell_link" bind:tap="onMoreVideo">
+      <view class="weui-cell__bd">查看更多</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </view>
+  </view>
+</view>  -->
+<!-- 底部文字 -->
+<view class='di'>
+  <!-- <image src='cloud://test-xchgb.7465-test-xchgb-1259365888/CaiJi/pictures/swiper-pictures/轮播1.jpg' class='bottom'></image> -->
+  <text class='bottom_text'>敬请期待...</text>
+</view>
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="hidetanc" />
+  <view class="zan-dialog__container" style="background:white">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          报价订单
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 18rpx;font-size: 28rpx;">
+        <view class="pdd">
+          1.该订单为预约订单，
+          <text style="color:orange">请及时关注微信小程序,并支付其报价50%；</text>
+        </view>
+        <view class="pdd">2.师傅将与您预约时间，准时上门服务；</view>
+        <view class="pdd">
+          3.点击工匠名片查看详情，工匠该月工作日历，可点击查看，日期下方
+          <text style="color:orange">红色标注</text> 表示工匠忙
+        </view>
+      </view>
+      <view class="flex flex-direction" style="padding: 30rpx 30rpx;">
+        <button class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false" bindtap="onBindTap">
+          我知道了
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 基础工匠弹窗提示 -->
+<view class="zan-dialog {{ jichuworker ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" bindtap="hidetanc" />
+  <view class="zan-dialog__container" style="background:white">
+    <view style='padding:50rpx;'>
+      <!-- 标签部分 -->
+      <view class="padding-xs" style="padding:18rpx;">
+        <view class="cu-tag bg-orange light" style="font-size:30rpx;color:orange;font-weight:550">
+          基础工匠提示
+        </view>
+      </view>
+      <!-- 文字部分 -->
+      <view class="container" style="padding: 0 18rpx;font-size: 28rpx;">
+        <view class="pdd">
+          <text>{{yuyuetishi.text1}}</text>
+        </view>
+        <view class="pdd">
+          <text>{{yuyuetishi.text2}}</text>
+        </view>
+        <view class="pdd">
+          <text>{{yuyuetishi.text3}}</text>
+        </view>
+      </view>
+      <view class="flex flex-direction" style="padding: 10rpx 30rpx;">
+        <button class="cu-btn bg-green margin-tb-sm lg" role="button" aria-disabled="false" bindtap="jichuworker">
+          我知道了
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹窗文字 -->
+<view class="zan-dialog {{ userinfor ? 'zan-dialog--show' : '' }}">
+  <view class="zan-dialog__mask" />
+  <view class="zan-dialog__container">
+    <view class="padding flex flex-direction">
+      <view style="display:flex;justify-content:center">
+        <image src="cloud://test-xchgb.7465-test-xchgb/CaiJi/TestImage/8bfdbb0c53f8c22edc3cf17f3da448c.png" style="width:300rpx;height:300rpx;"></image>
+      </view>
+      <view style="font-size:36rpx;margin:10rpx 30rpx;text-align:center">
+        你好，小程序需要您的授权才能更好的为您服务~
+      </view>
+      <view style="font-size:28rpx;color:grey;margin:10rpx 60rpx;">
+        ·获取你的公开信息（昵称、头像等）
+      </view>
+      <button class="cu-btn bg-orange margin-tb-sm lg" open-type="getUserInfo" bindgetuserinfo="onInfo">
+        好的，授权
+      </button>
+    </view>
+  </view>
+</view>

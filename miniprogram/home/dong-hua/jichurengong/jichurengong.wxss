@@ -1,0 +1,26 @@
+/* @import "../../../share/components/weibo/weibo.wxss" */
+
+.weibo-group {
+  width: 100%;
+  margin-bottom: 30rpx;
+  background: #fff;
+  padding: 40rpx 20px;
+  box-sizing: border-box;
+}
+
+.weibo-content-group {
+  padding-top: 30rpx;
+}
+
+.weibo-content-group .image-list-group {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.image-list-group video {
+  width: 100%;
+}
+
+

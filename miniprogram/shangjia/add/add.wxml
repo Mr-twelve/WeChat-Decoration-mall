@@ -1,0 +1,74 @@
+<!--miniprogram/wo-de/add/add.wxml-->
+<block wx:if="{{pagenumber}}">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="cu-form-group">
+      <view class="title">商品类型</view>
+      <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+        <view class="picker">
+          {{multiIndex?picker[multiIndex]:'请选择商品类型'}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group margin-top">
+      <view class="title">商品名称</view>
+      <input type="text" name="名称"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">价格</view>
+      <input type="number" maxlength="6" name="价格"></input>
+    </view>
+    <view class="cu-form-group margin-top">
+      <textarea type="text" name="商品描述" maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="商品描述"></textarea>
+    </view>
+    <view class="padding flex flex-direction">
+      <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">下一步</button>
+    </view>
+  </form>
+</block>
+<block wx:else>
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      商品头像(单张)
+    </view>
+    <view class="action">
+      {{tximgList.length}}/1
+      <view class="margin-tb-sm text-center">
+        <button class="cu-btn round lines-green" role="button" aria-disabled="false" bindtap="tximgcz">重置</button>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{tximgList}}" wx:key="{{index}}" bindtap="ViewtxImage" data-url="{{tximgList[index]}}">
+        <image src='{{tximgList[index]}}' mode='aspectFill'></image>
+      </view>
+      <view class="solids" bindtap="Choosetx" wx:if="{{tximgList.length<1}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-bar bg-white margin-top">
+    <view class="action">
+      图片上传(单张上传,最多上传9张)
+    </view>
+    <view class="action">
+      {{imgList.length}}/9
+      <view class="margin-tb-sm text-center">
+        <button class="cu-btn round lines-green" role="button" aria-disabled="false" bindtap="imgcz">重置</button>
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<9}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-green margin-tb-sm lg" bindtap="tijiao">提交</button>
+  </view>
+</block>

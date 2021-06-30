@@ -1,0 +1,60 @@
+<!--miniprogram/buy/gouwuche/gouwuche.wxml-->
+<!-- 顶部 -->
+<view class="cu-bar solid-bottom bg-white">
+  <view class="action">
+    购物车列表
+  </view>
+  <view class="action">
+    <button wx:if="{{seting}}" class="cu-btn bg-green shadow" bindtap="wancheng" data-target="gridModal">完成</button>
+    <button wx:else class="cu-btn bg-white shadow" bindtap="shezhi" data-target="gridModal">设置</button>
+  </view>
+</view>
+<!-- 内容 -->
+<form>
+  <checkbox-group class="group1" bindchange="checkboxChange">
+    <block wx:for="{{goods}}" wx:key="" wx:for-item="goods">
+    <block wx:if='{{item.id!=""}}'>
+      <label>
+        <view class="cu-card article {{isCard?'no-card':''}}">
+          <view class="cu-item title shadow">
+            <view class="content">
+              <checkbox wx:if="{{!seting}}" value="{{index}}" class="round red" checked="{{quanxuan}}" style="display:flex;align-items: center;justify-content: center;" />
+              <image src="{{goods.tximg}}" style="margin-top:10rpx"></image>
+              <view class="desc">
+                <view class="text-content" id="{{goods.id}}" bindtap="gogoods">
+                  {{goods.name}}</view>
+                <view wx:if="{{!seting}}">
+                  <view class="price">¥{{goods.price}}</view>
+                  <button id="{{index}}" class="fuhao" bindtap="add">+</button>
+                  <button class="fuhao">{{goods.number}}</button>
+                  <button id="{{index}}" class="fuhao" bindtap="lose">-</button>
+                </view>
+                <view wx:if="{{seting}}">
+                  <button wx:if="{{seting}}" id="{{index}}" class="cu-tag bg-red" style="float:right" bindtap="shanchu" data-target="gridModal">删除</button>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </label>
+    </block>
+    </block>
+  </checkbox-group>
+  <!-- 底部 -->
+  <view class="cu-bar solid-bottom bg-white " style="position:fixed; bottom:0;width: 750rpx;">
+    <view class="action">
+      <button wx:if="{{!seting}}" class="cu-btn bg-white " bindtap="quanxuan" data-target="gridModal">
+        <checkbox class="round red" checked="{{quanxuan0}}"></checkbox>全选</button>
+    </view>
+    <view class="action">
+      <button wx:if="{{seting}}" class="cu-btn bg-red shadow" bindtap="qingkong" data-target="gridModal">清空购物车</button>
+      <block wx:else>
+        <view class="solid-bottom text-xxl padding">
+          <text class="text-price text-red">{{total}}</text>
+        </view>
+        <button class="cu-btn bg-red shadow" bindtap="jiesuan" data-target="gridModal">去结算</button>
+      </block>
+    </view>
+  </view>
+
+</form>

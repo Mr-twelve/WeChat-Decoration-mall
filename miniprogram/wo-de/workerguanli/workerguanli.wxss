@@ -1,0 +1,54 @@
+/* miniprogram/wo-de/workerguanli/workerguanli.wxss */
+.top{
+  margin-top: 100rpx
+}
+.cu-list.menu-avatar>.cu-item {
+  position: relative;
+  display: flex;
+  padding-right: 10rpx;
+  height: 300rpx;
+  background-color: var(--white);
+  justify-content: flex-end;
+  align-items: center;
+  margin: 7rpx 20rpx;
+  border-radius: 10rpx;
+}
+
+.cu-list.menu-avatar>.cu-item>.cu-avatar {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+}
+
+.cu-avatar.lg {
+  width: 140rpx;
+  height: 140rpx;
+  font-size: 2em;
+}
+
+.cu-list.menu-avatar>.cu-item .content {
+  position: absolute;
+  left: 200rpx;
+  width: 380rpx;
+  line-height: 1.6em;
+  height: 167rpx;
+}
+.star{
+  position: absolute;
+  left:5rpx
+}
+.touxiang {
+  position: absolute;
+  left: 25rpx;
+  top: 13rpx;
+}
+.cu-list.menu-avatar>.cu-item .action {
+width: 100rpx;
+text-align: center;
+height: 100%;
+margin-top: 20px;
+}
+.border{
+  border-top: 3rpx solid gainsboro;
+  border-bottom: 3rpx solid gainsboro;
+}

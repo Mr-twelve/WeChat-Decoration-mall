@@ -1,0 +1,62 @@
+<wxs src="../../utils/util.wxs" module="util" />
+<view class="weibo-group">
+    <view class="user-group">
+        <image class="avatar" src="{{weibo.author.avatarUrl}}"></image>
+        <view class="right-info">
+            <view class="username">{{weibo.author.nickName}}</view>
+            <view class="detail-info">
+                <view class="time">{{util.timeFormat(weibo.create_time)}}</view>
+                <view class="from">来自{{weibo.device}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="weibo-content-group">
+        <view class="content">
+            <navigator wx:if="{{detailurl}}"  url='{{detailurl}}'>{{weibo.content}}</navigator>
+            <block wx:else>{{weibo.content}}</block>
+        </view>
+        <block wx:if="{{weibo.images.length > 0}}">
+            <!-- 1张图片的情况 -->
+            <view wx:if="{{weibo.images.length === 1}}" class="image-list-group">
+                <image src="{{weibo.images}}" mode="aspectFill" style="width:100%; max-height:400rpx;" bind:tap="onImageTap" data-index="0" />
+            </view>
+            <!-- 2张和4张图片的情况 -->
+            <view wx:elif="{{weibo.images.length === 2 || weibo.images.length === 4}}" class="image-list-group">
+                <image wx:for="{{weibo.images}}" wx:key="" wx:for-item="image" src="{{image}}" mode="aspectFill" style="width:{{twoImageSize}}px;height:{{twoImageSize}}px;" bind:tap="onImageTap" data-index="{{index}}" />
+            </view>
+            <!-- 3张图片的情况 -->
+            <view wx:else class="image-list-group">
+                <image wx:for="{{weibo.images}}" wx:key="" wx:for-item="image" src="{{image}}" mode="aspectFill" style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;" bind:tap="onImageTap" data-index="{{index}}" />
+                <view wx:if="{{weibo.images.length==5||weibo.images.length==7}}" style="width:{{threeImageSize}}px;height:{{threeImageSize}}px;"></view>
+            </view>
+        </block>
+        <!-- 视频的情况 -->
+        <block wx:if="{{weibo.video}}">
+            <view class="image-list-group">
+                <video src="{{weibo.video}}"></video>
+            </view>
+        </block>
+    </view>
+    <view wx:if="{{handle}}" class="weibo-handle">
+        <navigator wx:if="{{detailurl}}" url='{{detailurl}}'>
+            <view class="comment-group">
+                <image src="../../images/comment.png" />
+                查看评论
+            </view>
+        </navigator>
+        <block wx:else>
+            <view class="comment-group">
+                <image src="../../images/comment.png" />
+                查看评论
+            </view>
+        </block>
+        <!-- <view class="praise-group" bindtap='onPraiseTap' data-weibo="{{windex}}">
+            <image wx:if="{{weibo.isPraised}}" src='../../images/praise_active.png'></image>
+            <image wx:else src='../../images/praise.png'></image>
+            <block wx:if="{{weibo.praises && weibo.praises.length > 0}}">
+                {{weibo.praises.length}}
+            </block>
+            <block wx:else>赞</block>
+        </view> -->
+    </view>
+</view>

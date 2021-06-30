@@ -1,0 +1,35 @@
+.container {
+  /* padding: 40rpx; */
+  background: #f2f2f2;
+}
+
+.write-weibo-btn {
+  position: fixed;
+  right: 30rpx;
+  top: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #f37b1d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100rpx;
+  color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.write-weibo-btn view {
+  margin-top: -16rpx;
+}
+
+.comment-input-group {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  padding: 20rpx;
+  border: 1px solid #e4e4e4;
+  z-index: 2;
+}

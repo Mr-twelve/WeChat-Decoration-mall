@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "loadingmore": "../../components/loadingmore/loadingmore",
+    "weibo": "../../components/weibo/weibo"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

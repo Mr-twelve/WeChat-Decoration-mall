@@ -1,0 +1,35 @@
+<view class="a-section a-new">
+  <view class="b">
+    <view class="item" bindtap="onBindTap1">
+      <image style="border-radius:10%" class="img" src="cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/动画展示封面图片/timg.jpg" background-size="cover"></image>
+      <text class="name">基础人工处理动画</text>
+      <!-- <text class="price">￥测试6</text> -->
+    </view>
+    <view class="item" bindtap="onBindTap2">
+      <image style="border-radius:10%" class="img" src="cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/动画展示封面图片/timg.jpg" background-size="cover"></image>
+      <text class="name">水电工施工动画</text>
+      <!-- <text class="price">￥测试6</text> -->
+    </view>
+    <view class="item" bindtap="onBindTap3">
+      <image style="border-radius:10%" class="img" src="cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/动画展示封面图片/timg.jpg" background-size="cover"></image>
+      <text class="name">泥工施工动画</text>
+      <!-- <text class="price">￥测试6</text> -->
+    </view>
+    <view class="item" bindtap="onBindTap4">
+      <image style="border-radius:10%" class="img" src="cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/动画展示封面图片/timg.jpg" background-size="cover"></image>
+      <text class="name">木工施工动画</text>
+      <!-- <text class="price">￥测试6</text> -->
+    </view>
+    <view class="item" bindtap="onBindTap5">
+      <image style="border-radius:10%" class="img" src="cloud://test-xchgb.7465-test-xchgb/CaiJi/pictures/动画展示封面图片/timg.jpg" background-size="cover"></image>
+      <text class="name">油漆工施工动画</text>
+      <!-- <text class="price">￥测试6</text> -->
+    </view>
+    
+  </view>
+  <!-- 底部文字 -->
+  <view class='di'>
+    <!-- <image src='cloud://test-xchgb.7465-test-xchgb-1259365888/CaiJi/pictures/swiper-pictures/轮播1.jpg' class='bottom'></image> -->
+    <text class='bottom_text'>敬请期待</text>
+  </view>
+</view>

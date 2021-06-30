@@ -1,0 +1,8 @@
+page {
+  background-color: #fff;
+}
+
+.duanshou {
+  text-indent: 59rpx;
+  text-align: left;
+}

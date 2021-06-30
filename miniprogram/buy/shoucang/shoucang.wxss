@@ -1,0 +1,43 @@
+/* miniprogram/pages/shoucang/shoucang.wxss */
+.bottom{
+  margin-bottom: 0
+}
+.cu-card.article>.cu-item .content {
+display: flex;
+padding: 20rpx 20rpx;
+
+}
+.cu-card.article>.cu-item {
+padding-bottom: 0rpx;
+}
+.cu-card {
+display: block;
+margin-top: 0rpx;
+overflow:inherit;
+}
+.group1{
+  margin-bottom: 150rpx;
+  margin-top:100rpx;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 300rpx;
+  color: #323232;
+  border: 5rpx inset green;
+  margin: 10rpx;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.ttt {
+  font-weight: 550;
+  font-size: 30rpx;
+}
+
+

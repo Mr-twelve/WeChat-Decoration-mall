@@ -1,0 +1,33 @@
+<wxs module="workprice" src="../../../utils/workerpricebuy.wxs" />
+<view class="cu-form-group margin-top">
+  <view class="title">拼团</view>
+  <switch bindchange='pintuanswitch' checked='{{pintuan}}'></switch>
+</view>
+<block wx:if='{{pintuan}}'>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <block wx:for='{{work}}' wx:key='index'>
+      <view class="cu-form-group margin-top">
+        <view class="title">{{item.name}}</view>
+        <switch id='{{index}}' bindchange="pintuan" checked="{{item.yesno?true:false}}"></switch>
+      </view>
+      <block wx:if='{{item.yesno==true}}'>
+        <view class="cu-form-group bg-white}}">
+          <view class="cu-form-group margin-top">
+            <view class="title">拼团人数</view>
+            <input type="number" name='{{item.name}}' placeholder="2或3或4"></input>
+          </view>
+        </view>
+        <block wx:for='{{worker.workprice}}' wx:key='index' wx:for-item='workpricename'>
+          <view wx:if='{{workprice.toname(index,item.name)!==null}}' class="cu-form-group bg-white}}">
+            <view class="cu-form-group margin-top">
+              <view class="title">{{workprice.toname(index,item.name)}}</view>
+              <input type="number" name='{{index}}' placeholder="{{workpricename}}"></input>
+            </view>
+          </view>
+        </block>
+      </block>
+    </block>
+    <button formType="submit" style="margin-top:20rpx;">保存</button>
+  </form>
+</block>
+<button bindtap="tuichu" wx:if='{{!pintuan}}' style="margin-top:20rpx;">保存</button>

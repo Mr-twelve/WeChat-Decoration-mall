@@ -1,0 +1,21 @@
+<block wx:for="{{user.shouhuodizhi}}" wx:key="{{index}}">
+<view class="cu-list menu card-menu margin-top ">
+  <view class="cu-form-group">
+    <view class="title">{{item.name}}</view>
+    <view class="title">{{item.tell}}</view>
+    <view>
+                <button id="{{index}}" class="cu-btn bg-white sm" bindtap="xiugai" data-target="gridModal">
+                  <text class="cuIcon-writefill">修改</text>
+                </button>
+              </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">{{item.region}}{{item.location}}</view>
+  </view>
+  <view class="cu-form-group">
+  <button id="{{index}}" class="cu-btn bg-red sm" bindtap="shanchu" data-target="gridModal">删除</button>
+  <button wx:if="{{index!=0}}" id="{{index}}" class="cu-btn bg-green sm" bindtap="moren" data-target="gridModal">设置为默认</button>
+</view>
+</view>
+</block>
+<button class="cu-btn bg-white shadow lg" bindtap="add" data-target="gridModal" style="width:92%;margin:30rpx 30rpx;">添加新地址</button>

@@ -1,0 +1,149 @@
+/* miniprogram/buy/gouwuche/gouwuche.wxss */
+/* miniprogram/pages/gouwuche/gouwuche.wxss */
+.bottom{
+  margin-bottom: 0
+}
+.cu-card.article>.cu-item .content {
+display: flex;
+padding: 20rpx 20rpx;
+
+}
+.cu-card.article>.cu-item {
+padding-bottom: 0rpx;
+}
+.cu-card {
+display: block;
+margin-top: 0rpx;
+overflow:inherit;
+}
+.group1{
+ /*  margin-bottom: 150rpx; */
+}
+
+
+/* 购物车价格样式 */
+.price{
+
+/* margin-right: 50rpx; */
+border-radius: 6rpx;
+vertical-align: middle;
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+box-sizing: border-box;
+padding: 0rpx 16rpx;
+height: 48rpx;
+font-family: Helvetica Neue, Helvetica, sans-serif;
+white-space: nowrap;
+font-size: 30rpx;
+color: red
+}
+
+
+
+/* 购物车商品的＋—号的样式 */
+.fuhao{
+  background-color: var(--white);
+color: var(--darkGray);
+font-size: 24rpx;
+/* vertical-align: middle; */
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+box-sizing: border-box;
+padding: 0rpx 16rpx;
+height: 58rpx;
+width: 58rpx;
+font-family: Helvetica Neue, Helvetica, sans-serif;
+white-space: nowrap;
+float: right;
+}
+
+
+/* 购物车物品数量 */
+.shuzi{
+padding: 0rpx 16rpx;
+font-size: 24rpx;
+height: 48rpx;
+width: 48rpx;
+position: relative;
+border: 0rpx;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+box-sizing: border-box;
+/* padding: 0 30rpx;
+font-size: 28rpx;
+height: 64rpx; */
+line-height: 1;
+text-align: center;
+text-decoration: none;
+overflow: visible;
+margin-left: 10rpx;
+/* transform: translate(0rpx, 0rpx); */
+float: right
+}
+
+.round .red radio{
+
+}
+
+/* 弹窗的css */
+.zan-dialog__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.1);/* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+
+.zan-dialog__container {
+  position: fixed;
+  top: 220rpx;
+  width: 650rpx;/* 弹窗布局宽 */
+  height: 850rpx;/* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: white;
+  transform: translateY(200%);/* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  box-shadow: 0px 3px 3px 2px gainsboro;/* //弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+
+.zan-dialog--show .zan-dialog__container {
+  transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+  display: block;
+}
+
+.pdd {
+  padding-top: 7rpx;
+}
+
+page{
+  background: white;
+  height: 100%;
+}
+
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 5rpx;
+}
+
+
+/* 横着的分割View样式 */
+/*分割线样式*/
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 5rpx;
+}

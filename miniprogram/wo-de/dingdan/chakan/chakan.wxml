@@ -1,0 +1,156 @@
+<wxs module="workprice" src="../../../utils/workprice.wxs" />
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black text-bold">订单编号：{{yuyue.number}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black text-bold">下单时间：{{yuyue.time}}</text>
+      </view>
+      <view wx:if="{{yuyue.time2!=null}}" class="text">
+        <text class="text-black text-bold">完成时间：{{yuyue.time2}}</text>
+      </view>
+      <view class="text">
+        <block wx:if="{{yuyue.speak!=0}}">
+          <text class="text-black text-bold">评价：{{yuyue.userspeak[0].speak}}</text>
+        </block>
+        <block wx:if="{{yuyue.speak==0}}">
+          <text class="text-black text-bold">完成预约后即可评价</text>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black text-bold">服务类型：{{yuyue.title}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black text-bold">工人：{{worker.name}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black text-bold">工人等级：{{worker.workerdengji}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black text-bold">工人编号：{{worker.number}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black text-bold">需求简述：{{yuyue.simple}}</text>
+      </view>
+      <view class="text">
+        <text class="text-black text-bold">详情备注：{{yuyue.message}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black text-bold">施工状态：{{yuyue.jindu}}%</text>
+        <view class="cu-progress round striped active margin-top xs">
+          <view class="bg-green" style="width:{{jindu}};"></view>
+        </view>
+      </view>
+      <view class="text">
+        <text class="text-black text-bold">
+        <block wx:if="{{yuyue.totalprice!='未测量将以实际施工为标准并附加300订金'}}">
+        <block wx:if='{{yuyue.ifqitaxiang==true}}'>
+        <block wx:if='{{yuyue.qitaxiangprice==null}}'>付款状态：等待工匠报价</block>
+        <block wx:if='{{yuyue.qitaxiangprice!=null}}'>付款状态：{{yuyue.fukuan}}%(总价{{yuyue.qitaxiangprice}})</block>
+        </block>
+        <block wx:if='{{yuyue.ifqitaxiang==false}}'>
+        付款状态：{{yuyue.fukuan}}%(总价{{yuyue.sumhaveprice+yuyue.sumnoprice}})
+        </block>
+        </block>
+        <block wx:if="{{yuyue.totalprice=='未测量将以实际施工为标准并附加300订金'}}">
+未测量将以实际施工为标准并附加300订金
+        </block>
+        </text>
+        <view class="cu-progress round striped active margin-top xs">
+          <view class="bg-red" style="width:{{fukuan}};"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<block wx:if="{{yuyue.totalprice!='未测量将以实际施工为标准并附加300订金'}}">
+  <view class="solids-bottom padding-xs bg-white flex align-center">
+    <view class="flex-sub">
+      <view class="padding">
+        <view class="text">
+          <text class="text-black text-bold">服务详情</text>
+        </view>
+        <block wx:if='{{yuyue.ifqitaxiang==true}}'>
+          <view class="text">
+            <text class="text-black text-bold">
+          
+          </text>
+          </view>
+        </block>
+        <block wx:for="{{yuyue.totalprice}}" wx:key>
+          <view class="text">
+            <text class="text-black text-bold">{{workprice.toname(item.name)}}:{{item.celiang}}*{{item.price3}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</block>
+
+<view class="solids-bottom padding-xs bg-white flex align-center">
+  <view class="flex-sub">
+    <view class="padding">
+      <view class="text">
+        <text class="text-black text-bold">地址信息：{{yuyue.location}}</text>
+      </view>
+      <view class="text">
+        <text decode="{{true}}" class="text-black text-bold">&emsp;&emsp;&emsp;&emsp;&emsp;{{yuyue.xxlocation}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<block wx:if="{{yuyue.fukuan==-1}}">
+  <view class="solids-bottom padding-xs bg-white flex align-center">
+    <view class="flex-sub">
+      <view class="padding">
+        <view class="text">
+          <text class="text-red text-bold">取消原因：{{yuyue.workerquxiao}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+
+
+<view class="cu-form-group">
+  <view class="grid col-4 grid-square flex-sub">
+    <view class="bg-img" wx:for="{{imgList}}" wx:for-item="imgList" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList}}">
+      <image src='{{imgList}}' mode='aspectFill'></image>
+    </view>
+  </view>
+</view>
+
+<view class="cu-bar bg-white tabbar border shop ToolBar">
+  <button class="action" open-type="contact" style="background:white">
+    <view class="cuIcon-service text-green" style="background:white">
+      <view class="cu-tag badge" style="background:white"></view>
+    </view> 客服
+  </button>
+  <view>
+    <block wx:if="{{yuyue.fukuan==1}}">
+      <button bindtap="quxiao">取消订单</button>
+    </block>
+  </view>
+</view>

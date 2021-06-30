@@ -1,0 +1,51 @@
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabname}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+      {{item}}
+    </view>
+  </view>
+</scroll-view>
+
+<block wx:if='{{TabCur==0}}'>
+  <view class="cu-form-group margin-top">
+    <view class="title">拼团</view>
+    <switch bindchange='pintuanswitch' checked='{{pintuan}}'></switch>
+  </view>
+  <block wx:if='{{pintuan}}'>
+    <form bindsubmit="pintuan">
+      <radio-group name='people' class="block">
+        <view class="cu-form-group margin-top">
+          <view class="title">2人拼团</view>
+          <radio value="2" id="2" checked="{{two}}"></radio>
+        </view>
+        <view class="cu-form-group ">
+          <view class="title">3人拼团</view>
+          <radio value="3" id="3" checked="{{three}}"></radio>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">4人拼团</view>
+          <radio value="4" id="4" checked="{{flow}}"></radio>
+        </view>
+      </radio-group>
+      <view class="cu-form-group margin-top">
+        <view class="title">拼团价格</view>
+        <input type="number" name="pintuanjiage" value="{{name}}"></input>
+      </view>
+      <view class="padding flex flex-direction">
+        <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+      </view>
+    </form>
+  </block>
+  <button bindtap="tuichu" wx:if='{{!pintuan}}' style="margin-top:20rpx;">保存</button>
+</block>
+<block wx:if='{{TabCur==1}}'>
+  <form bindsubmit="newjiage">
+    <view class="cu-form-group margin-top">
+      <view class="title">新价格</view>
+      <input type="number" name="jiage" value="{{jiage}}"></input>
+    </view>
+    <view class="padding flex flex-direction">
+      <button class="cu-btn bg-green margin-tb-sm lg" form-type="submit">确定</button>
+    </view>
+  </form>
+</block>

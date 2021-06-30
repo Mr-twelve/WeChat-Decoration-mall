@@ -1,0 +1,5 @@
+<!--miniprogram/viedo/lookwork/lookwork.wxml-->
+<view class="cu-avatar xl round margin-left" style="background-image:url({{viedo[0].avatarUrl}});"></view>
+<view>{{viedo[0].nickName}}</view>
+<view>----------------------------</view>
+<view>下面是这个人的视频区域</view>

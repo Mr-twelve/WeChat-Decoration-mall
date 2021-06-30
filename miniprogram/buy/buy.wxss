@@ -1,0 +1,146 @@
+page {
+  height: 100%;
+}
+
+.padding-lr {
+  padding-left: 5rpx;
+  padding-top: 5rpx;
+  padding-right: 0rpx;
+}
+
+.text-green, .line-green, .lines-green {
+  color: #f37b1d;
+}
+
+/* 方形设置，若改原型请 注释掉 */
+
+.round {
+  border-radius: 0;
+}
+
+/* 内容上左边距 */
+
+.margin-left {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+/* 内容大小设置 */
+
+.cu-avatar.xl {
+  width: 235rpx;
+  height: 235rpx;
+  font-size: 2.5em;
+}
+
+/* 内容盒子与内容边距 */
+
+.padding {
+  padding: 0rpx;
+}
+
+.VerticalNav.nav {
+  margin-bottom: 0px;
+  width: 200rpx;
+  white-space: initial;
+}
+
+.VerticalNav.nav .cu-item {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  margin: 0;
+  border: none;
+  height: 50px;
+  position: relative;
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #f1f1f1;
+}
+
+.VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 4rpx;
+  height: 100rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+}
+
+.VerticalBox {
+  padding-top: 5rpx;
+  margin-bottom: 0px;
+  display: flex;
+}
+
+.VerticalMain {
+  background-color: #f1f1f1;
+}
+
+.cu-card {
+  display: block;
+  overflow: hidden;
+}
+
+/* 商品图片 */
+.cu-list.menu-avatar>.cu-item>.cu-avatar {
+position: absolute;
+left: 17rpx;
+}
+
+.cu-avatar.lg {
+  width: 170rpx;
+  height: 170rpx;
+  font-size: 2em;
+}
+
+/* 图片右边区域，文字布局 */
+
+.cu-list.menu-avatar>.cu-item .content {
+  position: absolute;
+  left: 200rpx;
+  width: 353rpx;
+  /* width: calc(100% - 96rpx - 60rpx - 120rpx - 20rpx); */
+  line-height: 1.6em;
+}
+.goodsname {
+  display: flex;
+  height: 100rpx
+}
+.goodsname-cut {
+  font-size: 33rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.goodsprice{
+  font-size: 33rpx;
+}
+.shangpuname{
+  font-size: 25rpx;
+}
+
+.text-cut {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* 商品卡片整体布局 */
+
+.cu-list.menu-avatar>.cu-item {
+  position: relative;
+  display: flex;
+  border-bottom: 5rpx solid #f1f1f1;
+  height: 200rpx;
+  background-color: var(--white);
+  justify-content: flex-end;
+  align-items: center;
+}

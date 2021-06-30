@@ -1,0 +1,384 @@
+/* miniprogram/home/home.wxss */
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.banner {
+  width: 750rpx;
+  height: 300rpx;
+}
+
+.banner image {
+  width: 100%;
+  height: 300rpx;
+}
+
+.m-menu {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  margin-top: 20rpx;
+}
+
+.m-menu .item {
+  flex: 1;
+  display: block;
+  padding: 20rpx 0;
+}
+
+.m-menu image {
+  display: block;
+  width: 55rpx;
+  height: 55rpx;
+  margin: 0 auto;
+  margin-bottom: 12rpx;
+}
+
+.m-menu text {
+  display: block;
+  font-size: 24rpx;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 1;
+  color: #333;
+}
+
+
+
+
+
+
+/* 开始 */
+.a-section {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  color: #333;
+  margin-top: 20rpx;
+}
+
+.a-section .h {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 90rpx;
+}
+
+.a-section .h .txt {
+  padding-right: 30rpx;
+  background: url("../icon/024.png") right 4rpx no-repeat;
+  background-size: 16.656rpx 27rpx;
+  display: inline-block;
+  height: 36rpx;
+  font-size: 33rpx;
+  line-height: 36rpx;
+}
+
+.a-brand .b {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.a-brand .wrap {
+  position: relative;
+}
+
+.a-brand .img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.a-brand .mt {
+  position: absolute;
+  z-index: 2;
+  padding: 27rpx 31rpx;
+  left: 0;
+  top: 0;
+}
+
+.a-brand .mt .brand {
+  display: block;
+  font-size: 33rpx;
+  height: 43rpx;
+  color: #333;
+}
+
+.a-brand .mt .price,
+.a-brand .mt .unit {
+  font-size: 25rpx;
+  color: #999;
+}
+
+.a-brand .item-1 {
+  float: left;
+  width: 375rpx;
+  height: 252rpx;
+  overflow: hidden;
+  border-top: 1rpx solid #fff;
+  margin-left: 1rpx;
+}
+
+.a-brand .item-1:nth-child(2n+1) {
+  margin-left: 0;
+  width: 374rpx;
+}
+
+.a-brand .item-1 .img {
+  width: 375rpx;
+  height: 253rpx;
+}
+
+.a-new .b {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+  padding: 0 31rpx 45rpx 31rpx;
+}
+
+.a-new .b .item {
+  float: left;
+  width: 302rpx;
+  height: 302rpx;
+  margin-top: 10rpx;
+  margin-left: 21rpx;
+  margin-right: 21rpx;
+}
+
+.a-new .b .item-b {
+  margin-left: 42rpx;
+}
+
+.a-new .b .img {
+  width: 301rpx;
+  height: 259rpx;
+}
+
+.a-new .b .name {
+  text-align: center;
+  display: block;
+  width: 302rpx;
+  height: 40rpx;
+  margin-bottom: 14rpx;
+  overflow: hidden;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.a-new .b .price {
+  display: block;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 30rpx;
+  color: #b4282d;
+}
+
+.a-popular {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+}
+
+.a-popular .b .item {
+  border-top: 1px solid #d9d9d9;
+  margin: 0 20rpx;
+  height: 264rpx;
+  width: 710rpx;
+}
+
+.a-popular .b .img {
+  margin-top: 12rpx;
+  margin-right: 12rpx;
+  float: left;
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.a-popular .b .right {
+  float: left;
+  height: 264rpx;
+  width: 456rpx;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.a-popular .b .text {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  height: 264rpx;
+  width: 456rpx;
+}
+
+.a-popular .b .name {
+  width: 456rpx;
+  display: block;
+  color: #333;
+  line-height: 50rpx;
+  font-size: 30rpx;
+}
+
+.a-popular .b .desc {
+  width: 456rpx;
+  display: block;
+  color: #999;
+  line-height: 50rpx;
+  font-size: 25rpx;
+}
+
+.a-popular .b .price {
+  width: 456rpx;
+  display: block;
+  color: #b4282d;
+  line-height: 50rpx;
+  font-size: 33rpx;
+}
+
+/* 结束 */
+
+
+/* 样式更改 */
+.change {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  color: #333;
+  margin-top: 14rpx;
+  margin-bottom: 5rpx;
+}
+
+.h {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  /* justify-content: center; */
+  height: 90rpx;
+}
+
+.h .txt1 {
+  padding-right: 30rpx;
+  background-size: 16.656rpx 27rpx;
+  display: inline-block;
+  height: 36rpx;
+  font-size: 33rpx;
+  line-height: 36rpx;
+  /* background-color: blue; */
+  margin-left: 39%;
+  margin-right: 25%;
+}
+
+.h .txt2 {
+  padding-right: 30rpx;
+  background-size: 16.656rpx 27rpx;
+  display: flex;
+  height: 36rpx;
+  font-size: 30rpx;
+  line-height: 36rpx;
+  /* background-color: #b4282d; */
+  /* margin-left: 200rpx; */
+}
+
+
+
+
+
+/* 视频的照片封面的样式 */
+.videoVideo2 {
+  width: 301rpx;
+  height: 259rpx;
+}
+
+/* 封面视频按钮的照片 */
+.videoPlay {
+  position: absolute;
+  width: 45rpx;
+  height: 45rpx;
+  top: 46%;
+  left: 44%;
+  /* margin: -30rpx 0 0 -30rpx; */
+  z-index: 100;
+  border-radius: 50%;
+}
+
+/* 底部标识 */
+.weui-footer {
+  margin-bottom: 50px;
+}
+
+.weui-footer_fixed-bottom {
+  margin-bottom: 0;
+}
+
+.bottom {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 底部图片 */
+.di {
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx 0rpx 10rpx 280rpx;
+}
+
+
+/* 底部文字 */
+.bottom_text {
+  font-size: 34rpx;
+  color: #d8d8d8;
+  margin-left: 10rpx;
+}
+
+/* 弹窗的css */
+.zan-dialog__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.1);/* 设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4); */
+  display: none;
+}
+
+.zan-dialog__container {
+  position: fixed;
+  top: 260rpx;
+  width: 650rpx;/* 弹窗布局宽 */
+  height: 600rpx;/* 弹窗布局高，与下面弹出距离transform有关 */
+  margin-left: 50rpx;
+  background: #f8f8f8;
+  transform: translateY(300%);/* 弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度 */
+  transition: all 0.4s ease;
+  z-index: 12;
+  border-radius: 20rpx;
+  box-shadow: 0px 1px 1px 1px gainsboro;/* //弹框的悬浮阴影效果，如不需要可注释该行 */
+}
+
+.zan-dialog--show .zan-dialog__container {
+  transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+  display: block;
+}
+
+.pdd {
+  padding-top: 7rpx;
+}
+.grid.col-3>view {
+width: 25%;
+}
+
